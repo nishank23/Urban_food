@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/anonymous_pro.xml" value="0.19666524155622062" />
+        <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/avenir.xml" value="0.20649850363403163" />
+        <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/welcomescreenfonts.xml" value="0.19666524155622062" />
+        <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

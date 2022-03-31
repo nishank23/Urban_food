@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "400357568648",
+    "project_id": "urban-food-154de",
+    "storage_bucket": "urban-food-154de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400357568648:android:7d279ba5c054c65c47af3d",
+        "android_client_info": {
+          "package_name": "com.example.urban_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400357568648-is3bmkgcgtolj4o7gfjr4i1hamjrl7am.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3P7PJq-Sjdix_QcIvqwf7i1rSalW29vk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400357568648-is3bmkgcgtolj4o7gfjr4i1hamjrl7am.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
