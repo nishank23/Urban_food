@@ -50,7 +50,7 @@
         android:fontFamily="@font/avenir_heavy"
         android:textSize="17sp"
         android:text="Login"
-        app:cornerRadius="20dp"
+        app:cornerRadius="30dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
