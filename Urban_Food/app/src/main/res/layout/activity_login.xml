@@ -34,8 +34,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:textStyle="bold"
+            android:textColor="@color/titleblue"
             android:layout_margin="25dp"
-            android:text="Welcome Back"
+            android:text="@string/welcome"
             android:textSize="34sp"
             android:gravity="center"/>
 
@@ -44,10 +45,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/tv_welcome"
-            android:text="Login to your Account"
+            android:text="@string/login_account"
             android:textSize="14sp"
             android:gravity="center"/>
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,9 +59,9 @@
             app:layout_constraintTop_toBottomOf="@id/tv_login_account"
             android:background="@drawable/ic_edit_text"
             android:padding="10dp"
-            android:hint="Email" />
+            android:hint="@string/email" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,22 +72,22 @@
             android:padding="10dp"
             android:background="@drawable/ic_edit_text"
             app:layout_constraintTop_toBottomOf="@id/et_email"
-            android:hint="Password" />
+            android:hint="@string/password" />
 
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/orange"
-            android:layout_margin="20dp"
+            android:layout_margin="25dp"
             android:fontFamily="@font/avenir_heavy"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="Login"
             app:cornerRadius="20dp"
+            app:layout_constraintTop_toBottomOf="@id/et_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="30dp"/>
 
 

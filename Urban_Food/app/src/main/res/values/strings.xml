@@ -2,4 +2,8 @@
     <string name="app_name">Urban_Food</string>
     <string name="forgot_password">Forgot password</string>
     <string name="forgot_password_text">Please enter your email address. You will receive a link to create a new password via email.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login_account">Login to your Account</string>
+    <string name="welcome">Welcome Back</string>
 </resources>
