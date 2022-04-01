@@ -41,14 +41,19 @@
         />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:background="@color/white"
-        app:cornerRadius="30dp"
+       android:backgroundTint="@color/orange"
+        android:padding="15dp"
+        android:layout_margin="20dp"
+
+        android:text="Login"
+        app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_content2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="30dp"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
