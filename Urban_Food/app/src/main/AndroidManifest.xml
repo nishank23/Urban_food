@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
         <activity
+            android:name=".Activites.ForgetPasswordScreen.forgetpassword"
+            android:exported="false" />
+        <activity
             android:name=".Activites.Login.LoginActivity"
             android:exported="false" />
         <activity
