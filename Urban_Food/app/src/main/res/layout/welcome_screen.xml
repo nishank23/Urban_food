@@ -18,7 +18,7 @@
         android:paddingRight="20dp"
         android:text="DELIVERED FAST FOOD\nTO YOUR  DOOR."
         android:textColor="@color/white"
-        android:textSize="45dp"
+        android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +28,7 @@
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/avenir_regular"
+        android:fontFamily="@font/avenir_book"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
