@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/ic_edit_text.xml" value="0.1105" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/shape.xml" value="0.1105" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/shape_for_activitylogin.xml" value="0.1105" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_login.xml" value="0.25052083333333336" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.15833333333333333" />
         <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/activity_forgetpassword.xml" value="0.25" />
         <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/activity_login.xml" value="0.1718683197947841" />
         <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.16" />
