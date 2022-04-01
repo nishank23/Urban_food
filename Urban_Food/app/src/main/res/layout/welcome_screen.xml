@@ -20,6 +20,7 @@
         android:textColor="@color/white"
         android:textSize="45sp"
         android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,13 +48,14 @@
         android:padding="15dp"
         android:layout_margin="20dp"
         android:fontFamily="@font/avenir_heavy"
-
+        android:textSize="17sp"
         android:text="Login"
         app:cornerRadius="20dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="30dp"/>
+        />
 
 
 
