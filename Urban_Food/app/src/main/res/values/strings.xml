@@ -16,6 +16,10 @@
     <string name="dob">Date of birth</string>
     <string name="No_account">Don\'t have an account?</string>
     <string name="signUp_below_text">By clicking Sign up you agree to the following Terms and Conditions without reservation</string>
+    <string name="verifynotv">We have sent you an SMS with a code to \n number +91</string>
+    <string name="next">Next</string>
+    <string name="social_network">Social Network</string>
+    <string name="tv_receivepassword">You\'ll shortly receive an email with a\n code to setup a new password.</string>
     <string name="phone_otp_verification">Phone Verification</string>
     <string name="not_get_otp">Didn\'t you received any code?</string>
     <string name="resend_otp">Resend a new code.</string>

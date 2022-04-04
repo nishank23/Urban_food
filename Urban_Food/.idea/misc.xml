@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.132" />
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/drawable/ic_edit_text.xml" value="0.1" />
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/drawable/ic_lock_overturning.xml" value="0.132" />
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/activity_create_account.xml" value="0.2" />
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/activity_forgetpassword.xml" value="0.25" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1105" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/ic_edit_text.xml" value="0.1105" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/ic_lock_overturning.xml" value="0.1105" />
@@ -16,6 +21,9 @@
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/location_custom_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.15833333333333333" />
         <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/activity_login.xml" value="0.1718683197947841" />
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/activity_verifyphone.xml" value="0.16" />
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/resetpassworddialog.xml" value="0.22" />
+        <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.1" />
         <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.22" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/anonymous_pro.xml" value="0.19666524155622062" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/avenir.xml" value="0.20649850363403163" />

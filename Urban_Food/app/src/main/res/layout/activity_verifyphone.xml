@@ -6,4 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".Activites.Verifyphonescreen.verifyphone">
 
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_verify_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/avenir_black"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Verify your\nPhone"
+        android:textColor="@color/titleblue"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_verify_phone_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/verifynotv"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_verify_phone"
+        android:fontFamily="@font/avenir_book"
+        android:textColor="@color/black"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tv_phone_no"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="@id/tv_verify_phone_content"
+        app:layout_constraintStart_toStartOf="@id/tv_verify_phone_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_verify_phone_content" >
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_phone_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/ic_edit_text"
+        android:fontFamily="@font/avenir_book"
+        android:hint="@string/phone"
+        android:includeFontPadding="true"
+        android:paddingStart="5dp"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:maxLength="10"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="5dp"
+
+
+       />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/avenir_heavy"
+        android:text="@string/next"
+        android:textSize="17sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@id/tv_phone_no"
+        app:layout_constraintStart_toStartOf="@id/tv_phone_no"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_no" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
