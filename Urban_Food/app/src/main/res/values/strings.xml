@@ -16,4 +16,10 @@
     <string name="dob">Date of birth</string>
     <string name="No_account">Don\'t have an account?</string>
     <string name="signUp_below_text">By clicking Sign up you agree to the following Terms and Conditions without reservation</string>
+    <string name="phone_otp_verification">Phone Verification</string>
+    <string name="not_get_otp">Didn\'t you received any code?</string>
+    <string name="resend_otp">Resend a new code.</string>
+    <string name="enable_below_text">Please allow to use your location to show nearby restaurant on the map.</string>
+    <string name="enable_your_location">Enable Your Location</string>
+    <string name="enable_location">Enable Location</string>
 </resources>
