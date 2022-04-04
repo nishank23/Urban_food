@@ -1,4 +1,4 @@
-package com.example.urban_food.fragment;
+package com.example.urban_food.fragment.explore;
 
 import android.os.Bundle;
 
@@ -9,16 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.urban_food.R;
-import com.example.urban_food.databinding.FragmentFavoriteBinding;
+import com.example.urban_food.databinding.FragmentExploreBinding;
 
-public class Favorite extends Fragment {
-
-   FragmentFavoriteBinding binding;
+public class Explore extends Fragment {
+    FragmentExploreBinding binding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding=FragmentFavoriteBinding.inflate(getLayoutInflater(),container,false);
+        binding=FragmentExploreBinding.inflate(getLayoutInflater(),container,false);
 
 
 

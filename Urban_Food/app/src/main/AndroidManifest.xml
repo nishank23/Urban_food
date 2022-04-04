@@ -16,7 +16,7 @@
             android:name=".Activites.Home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Activites.OtpActivity"
+            android:name=".Activites.otp.OtpActivity"
             android:exported="false" />
         <activity
             android:name=".Activites.Verifyphonescreen.verifyphone"

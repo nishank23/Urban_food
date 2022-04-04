@@ -1,4 +1,4 @@
-package com.example.urban_food.fragment;
+package com.example.urban_food.fragment.profile;
 
 import android.os.Bundle;
 
