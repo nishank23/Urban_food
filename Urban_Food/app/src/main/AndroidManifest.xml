@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
         <activity
+            android:name=".Activites.Home.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activites.OtpActivity"
             android:exported="false" />
         <activity

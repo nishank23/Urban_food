@@ -64,11 +64,10 @@
         app:hideLineWhenFilled="true"
         app:itemCount="4"
         app:itemHeight="48dp"
-        app:itemRadius="4dp"
         app:itemSpacing="35dp"
         app:itemWidth="48dp"
         app:lineWidth="2dp"
-        app:viewType="rectangle" />
+        app:viewType="line" />
 
 
     <TextView

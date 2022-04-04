@@ -26,4 +26,6 @@
     <string name="enable_below_text">Please allow to use your location to show nearby restaurant on the map.</string>
     <string name="enable_your_location">Enable Your Location</string>
     <string name="enable_location">Enable Location</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
