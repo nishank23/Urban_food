@@ -8,4 +8,12 @@
     <string name="password">Password</string>
     <string name="login_account">Login to your Account</string>
     <string name="welcome">Welcome Back</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create an account</string>
+    <string name="username">Username</string>
+    <string name="phone">Phone</string>
+    <string name="dob">Date of birth</string>
+    <string name="No_account">Don\'t have an account?</string>
+    <string name="signUp_below_text">By clicking Sign up you agree to the following Terms and Conditions without reservation</string>
 </resources>
