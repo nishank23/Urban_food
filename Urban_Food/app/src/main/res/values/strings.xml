@@ -28,4 +28,7 @@
     <string name="enable_location">Enable Location</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="discover_new_places">Discover new places</string>
+    <string name="top_categories">Top categories</string>
+    <string name="popular_this_week">Popular this week</string>
 </resources>
