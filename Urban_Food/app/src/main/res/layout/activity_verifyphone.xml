@@ -36,23 +36,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/avenir_book"
         android:gravity="center"
         android:text="@string/verifynotv"
+        android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_verify_phone"
-        android:fontFamily="@font/avenir_book"
-        android:textColor="@color/black"
-        />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tv_phone_no"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="@id/tv_verify_phone_content"
-        app:layout_constraintStart_toStartOf="@id/tv_verify_phone_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_verify_phone_content" >
+        app:layout_constraintTop_toBottomOf="@id/tv_verify_phone" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_phone_no"
@@ -63,17 +54,17 @@
         android:fontFamily="@font/avenir_book"
         android:hint="@string/phone"
         android:includeFontPadding="true"
-        android:paddingStart="5dp"
         android:inputType="number"
-        android:textColor="@color/black"
         android:maxLength="10"
+        android:paddingStart="5dp"
         android:paddingTop="5dp"
         android:paddingEnd="5dp"
         android:paddingBottom="5dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/tv_verify_phone_content"
+        app:layout_constraintStart_toStartOf="@id/tv_verify_phone_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_verify_phone_content" />
 
-
-       />
-    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_next"
         android:layout_width="0dp"
@@ -85,10 +76,9 @@
         android:text="@string/next"
         android:textSize="17sp"
         app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@id/tv_phone_no"
-        app:layout_constraintStart_toStartOf="@id/tv_phone_no"
-        app:layout_constraintTop_toBottomOf="@id/tv_phone_no" />
-
+        app:layout_constraintEnd_toEndOf="@id/et_phone_no"
+        app:layout_constraintStart_toStartOf="@id/et_phone_no"
+        app:layout_constraintTop_toBottomOf="@id/et_phone_no" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

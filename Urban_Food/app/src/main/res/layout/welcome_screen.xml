@@ -42,6 +42,7 @@
         />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_login_welcomeScreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        android:backgroundTint="@color/orange"
