@@ -17,4 +17,6 @@ public interface ApiInterface {
   *//*  Call<CityResponse> getCity(@Field("state_id")String state_id);
 */
 
+
+
 }

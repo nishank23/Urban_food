@@ -58,7 +58,7 @@ dependencies {
 
     //library for creating animated warnings/dialogs/alerts for Android.
 
-    implementation 'com.emredavarci:noty:1.0.3'
+    implementation 'com.airbnb.android:lottie:5.0.3'
 
 
 }
