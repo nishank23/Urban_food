@@ -52,7 +52,7 @@
         android:textSize="17sp"
         android:text="Login"
         app:cornerRadius="20dp"
-
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
