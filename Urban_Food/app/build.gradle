@@ -56,4 +56,9 @@ dependencies {
     implementation 'com.github.HBiSoft:PickiT:2.0.3'
 
 
+    //library for creating animated warnings/dialogs/alerts for Android.
+
+    implementation 'com.emredavarci:noty:1.0.3'
+
+
 }

@@ -65,6 +65,8 @@
         app:itemCount="4"
         app:itemHeight="48dp"
         app:itemSpacing="35dp"
+        android:autofillHints="smsOTPCode"
+        android:importantForAutofill="yes"
         app:itemWidth="48dp"
         app:lineWidth="2dp"
         app:viewType="line" />
