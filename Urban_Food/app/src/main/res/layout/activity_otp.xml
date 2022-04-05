@@ -62,9 +62,9 @@
         android:textStyle="bold"
         app:cursorWidth="2dp"
         app:hideLineWhenFilled="true"
-        app:itemCount="4"
+        app:itemCount="6"
         app:itemHeight="48dp"
-        app:itemSpacing="35dp"
+        app:itemSpacing="10dp"
         android:autofillHints="smsOTPCode"
         android:importantForAutofill="yes"
         app:itemWidth="48dp"
@@ -97,5 +97,23 @@
         android:textSize="20sp"
         android:gravity="center"
         android:fontFamily="@font/avenir_book"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_next_otp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/avenir_heavy"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/next"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_resend_otp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
