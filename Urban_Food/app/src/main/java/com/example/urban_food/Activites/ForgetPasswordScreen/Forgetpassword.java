@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.urban_food.R;
 
-public class forgetpassword extends AppCompatActivity {
+public class Forgetpassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

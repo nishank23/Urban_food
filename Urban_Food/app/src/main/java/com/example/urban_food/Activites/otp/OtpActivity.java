@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
+import com.example.urban_food.Activites.ForgetPasswordScreen.Forgetpassword;
 import com.example.urban_food.Activites.createAccount.CreateAccount;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.R;
@@ -15,8 +16,8 @@ import java.text.DecimalFormat;
 
 public class OtpActivity extends AppCompatActivity implements OtpView {
     ActivityOtpBinding binding;
-    String phoneData;
-    OtpPresenter presenter=new OtpPresenter(this);
+    String otpData;
+    String checker;
     CountDownTimer countDownTimer;
 
     @Override
@@ -24,8 +25,9 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
         binding=ActivityOtpBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
+        otpData=getIntent().getStringExtra("otpNo");
+        checker=getIntent().getStringExtra("checker");
 
-        presenter.callApiOtp(phoneData);
 
         countDownTimer = new CountDownTimer(60000, 1000){
             @Override
@@ -44,32 +46,30 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
         countDownTimer.start();
 
         binding.buttonNextOtp.setOnClickListener(view -> {
-            if(){
-                startActivity(new Intent(this, CreateAccount.class));
+
+            if(!binding.etOtp.getText().toString().isEmpty()){
+                if(checker.equals("true")){
+                    if(binding.etOtp.getText().toString().equals(otpData)){
+                        startActivity(new Intent(this, CreateAccount.class));
+                    }else{
+                        Common.showToast(this,"Otp is not valid");
+                    }
+                }else{
+                    if(binding.etOtp.getText().toString().equals(otpData)){
+                        startActivity(new Intent(this, Forgetpassword.class));
+                    }else{
+                        Common.showToast(this,"Otp is not valid");
+                    }
+                }
+            }else{
+                Common.showToast(this,"Otp is not valid");
             }
+
+
         });
 
     }
 
-    @Override
-    public void onSuccessOtp(int data) {
-        phoneData=String.valueOf(data);
-    }
-
-    @Override
-    public void onError() {
-        Common.showSomethingWentWrong(this);
-    }
-
-    @Override
-    public void ShowProgress() {
-
-    }
-
-    @Override
-    public void dismissProgress() {
-
-    }
 
     @Override
     protected void onDestroy() {

@@ -24,6 +24,12 @@ public class LoginActivity extends AppCompatActivity {
         if (Common.isConnected(activity)){
             binding.tvSignUp.setOnClickListener(view -> {
                 Intent intent=new Intent(this, verifyphone.class);
+                intent.putExtra("checker","true");
+                startActivity(intent);
+            });
+            binding.tvForgrtPasswordLogin.setOnClickListener(view -> {
+                Intent intent=new Intent(this, verifyphone.class);
+                intent.putExtra("checker","false");
                 startActivity(intent);
             });
         }else {
