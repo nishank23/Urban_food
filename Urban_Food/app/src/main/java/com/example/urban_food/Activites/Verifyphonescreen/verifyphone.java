@@ -15,7 +15,7 @@ import com.example.urban_food.databinding.ActivityVerifyphoneBinding;
 public class verifyphone extends AppCompatActivity implements VerifyphoneView {
     ActivityVerifyphoneBinding binding;
     OtpView view;
-    String otpData = "985854";
+    String otpData = "111111";
     String checker = "";
     VerifyphonePresenter presenter = new VerifyphonePresenter(this);
 
