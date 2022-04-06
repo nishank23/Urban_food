@@ -60,7 +60,7 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:5.0.3'
 
-
+    //sms authentication
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
 

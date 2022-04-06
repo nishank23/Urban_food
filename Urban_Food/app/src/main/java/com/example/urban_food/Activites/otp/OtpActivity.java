@@ -149,6 +149,8 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
     protected void onDestroy() {
         super.onDestroy();
         countDownTimer.cancel();
+        unregisterReceiver(smsBroadcastReceiver);
+
     }
 
     @Override

@@ -20,7 +20,7 @@
             android:name=".Activites.otp.OtpActivity"
             android:exported="false" />
         <activity
-            android:name=".Activites.Verifyphonescreen.verifyphone"
+            android:name=".Activites.Verifyphonescreen.VerifyPhone"
             android:exported="false" />
         <activity
             android:name=".Activites.createAccount.CreateAccount"

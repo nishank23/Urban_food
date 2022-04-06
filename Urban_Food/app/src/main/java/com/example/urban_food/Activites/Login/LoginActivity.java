@@ -6,9 +6,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.urban_food.Activites.Verifyphonescreen.verifyphone;
+import com.example.urban_food.Activites.Verifyphonescreen.VerifyPhone;
 import com.example.urban_food.Helper.Common;
-import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -23,12 +22,12 @@ public class LoginActivity extends AppCompatActivity {
 
         if (Common.isConnected(activity)){
             binding.tvSignUp.setOnClickListener(view -> {
-                Intent intent=new Intent(this, verifyphone.class);
+                Intent intent=new Intent(this, VerifyPhone.class);
                 intent.putExtra("checker","true");
                 startActivity(intent);
             });
             binding.tvForgrtPasswordLogin.setOnClickListener(view -> {
-                Intent intent=new Intent(this, verifyphone.class);
+                Intent intent=new Intent(this, VerifyPhone.class);
                 intent.putExtra("checker","false");
                 startActivity(intent);
             });
