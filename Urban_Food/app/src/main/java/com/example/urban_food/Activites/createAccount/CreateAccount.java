@@ -16,7 +16,7 @@ public class CreateAccount extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         phoneString=getIntent().getStringExtra("phone");
-        binding.etPhoneCreateAccount.setText("+91 "+phoneString);
+        binding.etPhoneCreateAccount.setText(phoneString);
         binding.etPhoneCreateAccount.setEnabled(false);
     }
 }
