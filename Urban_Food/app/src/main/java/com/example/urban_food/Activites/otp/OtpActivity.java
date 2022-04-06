@@ -16,8 +16,8 @@ import java.text.DecimalFormat;
 
 public class OtpActivity extends AppCompatActivity implements OtpView {
     ActivityOtpBinding binding;
-    String otpData;
-    String checker;
+    String otpData="";
+    String checker="";
     CountDownTimer countDownTimer;
 
     @Override
