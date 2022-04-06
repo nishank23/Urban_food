@@ -6,19 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.urban_food.Activites.otp.OtpActivity;
-import com.example.urban_food.Activites.otp.OtpPresenter;
-import com.example.urban_food.Activites.otp.OtpView;
 import com.example.urban_food.Helper.Common;
-import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityVerifyphoneBinding;
 
-public class verifyphone extends AppCompatActivity implements VerifyphoneView {
+public class VerifyPhone extends AppCompatActivity implements VerifyPhoneView {
     ActivityVerifyphoneBinding binding;
-    VerifyphoneView view;
+    VerifyPhoneView view;
     String otpData = "111111";
     String checker = "";
     String phone = "";
-    VerifyphonePresenter presenter = new VerifyphonePresenter(this);
+    VerifyPhonePresenter presenter = new VerifyPhonePresenter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

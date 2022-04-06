@@ -1,6 +1,6 @@
 package com.example.urban_food.Activites.Verifyphonescreen;
 
-public interface VerifyphoneView {
+public interface VerifyPhoneView {
 
     void onSuccessOtp(int data);
 

@@ -66,8 +66,9 @@
         android:layout_marginTop="10dp"
         android:padding="10dp"
         android:hint="@string/phone" />
+
     <EditText
-        android:id="@+id/et_birth_createAccount"
+        android:id="@+id/et_password_createAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/et_phone_createAccount"
@@ -77,19 +78,21 @@
         android:fontFamily="@font/avenir_book"
         android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:hint="@string/dob" />
+        android:hint="@string/password" />
+
     <EditText
-        android:id="@+id/et_password_createAccount"
+        android:id="@+id/et_confirm_password_createAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_birth_createAccount"
+        app:layout_constraintTop_toBottomOf="@id/et_password_createAccount"
         app:layout_constraintEnd_toEndOf="@id/tv_create_account"
         app:layout_constraintStart_toStartOf="@id/tv_create_account"
         android:background="@drawable/ic_edit_text"
         android:fontFamily="@font/avenir_book"
         android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:hint="@string/password" />
+        android:hint="Confirm Password" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_sign_up"
@@ -104,7 +107,7 @@
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="@id/tv_create_account"
         app:layout_constraintStart_toStartOf="@id/tv_create_account"
-        app:layout_constraintTop_toBottomOf="@id/et_password_createAccount" />
+        app:layout_constraintTop_toBottomOf="@id/et_confirm_password_createAccount" />
 
     <TextView
         android:layout_width="0dp"

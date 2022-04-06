@@ -1,6 +1,5 @@
 package com.example.urban_food.Activites.Verifyphonescreen;
 
-import com.example.urban_food.Activites.otp.OtpView;
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.Modal.OtpModal.OtpResponse;
 
@@ -8,11 +7,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class VerifyphonePresenter {
+public class VerifyPhonePresenter {
 
-    VerifyphoneView view;
+    VerifyPhoneView view;
 
-    public VerifyphonePresenter(VerifyphoneView view) {
+    public VerifyPhonePresenter(VerifyPhoneView view) {
         this.view = view;
     }
 

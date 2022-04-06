@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class OtpActivity extends AppCompatActivity implements OtpView {
     private static final int REQ_USER_CONSENT = 200;
     ActivityOtpBinding binding;
-    String otpData = "";
+    String otpData = "111111";
     String checker = "";
     String phoneString="";
     CountDownTimer countDownTimer;
