@@ -31,8 +31,8 @@ public class verifyphone extends AppCompatActivity implements VerifyphoneView {
 
                         phone=binding.etPhoneNo.getText().toString();
 /*
-                        presenter.callApiOtp("+91"+binding.etPhoneNo.getText().toString());
-*/
+                presenter.callApiOtp("+91" + binding.etPhoneNo.getText().toString());
+ */
                 if (!otpData.isEmpty()) {
                     Intent intent = new Intent(this, OtpActivity.class);
                     intent.putExtra("otpNo", otpData);
