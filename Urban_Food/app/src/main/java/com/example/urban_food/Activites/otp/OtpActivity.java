@@ -18,6 +18,7 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
     ActivityOtpBinding binding;
     String otpData="";
     String checker="";
+    String phoneString="";
     CountDownTimer countDownTimer;
 
     @Override
@@ -27,6 +28,7 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
         setContentView(binding.getRoot());
         otpData=getIntent().getStringExtra("otpNo");
         checker=getIntent().getStringExtra("checker");
+        phoneString=getIntent().getStringExtra("phone");
 
 
         countDownTimer = new CountDownTimer(60000, 1000){
@@ -50,7 +52,10 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
             if(!binding.etOtp.getText().toString().isEmpty()){
                 if(checker.equals("true")){
                     if(binding.etOtp.getText().toString().equals(otpData)){
-                        startActivity(new Intent(this, CreateAccount.class));
+                        Intent intent=new Intent(this,CreateAccount.class);
+                        intent.putExtra("phone",phoneString);
+                        startActivity(intent);
+
                     }else{
                         Common.showToast(this,"Otp is not valid");
                     }

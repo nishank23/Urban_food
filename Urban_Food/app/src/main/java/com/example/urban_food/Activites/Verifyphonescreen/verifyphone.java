@@ -14,9 +14,10 @@ import com.example.urban_food.databinding.ActivityVerifyphoneBinding;
 
 public class verifyphone extends AppCompatActivity implements VerifyphoneView {
     ActivityVerifyphoneBinding binding;
-    OtpView view;
+    VerifyphoneView view;
     String otpData = "111111";
     String checker = "";
+    String phone = "";
     VerifyphonePresenter presenter = new VerifyphonePresenter(this);
 
     @Override
@@ -28,6 +29,7 @@ public class verifyphone extends AppCompatActivity implements VerifyphoneView {
         binding.btnNext.setOnClickListener(view -> {
             if (binding.etPhoneNo.getText().toString().length() == 10) {
 
+                        phone=binding.etPhoneNo.getText().toString();
 /*
                         presenter.callApiOtp("+91"+binding.etPhoneNo.getText().toString());
 */
@@ -35,6 +37,7 @@ public class verifyphone extends AppCompatActivity implements VerifyphoneView {
                     Intent intent = new Intent(this, OtpActivity.class);
                     intent.putExtra("otpNo", otpData);
                     intent.putExtra("checker", checker);
+                    intent.putExtra("phone",phone);
                     startActivity(intent);
                 } else {
                     Common.showSomethingWentWrong(this);
