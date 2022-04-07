@@ -22,60 +22,58 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        if (Common.isConnected(activity)){
+        if (Common.isConnected(activity)) {
             binding.tvSignUp.setOnClickListener(view -> {
-                Intent intent=new Intent(this, VerifyPhone.class);
-                intent.putExtra("checker","true");
+                Intent intent = new Intent(this, VerifyPhone.class);
+                intent.putExtra("checker", "true");
                 startActivity(intent);
             });
             binding.tvForgrtPasswordLogin.setOnClickListener(view -> {
-                Intent intent=new Intent(this, VerifyPhone.class);
-                intent.putExtra("checker","false");
+                Intent intent = new Intent(this, VerifyPhone.class);
+                intent.putExtra("checker", "false");
                 startActivity(intent);
             });
 
             binding.buttonLogin.setOnClickListener(view -> {
-                if(binding.etPhoneNo.getText().toString().isEmpty() && binding.etPhoneNo.getText().length()<10){
-                    Common.showToast(this,"Please Enter Phone Number");
+                if (binding.etPhoneNo.getText().toString().isEmpty() && binding.etPhoneNo.getText().length() < 10) {
+                    Common.showToast(this, "Please Enter Phone Number");
                 }
-                if(binding.etPassword.getText().toString().length()<6 && binding.etPassword.getText().toString().isEmpty()){
-                    Common.showToast(this,"Please Enter Correct Password");
-                }
-                else {
+                if (binding.etPassword.getText().toString().length() < 6 && binding.etPassword.getText().toString().isEmpty()) {
+                    Common.showToast(this, "Please Enter Correct Password");
+                } else {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("username", "+91"+binding.etPhoneNo.getText().toString());
+                    map.put("username", "+91" + binding.etPhoneNo.getText().toString());
                     map.put("password", binding.etPassword.getText().toString());
-                    map.put("grant_type","password");
-                    map.put("client_id","2");
-                    map.put("client_secret","OkjVHNOhn8rljc5cxyq0unICJ3qfotydQ5lvv88w");
+                    map.put("grant_type", "password");
+                    map.put("client_id", "2");
+                    map.put("client_secret", "OkjVHNOhn8rljc5cxyq0unICJ3qfotydQ5lvv88w");
 
-                    LoginActivityPresenter loginActivityPresenter=new LoginActivityPresenter(this);
+                    LoginActivityPresenter loginActivityPresenter = new LoginActivityPresenter(this);
                     loginActivityPresenter.login(map);
 
 
                 }
             });
-        }else {
+        } else {
             Common.showNoInternet(activity);
         }
     }
 
 
-
     @Override
     public void onSuccessLogin(String token) {
 
-        PrefUtils.putBooleanPref(Common.isLoggedIn,true,this);
-        Intent intent=new Intent(this, HomeActivity.class);
+        PrefUtils.putBooleanPref(Common.isLoggedIn, true, this);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
     @Override
     public void onError(String msg) {
-        Common.showToast(this,msg);
+        Common.showToast(this, msg);
     }
 
     @Override
