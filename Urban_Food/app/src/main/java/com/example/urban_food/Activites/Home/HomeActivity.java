@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.urban_food.Adapter.HomeViewPager;
+import com.example.urban_food.Helper.Common;
+import com.example.urban_food.Helper.PrefUtils;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityHomeBinding;
 import com.example.urban_food.fragment.explore.Explore;
@@ -50,4 +53,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         }).attach();
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+/*
+        PrefUtils.putBooleanPref(Common.isLoggedIn,true,this);
+*/
+
+    }
+
 }

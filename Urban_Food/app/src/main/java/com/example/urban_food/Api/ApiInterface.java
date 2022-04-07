@@ -1,5 +1,6 @@
 package com.example.urban_food.Api;
 
+import com.example.urban_food.Modal.LoginModal.LoginResponse;
 import com.example.urban_food.Modal.OtpModal.OtpResponse;
 import com.example.urban_food.Modal.RegisterModal.RegistrationResponse;
 
@@ -30,4 +31,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("api/user/register")
     Call<RegistrationResponse> registration(@FieldMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("oauth/token")
+    Call<LoginResponse> Login(@FieldMap HashMap<String,String> map);
 }

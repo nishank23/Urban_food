@@ -18,6 +18,10 @@ public class Common {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
+    public static final String isLoggedIn="isLoggedIn";
+    public static final String userName="userName";
+
+
     public static void showToast(Context context, String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }

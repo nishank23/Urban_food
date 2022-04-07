@@ -58,6 +58,12 @@
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/avenir.xml" value="0.20649850363403163" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/welcomescreenfonts.xml" value="0.19666524155622062" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_my_order.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/layout_error.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/layout_loading.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/location_custom_dialog.xml" value="0.15670289855072464" />
       </map>
     </option>
   </component>
