@@ -1,6 +1,5 @@
-package com.example.urban_food.Activites.createAccount;
+package com.example.urban_food.Activites.CreateAccount;
 
-import com.example.urban_food.Activites.Verifyphonescreen.VerifyPhoneView;
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.Modal.RegisterModal.RegistrationResponse;
 

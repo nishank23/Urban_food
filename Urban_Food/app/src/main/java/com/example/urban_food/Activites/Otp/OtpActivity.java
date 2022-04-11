@@ -1,4 +1,4 @@
-package com.example.urban_food.Activites.otp;
+package com.example.urban_food.Activites.Otp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 
 import com.example.urban_food.Activites.ForgetPasswordScreen.Forgetpassword;
-import com.example.urban_food.Activites.createAccount.CreateAccount;
+import com.example.urban_food.Activites.CreateAccount.CreateAccount;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityOtpBinding;
@@ -71,17 +71,17 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
                         startActivity(intent);
 
                     } else {
-                        Common.showToast(this, "Otp is not valid");
+                        Common.showToast("Otp is not valid");
                     }
                 } else {
                     if (binding.etOtp.getText().toString().equals(otpData)) {
                         startActivity(new Intent(this, Forgetpassword.class));
                     } else {
-                        Common.showToast(this, "Otp is not valid");
+                        Common.showToast("Otp is not valid");
                     }
                 }
             } else {
-                Common.showToast(this, "Otp is not valid");
+                Common.showToast("Otp is not valid");
             }
 
 

@@ -1,4 +1,4 @@
-package com.example.urban_food.Activites.otp;
+package com.example.urban_food.Activites.Otp;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

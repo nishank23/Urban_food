@@ -1,4 +1,4 @@
-package com.example.urban_food.Activites.createAccount;
+package com.example.urban_food.Activites.CreateAccount;
 
 public interface CreateAccountView {
 

@@ -1,4 +1,4 @@
-package com.example.urban_food.Activites.createAccount;
+package com.example.urban_food.Activites.CreateAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,16 +30,16 @@ public class CreateAccount extends AppCompatActivity implements CreateAccountVie
     private void clickEvent() {
         binding.buttonSignUp.setOnClickListener(view -> {
             if(binding.etUserNameCrateAccount.getText().toString().isEmpty()){
-                Common.showToast(this,"Username is empty");
+                Common.showToast("Username is empty");
             }else if(binding.etEmailCrateAccount.getText().toString().isEmpty()){
-                Common.showToast(this,"Email is empty");
+                Common.showToast("Email is empty");
             }else if(binding.etPasswordCreateAccount.getText().toString().length() < 6 ){
-                Common.showToast(this,"password should be more than 6 character" );
+                Common.showToast("password should be more than 6 character" );
             }else if(binding.etConfirmPasswordCreateAccount.getText().toString().length() < 6 && !binding.etConfirmPasswordCreateAccount.getText().toString().equals(binding.etPasswordCreateAccount.getText().toString())){
-                Common.showToast(this,"password not matched");
+                Common.showToast("password not matched");
             }
             else{
-                if (Common.isConnected(this)) {
+                if (Common.isConnected()) {
                     HashMap<String, String> map = new HashMap<>();
                     map.put("name", binding.etUserNameCrateAccount.getText().toString());
                     map.put("email", binding.etEmailCrateAccount.getText().toString());
@@ -53,7 +53,7 @@ public class CreateAccount extends AppCompatActivity implements CreateAccountVie
                     Intent intent=new Intent(this, LoginActivity.class);
                     startActivity(intent);
                 } else {
-                    Common.showNoInternet(this);
+                    Common.showNoInternet();
                 }
 
             }

@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.urban_food.Activites.otp.OtpActivity;
+import com.example.urban_food.Activites.Otp.OtpActivity;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.databinding.ActivityVerifyphoneBinding;
 
@@ -37,10 +37,10 @@ public class VerifyPhone extends AppCompatActivity implements VerifyPhoneView {
                     intent.putExtra("phone",phone);
                     startActivity(intent);
                 } else {
-                    Common.showSomethingWentWrong(this);
+                    Common.showSomethingWentWrong();
                 }
             } else {
-                Common.showToast(this, "Phone number is not valid");
+                Common.showToast( "Phone number is not valid");
             }
         });
     }

@@ -2,15 +2,20 @@ package com.example.urban_food.Api;
 
 import com.example.urban_food.Modal.LoginModal.LoginResponse;
 import com.example.urban_food.Modal.OtpModal.OtpResponse;
+import com.example.urban_food.Modal.ProfileModal.ProfileResponse;
 import com.example.urban_food.Modal.RegisterModal.RegistrationResponse;
 
 import java.util.HashMap;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 public interface ApiInterface {
 /*
@@ -35,4 +40,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("oauth/token")
     Call<LoginResponse> Login(@FieldMap HashMap<String,String> map);
+
+    @GET("api/user/profile")
+    Call<ProfileResponse> getProfile(@QueryMap HashMap<String, String> map);
 }
