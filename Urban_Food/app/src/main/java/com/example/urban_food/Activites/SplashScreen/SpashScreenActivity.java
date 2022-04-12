@@ -79,7 +79,6 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
                             Log.w("LoginActivity", "Fetching FCM registration token failed", task.getException());
                             return;
                         }
-
                         // Get new FCM registration token
 
                         // Log and toast
@@ -93,6 +92,8 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         } catch (Exception e) {
             device_id = "";
         }
+
+
 
     }
 
