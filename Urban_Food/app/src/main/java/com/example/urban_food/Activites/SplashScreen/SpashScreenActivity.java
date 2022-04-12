@@ -49,7 +49,7 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
     }
 
-    public void checkactivity(){
+    public void checkactivity() {
         if (PrefUtils.getBooleanPref(Common.isLoggedIn, this)) {
             //Toast.makeText(this, "wrong", Toast.LENGTH_SHORT).show();
             if (PrefUtils.getStringPref(Common.userToken, this).isEmpty()) {
@@ -69,6 +69,7 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         }
 
     }
+
     private void getDeviceIdAndToken() {
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -107,7 +108,7 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
     @Override
     public void onError(String msg) {
-
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
