@@ -42,6 +42,12 @@ public class HomeActivity extends AppCompatActivity {
         icons.add(R.drawable.ic_myorder);
         icons.add(R.drawable.ic_myprofile);
 
+        ArrayList<String> texts = new ArrayList<>();
+        texts.add("Explore");
+        texts.add("Favorite");
+        texts.add("MyOrder");
+        texts.add("Profile");
+
         HomeViewPager adapter=new HomeViewPager(this,fragments);
         binding.homeViewpager.setAdapter(adapter);
         binding.homeViewpager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
@@ -50,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 tab.setIcon(icons.get(position));
+                tab.setText(texts.get(position));
             }
         }).attach();
     }

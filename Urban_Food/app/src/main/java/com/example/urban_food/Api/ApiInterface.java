@@ -4,6 +4,7 @@ import com.example.urban_food.Modal.LoginModal.LoginResponse;
 import com.example.urban_food.Modal.OtpModal.OtpResponse;
 import com.example.urban_food.Modal.ProfileModal.ProfileResponse;
 import com.example.urban_food.Modal.RegisterModal.RegistrationResponse;
+import com.example.urban_food.Modal.ShopModal.ShopResponse;
 
 import java.util.HashMap;
 
@@ -43,4 +44,7 @@ public interface ApiInterface {
 
     @GET("api/user/profile")
     Call<ProfileResponse> getProfile(@QueryMap HashMap<String, String> map);
+
+    @GET("api/user/shops")
+    Call<ShopResponse> getShops(@Field("user_id") String user_id, @Field("latitude") String latitude, @Field("longitude") String longitude);
 }
