@@ -1,14 +1,6 @@
 package com.example.urban_food.Activites.SplashScreen;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
-import androidx.core.location.LocationManagerCompat;
-
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +12,13 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
+import androidx.core.location.LocationManagerCompat;
+
 import com.example.urban_food.Activites.Home.HomeActivity;
 import com.example.urban_food.Activites.Login.LoginActivity;
 import com.example.urban_food.Activites.Login.LoginActivityPresenter;
@@ -30,7 +29,6 @@ import com.example.urban_food.Helper.PrefUtils;
 import com.example.urban_food.Modal.ProfileModal.AddressesItem;
 import com.example.urban_food.Modal.ProfileModal.CartItem;
 import com.example.urban_food.databinding.ActivitySpashScreenBinding;
-import com.example.urban_food.databinding.LocationCustomDialogBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -149,7 +147,6 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         } catch (Exception e) {
             device_id = "";
         }
-
 
 
     }
