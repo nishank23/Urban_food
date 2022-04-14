@@ -13,84 +13,85 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_edit_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_search_24"
+            app:layout_constraintBottom_toBottomOf="@id/et_search"
+            app:layout_constraintStart_toStartOf="@id/et_search"
+            app:layout_constraintTop_toTopOf="@+id/et_search" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/ic_edit_text"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                />
-            <ImageView
-                android:id="@+id/iv_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/et_search"
-                app:layout_constraintBottom_toBottomOf="@id/et_search"
-                app:layout_constraintTop_toTopOf="@+id/et_search"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_baseline_search_24"/>
 
             <TextView
                 android:id="@+id/tv_new_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/et_search"
                 android:layout_marginStart="10dp"
-                android:text="@string/discover_new_places"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/avenir_heavy"
+                android:text="@string/discover_new_places"
                 android:textSize="30sp"
-                android:layout_marginTop="15dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_discover_newPlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_new_place"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_new_place" />
 
             <TextView
                 android:id="@+id/tv_categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/recycler_discover_newPlace"
-                android:text="@string/top_categories"
-                android:fontFamily="@font/avenir_heavy"
-                android:textSize="20sp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="10dp"/>
+                android:fontFamily="@font/avenir_heavy"
+                android:text="@string/top_categories"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/recycler_discover_newPlace" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_categories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_categories"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_categories" />
 
 
             <TextView
                 android:id="@+id/tv_popular_week"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/recycler_categories"
-                android:text="@string/popular_this_week"
-                android:fontFamily="@font/avenir_heavy"
-                android:textSize="20sp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="10dp"/>
+                android:fontFamily="@font/avenir_heavy"
+                android:text="@string/popular_this_week"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/recycler_categories" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_popular_week"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_popular_week"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_popular_week" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

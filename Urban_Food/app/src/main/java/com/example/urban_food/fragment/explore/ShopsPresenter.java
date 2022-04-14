@@ -22,7 +22,7 @@ public class ShopsPresenter {
             public void onResponse(Call<ShopResponse> call, Response<ShopResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
                     view.dismissProgressShops();
-                    view.onSuccessShops();
+                    view.onSuccessShops(response.body().getShops());
                 }else{
                     view.onErrorShops();
                 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.urban_food.Modal.ShopModal.ShopResponse;
 import com.example.urban_food.Modal.ShopModal.ShopsItem;
 import com.example.urban_food.databinding.DiscoverNewplaceRecyclerlayoutBinding;
@@ -33,9 +34,15 @@ public class DiscoverNewPlacesAdapter extends RecyclerView.Adapter<DiscoverNewPl
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
 
+        Glide
+                .with(activity)
+                .load(shopsList.get(position).getPhoto())
+                .into(holder.binding.ivImage);
+
       holder.binding.tvRestaurantName.setText(shopsList.get(position).getName());
       holder.binding.tvRestaurantAddress.setText(shopsList.get(position).getAddress());
       holder.binding.tvRatingDigit.setText(shopsList.get(position).getRating());
+      holder.binding.tvRatingCount.setText(shopsList.get(position).getRatingStatus());
 
     }
 
