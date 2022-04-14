@@ -46,5 +46,5 @@ public interface ApiInterface {
     Call<ProfileResponse> getProfile(@QueryMap HashMap<String, String> map);
 
     @GET("api/user/shops")
-    Call<ShopResponse> getShops(@Field("user_id") String user_id, @Field("latitude") String latitude, @Field("longitude") String longitude);
+    Call<ShopResponse> getShops(@Field("user_id") String user_id, @Field("latitude") double latitude, @Field("longitude") double longitude);
 }

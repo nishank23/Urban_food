@@ -16,8 +16,8 @@ public class ShopsPresenter {
         this.view = view;
     }
 
-    public void shops(String id,String lati, String longi){
-        ApiClient.getRetrofit().getShops(id,lati,longi).enqueue(new Callback<ShopResponse>() {
+    public void shops(String id,double latitude, double longitude){
+        ApiClient.getRetrofit().getShops(id,latitude,longitude).enqueue(new Callback<ShopResponse>() {
             @Override
             public void onResponse(Call<ShopResponse> call, Response<ShopResponse> response) {
                 if(response.isSuccessful() && response.body() != null){

@@ -23,6 +23,7 @@ public class Explore extends Fragment implements ShopsView {
     DiscoverNewPlacesAdapter discoverNewPlacesAdapter;
 
     ShopsPresenter shopspresenter;
+    
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,7 +31,7 @@ public class Explore extends Fragment implements ShopsView {
         binding=FragmentExploreBinding.inflate(getLayoutInflater(),container,false);
 
         shopspresenter = new ShopsPresenter(this);
-
+        shopspresenter.shops(String.valueOf(1),21.1702,72.8311);
 
         return binding.getRoot();
     }
