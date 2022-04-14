@@ -1,4 +1,4 @@
-package com.example.urban_food.Modal.ShopModal;
+package com.example.urban_food.Modal.ExploreModal;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -25,13 +25,13 @@
         app:layout_constraintBottom_toBottomOf="@id/et_search"
         app:layout_constraintStart_toStartOf="@id/et_search"
         app:layout_constraintTop_toTopOf="@+id/et_search" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_search">
-
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,12 +49,19 @@
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_discover_newPlace"
+            <com.example.urban_food.Helper.NestedScrollableHost
+                android:id="@+id/nestedscroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_new_place" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_new_place">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_discover_newPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp" />
+            </com.example.urban_food.Helper.NestedScrollableHost>
 
             <TextView
                 android:id="@+id/tv_categories"
@@ -65,7 +72,7 @@
                 android:fontFamily="@font/avenir_heavy"
                 android:text="@string/top_categories"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/recycler_discover_newPlace" />
+                app:layout_constraintTop_toBottomOf="@id/nestedscroll" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_categories"

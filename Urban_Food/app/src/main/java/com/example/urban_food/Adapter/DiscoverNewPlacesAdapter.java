@@ -2,15 +2,13 @@ package com.example.urban_food.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.urban_food.Modal.ShopModal.ShopResponse;
-import com.example.urban_food.Modal.ShopModal.ShopsItem;
+import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.DiscoverNewplaceRecyclerlayoutBinding;
 
 import java.util.List;
@@ -41,8 +39,8 @@ public class DiscoverNewPlacesAdapter extends RecyclerView.Adapter<DiscoverNewPl
 
       holder.binding.tvRestaurantName.setText(shopsList.get(position).getName());
       holder.binding.tvRestaurantAddress.setText(shopsList.get(position).getAddress());
-      holder.binding.tvRatingDigit.setText(shopsList.get(position).getRating());
-      holder.binding.tvRatingCount.setText(shopsList.get(position).getRatingStatus());
+      holder.binding.tvRatingDigit.setText(String.valueOf(shopsList.get(position).getRating()));
+      holder.binding.tvRatingCount.setText("("+String.valueOf(shopsList.get(position).getRatingStatus())+" Rating)");
 
     }
 

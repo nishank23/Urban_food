@@ -1,14 +1,11 @@
-package com.example.urban_food.Modal.ShopModal;
+package com.example.urban_food.Modal.CuisineModal;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CuisinesItem{
+public class Cuisine{
 
 	@SerializedName("name")
 	private String name;
-
-	@SerializedName("pivot")
-	private Pivot pivot;
 
 	@SerializedName("id")
 	private int id;
@@ -18,10 +15,6 @@ public class CuisinesItem{
 
 	public String getName(){
 		return name;
-	}
-
-	public Pivot getPivot(){
-		return pivot;
 	}
 
 	public int getId(){

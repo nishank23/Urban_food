@@ -1,15 +1,12 @@
 package com.example.urban_food.Activites.Login;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-
 import com.example.urban_food.Activites.Home.HomeActivity;
 import com.example.urban_food.Activites.Verifyphonescreen.VerifyPhone;
 import com.example.urban_food.Helper.Common;
@@ -56,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
 
             binding.buttonLogin.setOnClickListener(view -> {
                 if (binding.etPhoneNo.getText().toString().isEmpty() && binding.etPhoneNo.getText().length() < 10) {
-                    Common.showToast( "Please Enter Phone Number");
+                    Common.showToast("Please Enter Phone Number");
                 }
                 if (binding.etPassword.getText().toString().length() < 6 && binding.etPassword.getText().toString().isEmpty()) {
                     Common.showToast("Please Enter Correct Password");
@@ -67,8 +64,6 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
                     map.put("grant_type", "password");
                     map.put("client_id", "2");
                     map.put("client_secret", "OkjVHNOhn8rljc5cxyq0unICJ3qfotydQ5lvv88w");
-
-
                     loginActivityPresenter.login(map);
 
 
@@ -98,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
                 });
 
         try {
-            device_id=Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+            device_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             device_id = "";
         }

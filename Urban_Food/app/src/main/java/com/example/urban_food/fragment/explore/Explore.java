@@ -10,19 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.urban_food.Adapter.DiscoverNewPlacesAdapter;
-import com.example.urban_food.Modal.ShopModal.ShopsItem;
-import com.example.urban_food.R;
+import com.example.urban_food.Modal.CuisineModal.Cuisine;
+import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.FragmentExploreBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Explore extends Fragment implements ShopsView {
+public class Explore extends Fragment implements ExploreView {
     FragmentExploreBinding binding;
 
     DiscoverNewPlacesAdapter discoverNewPlacesAdapter;
 
-    ShopsPresenter shopspresenter;
+    ExplorePresenter shopspresenter;
     
 
     @Override
@@ -30,12 +29,17 @@ public class Explore extends Fragment implements ShopsView {
                              Bundle savedInstanceState) {
         binding=FragmentExploreBinding.inflate(getLayoutInflater(),container,false);
 
-        shopspresenter = new ShopsPresenter(this);
-        shopspresenter.shops(String.valueOf(1),21.1702,72.8311);
+        shopspresenter = new ExplorePresenter(this);
+        shopspresenter.shops(21.1702,72.8311);
 
         return binding.getRoot();
     }
 
+
+    @Override
+    public void onSuccessCuisine(List<Cuisine> cuisineResponseItems) {
+
+    }
 
     @Override
     public void onSuccessShops(List<ShopsItem> shopsItemList) {
