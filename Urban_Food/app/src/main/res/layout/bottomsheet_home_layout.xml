@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_my_location_24"
+            android:padding="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tv_location_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Location Permission is off"
+            android:padding="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_grant"
+            app:layout_constraintStart_toEndOf="@id/iv_location"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_grant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tv_location_text"
+            app:cornerRadius="15dp"
+            android:text="Grant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/tv_location_below_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Granting location permission will ensure accurate address and hassle free delievery"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_location_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_location_text"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_select_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cl_1"
+        android:textStyle="bold"
+        android:text="Select Delivery Address"
+        android:layout_margin="10dp"
+        android:padding="5dp"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/tv_select_address"
+        android:layout_marginTop="2dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_select_address"
+        android:layout_margin="5dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView_bottom"
+        android:layout_marginTop="2dp"/>
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_baseline_search_24"
+        android:padding="5dp"
+        app:layout_constraintEnd_toStartOf="@id/tv_search_text"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/tv_search_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView_bottom"
+        app:layout_constraintStart_toEndOf="@id/iv_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Enter Location Manually"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_select_proceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_search_text"
+        android:text="SELECT &amp; PROCEED"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

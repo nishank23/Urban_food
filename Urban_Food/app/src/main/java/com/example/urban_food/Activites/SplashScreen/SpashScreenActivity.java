@@ -1,11 +1,26 @@
 package com.example.urban_food.Activites.SplashScreen;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
+import androidx.core.location.LocationManagerCompat;
+
 import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Dialog;
+import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -18,36 +33,54 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.core.location.LocationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.urban_food.Activites.Home.HomeActivity;
 import com.example.urban_food.Activites.Login.LoginActivity;
 import com.example.urban_food.Activites.Login.LoginActivityPresenter;
 import com.example.urban_food.Activites.Login.LoginActivityView;
 import com.example.urban_food.Activites.WelcomeScreen.WelcomeScreenActivity;
+import com.example.urban_food.Adapter.HomeBottomSheetAdapter;
 import com.example.urban_food.Helper.Common;
+import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Helper.PrefUtils;
 import com.example.urban_food.Modal.ProfileModal.AddressesItem;
 import com.example.urban_food.Modal.ProfileModal.CartItem;
 import com.example.urban_food.databinding.ActivitySpashScreenBinding;
+import com.example.urban_food.databinding.BottomsheetHomeLayoutBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SpashScreenActivity extends AppCompatActivity implements LoginActivityView {
+public class SpashScreenActivity extends AppCompatActivity implements LoginActivityView,LocationListener {
     ActivitySpashScreenBinding binding;
     LoginActivityPresenter loginActivityPresenter = new LoginActivityPresenter(this);
 
 
     private String device_id;
     private String fcm_token;
-    double latitude;
-    double longitude;
     int location = 44;
+
+    final String TAG = "GPS";
+    private final static int ALL_PERMISSIONS_RESULT = 101;
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
+
+    LocationManager locationManager;
+    Location loc;
+    ArrayList<String> permissions = new ArrayList<>();
+    ArrayList<String> permissionsToRequest;
+    ArrayList<String> permissionsRejected = new ArrayList<>();
+    boolean isGPS = false;
+    boolean isNetwork = false;
+    boolean canGetLocation = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +88,25 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         binding = ActivitySpashScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getDeviceIdAndToken();
+
+
+        locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
+        isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+        permissionsToRequest = findUnAskedPermissions(permissions);
+
+
+        locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
+        isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        isNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+        permissionsToRequest = findUnAskedPermissions(permissions);
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -65,6 +117,8 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
     }
 
+
+
     public void checkactivity() {
         if (PrefUtils.getBooleanPref(Common.isLoggedIn, this)) {
             //Toast.makeText(this, "wrong", Toast.LENGTH_SHORT).show();
@@ -72,7 +126,31 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
             } else {
-                getLocation();
+                if (!isGPS && !isNetwork) {
+
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("device_type", "android");
+                    map.put("device_id", device_id);
+                    map.put("device_token", fcm_token);
+                    loginActivityPresenter.getProfile(map);
+
+
+                } else {
+                    Log.d(TAG, "Connection on");
+                    // check permissions
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (permissionsToRequest.size() > 0) {
+                            requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]),
+                                    ALL_PERMISSIONS_RESULT);
+                            Log.d(TAG, "Permission requests");
+                            canGetLocation = false;
+                        }
+                    }
+                    // get location
+                    getLocation();
+
+                }
+
             }
 
         } else {
@@ -80,48 +158,6 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
             finish();
         }
 
-    }
-
-    private void getLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PermissionChecker.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PermissionChecker.PERMISSION_GRANTED) {
-            if (isLocationEnabled(this)) {
-                FusedLocationProviderClient fusedLocationObj = LocationServices.getFusedLocationProviderClient(this);
-                fusedLocationObj.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        Location location = task.getResult();
-                        if (location != null) {
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-
-                            HashMap<String, String> map = new HashMap<>();
-                            map.put("device_type", "android");
-                            map.put("device_id", device_id);
-                            map.put("device_token", fcm_token);
-                            loginActivityPresenter.getProfile(map);
-                        }
-                    }
-                });
-            } else {
-                Toast.makeText(this, "Please turn on" + " your location...", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        } else {
-            /*HashMap<String, String> map = new HashMap<>();
-            map.put("device_type", "android");
-            map.put("device_id", device_id);
-            map.put("device_token", fcm_token);
-            loginActivityPresenter.getProfile(map);*/
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, location);
-        }
-
-    }
-
-
-    public boolean isLocationEnabled(Context context) {
-        LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        return manager != null && LocationManagerCompat.isLocationEnabled(manager);
     }
 
 
@@ -147,9 +183,9 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         } catch (Exception e) {
             device_id = "";
         }
-
-
     }
+
+
 
     @Override
     public void onSuccessLogin(String token) {
@@ -158,7 +194,8 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
     @Override
     public void onSuccessProfile(List<CartItem> cardItemlist, List<AddressesItem> addressesItemList) {
-        startActivity(new Intent(this, HomeActivity.class));
+        GlobalData.Address=addressesItemList;
+        GlobalData.Cart=cardItemlist;
     }
 
     @Override
@@ -176,16 +213,170 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
     }
 
-    @Override
-    public void
-    onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    private void getLocation() {
+        try {
+            if (canGetLocation) {
+                Log.d(TAG, "Can get location");
+                if (isGPS) {
+                    // from GPS
+                    Log.d(TAG, "GPS on");
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
-        if (requestCode == location) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLocation();
+                    if (locationManager != null) {
+                        loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        if (loc != null)
+                            updateUI(loc);
+                    }
+                } else if (isNetwork) {
+                    // from Network Provider
+                    Log.d(TAG, "NETWORK_PROVIDER on");
+                    locationManager.requestLocationUpdates(
+                            LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+                    if (locationManager != null) {
+                        loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (loc != null)
+                            updateUI(loc);
+                    }
+                } else {
+                    loc.setLatitude(0);
+                    loc.setLongitude(0);
+                    updateUI(loc);
+                }
+            } else {
+                Log.d(TAG, "Can't get location");
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getLastLocation() {
+        try {
+            Criteria criteria = new Criteria();
+            String provider = locationManager.getBestProvider(criteria, false);
+            Location location = locationManager.getLastKnownLocation(provider);
+            Log.d(TAG, provider);
+            Log.d(TAG, location == null ? "NO LastLocation" : location.toString());
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void updateUI(Location loc) {
+        Log.d(TAG, "updateUI");
+        GlobalData.latitude=loc.getLatitude();
+        GlobalData.longitude=loc.getLongitude();
+
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("device_type", "android");
+        map.put("device_id", device_id);
+        map.put("device_token", fcm_token);
+        loginActivityPresenter.getProfile(map);
+        Log.d("values","lat:"+GlobalData.latitude+" long:"+GlobalData.longitude);
+    }
+
+
+    private ArrayList findUnAskedPermissions(ArrayList<String> wanted) {
+        ArrayList result = new ArrayList();
+
+        for (String perm : wanted) {
+            if (!hasPermission(perm)) {
+                result.add(perm);
             }
         }
+
+        return result;
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case ALL_PERMISSIONS_RESULT:
+                Log.d(TAG, "onRequestPermissionsResult");
+                for (String perms : permissionsToRequest) {
+                    if (!hasPermission(perms)) {
+                        permissionsRejected.add(perms);
+                    }
+                }
+
+                if (permissionsRejected.size() > 0) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (shouldShowRequestPermissionRationale(permissionsRejected.get(0))) {
+                            showMessageOKCancel("These permissions are mandatory for the application. Please allow access.",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                requestPermissions(permissionsRejected.toArray(
+                                                        new String[permissionsRejected.size()]), ALL_PERMISSIONS_RESULT);
+                                            }
+                                        }
+                                    });
+                            return;
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "No rejected permissions.");
+                    canGetLocation = true;
+                    getLocation();
+                }
+                break;
+        }
+    }
+    private boolean hasPermission(String permission) {
+        if (canAskPermission()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
+            }
+        }
+        return true;
+    }
+
+    private boolean canAskPermission() {
+        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+    }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        Log.d(TAG, "onLocationChanged");
+        updateUI(location);
+    }
+
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        LocationListener.super.onStatusChanged(provider, status, extras);
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+        LocationListener.super.onProviderEnabled(provider);
+        if (locationManager != null) {
+            locationManager.removeUpdates(this);
+        }
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+        LocationListener.super.onProviderDisabled(provider);
     }
 
 }
