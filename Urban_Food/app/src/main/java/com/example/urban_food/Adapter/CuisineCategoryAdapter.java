@@ -43,7 +43,7 @@ CuisineInterface callback;
 
         holder.binding.tvProductName.setText(cuisines.get(position).getName());
         holder.itemView.setOnClickListener(view -> {
-            callback.cuisineItem(holder.binding.tvProductName.getText().toString());
+            callback.cuisineItem(String.valueOf(cuisines.get(position).getId()));
         });
 
     }
