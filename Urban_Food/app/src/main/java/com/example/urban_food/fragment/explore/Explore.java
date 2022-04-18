@@ -1,5 +1,6 @@
 package com.example.urban_food.fragment.explore;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.urban_food.Activites.ShopsDetail.ClickCuisineActivity;
 import com.example.urban_food.Adapter.CuisineCategoryAdapter;
 import com.example.urban_food.Adapter.DiscoverNewPlacesAdapter;
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
@@ -22,7 +24,6 @@ import java.util.List;
 
 public class Explore extends Fragment implements ExploreView {
     FragmentExploreBinding binding;
-    String cuisineItem="";
 
     DiscoverNewPlacesAdapter discoverNewPlacesAdapter;
     PopularthisWeekAdapter popularThisWeek;
@@ -52,7 +53,9 @@ public class Explore extends Fragment implements ExploreView {
         cuisineCategoryAdapter = new CuisineCategoryAdapter(getActivity(), cuisineResponseItems, new CuisineInterface() {
             @Override
             public void cuisineItem(String data) {
-                cuisineItem=data;
+                Intent intent=new Intent(getActivity(), ClickCuisineActivity.class);
+                intent.putExtra("cuisine",data);
+                startActivity(intent);
             }
         });
         binding.recyclerCategories.setAdapter(cuisineCategoryAdapter);
@@ -67,8 +70,6 @@ public class Explore extends Fragment implements ExploreView {
         discoverNewPlacesAdapter = new DiscoverNewPlacesAdapter(getActivity(),shopsItemList);
         binding.recyclerDiscoverNewPlace.setAdapter(discoverNewPlacesAdapter);
         binding.recyclerDiscoverNewPlace.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-
-
 
 
         popularThisWeek = new PopularthisWeekAdapter(getActivity(),shopsItemList);
