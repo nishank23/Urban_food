@@ -20,6 +20,9 @@
             android:name=".Activites.SearchScreen.SearchActivity"
             android:exported="false" />
         <activity
+            android:name=".Activites.ShopsDetail.ShopsDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activites.SplashScreen.SpashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">
