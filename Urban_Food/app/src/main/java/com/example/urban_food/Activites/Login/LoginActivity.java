@@ -1,12 +1,15 @@
 package com.example.urban_food.Activites.Login;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.urban_food.Activites.Home.HomeActivity;
 import com.example.urban_food.Activites.Verifyphonescreen.VerifyPhone;
 import com.example.urban_food.Helper.Common;

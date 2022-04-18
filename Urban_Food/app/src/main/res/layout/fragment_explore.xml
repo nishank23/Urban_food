@@ -74,13 +74,20 @@
                 android:textSize="20sp"
                 app:layout_constraintTop_toBottomOf="@id/nestedscroll" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_categories"
+            <com.example.urban_food.Helper.NestedScrollableHost
+                android:id="@+id/nestedscroll2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_categories" />
+                app:layout_constraintStart_toStartOf="parent"
 
+                app:layout_constraintTop_toBottomOf="@id/tv_categories">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_categories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp" />
+            </com.example.urban_food.Helper.NestedScrollableHost>
 
             <TextView
                 android:id="@+id/tv_popular_week"
@@ -91,14 +98,20 @@
                 android:fontFamily="@font/avenir_heavy"
                 android:text="@string/popular_this_week"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/recycler_categories" />
+                app:layout_constraintTop_toBottomOf="@id/nestedscroll2" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_popular_week"
+            <com.example.urban_food.Helper.NestedScrollableHost
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_popular_week" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_popular_week">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_popular_week"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp" />
+            </com.example.urban_food.Helper.NestedScrollableHost>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

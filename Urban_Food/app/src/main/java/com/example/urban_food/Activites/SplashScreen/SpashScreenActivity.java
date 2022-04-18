@@ -1,18 +1,8 @@
 package com.example.urban_food.Activites.SplashScreen;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
-import androidx.core.location.LocationManagerCompat;
-
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Dialog;
 import android.app.Service;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,34 +15,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.PermissionChecker;
-import androidx.core.location.LocationManagerCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.urban_food.Activites.Home.HomeActivity;
 import com.example.urban_food.Activites.Login.LoginActivity;
 import com.example.urban_food.Activites.Login.LoginActivityPresenter;
 import com.example.urban_food.Activites.Login.LoginActivityView;
 import com.example.urban_food.Activites.WelcomeScreen.WelcomeScreenActivity;
-import com.example.urban_food.Adapter.HomeBottomSheetAdapter;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Helper.PrefUtils;
 import com.example.urban_food.Modal.ProfileModal.AddressesItem;
 import com.example.urban_food.Modal.ProfileModal.CartItem;
 import com.example.urban_food.databinding.ActivitySpashScreenBinding;
-import com.example.urban_food.databinding.BottomsheetHomeLayoutBinding;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
@@ -194,8 +174,11 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
     @Override
     public void onSuccessProfile(List<CartItem> cardItemlist, List<AddressesItem> addressesItemList) {
-        GlobalData.Address=addressesItemList;
-        GlobalData.Cart=cardItemlist;
+        GlobalData.Cart = cardItemlist;
+        GlobalData.Address = addressesItemList;
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
+
         Intent intent=new Intent(this,HomeActivity.class);
         startActivity(intent);
     }

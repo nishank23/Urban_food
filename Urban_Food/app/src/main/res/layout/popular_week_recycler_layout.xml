@@ -4,15 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp">
-
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp">
 
+        <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    </androidx.cardview.widget.CardView>
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_popular_restaurant_name"
         android:layout_width="0dp"
@@ -22,19 +31,21 @@
         android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_image"
+        app:layout_constraintStart_toEndOf="@id/card1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_popular_restaurant_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:layout_marginStart="10dp"
         android:fontFamily="@font/avernir_roman"
         android:textColor="@color/romanGrey"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_image"
+        app:layout_constraintStart_toEndOf="@id/card1"
         app:layout_constraintTop_toBottomOf="@id/tv_popular_restaurant_name" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,8 +59,9 @@
         <ImageView
             android:id="@+id/iv_star"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:src="@drawable/ic_baseline_star_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +69,8 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_rating_digit_popular"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:fontFamily="@font/avenir_book"
             android:padding="5dp"
@@ -69,29 +81,17 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_rating_count_popular"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:fontFamily="@font/avernir_roman"
             android:padding="5dp"
             android:textColor="@color/romanGrey"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_delivery_popular"
             app:layout_constraintStart_toEndOf="@id/tv_rating_digit_popular"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_delivery_popular"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/orange"
-            android:fontFamily="@font/avenir_heavy"
-            android:text="@string/free_delivery"
-            android:textSize="5sp"
-            app:cornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_rating_count_popular"
-            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

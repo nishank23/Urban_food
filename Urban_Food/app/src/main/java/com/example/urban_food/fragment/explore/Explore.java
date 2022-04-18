@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.urban_food.Adapter.CuisineCategoryAdapter;
 import com.example.urban_food.Adapter.DiscoverNewPlacesAdapter;
+import com.example.urban_food.Adapter.PopularthisWeekAdapter;
 import com.example.urban_food.Modal.CuisineModal.Cuisine;
 import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.FragmentExploreBinding;
@@ -20,6 +22,8 @@ public class Explore extends Fragment implements ExploreView {
     FragmentExploreBinding binding;
 
     DiscoverNewPlacesAdapter discoverNewPlacesAdapter;
+    PopularthisWeekAdapter popularThisWeek;
+    CuisineCategoryAdapter cuisineCategoryAdapter;
 
     ExplorePresenter shopspresenter;
     
@@ -31,13 +35,17 @@ public class Explore extends Fragment implements ExploreView {
 
         shopspresenter = new ExplorePresenter(this);
         shopspresenter.shops(21.1702,72.8311);
-
+        shopspresenter.cuisine();
         return binding.getRoot();
     }
 
 
     @Override
     public void onSuccessCuisine(List<Cuisine> cuisineResponseItems) {
+        cuisineCategoryAdapter = new CuisineCategoryAdapter(getActivity(),cuisineResponseItems);
+        binding.recyclerCategories.setAdapter(cuisineCategoryAdapter);
+        binding.recyclerCategories.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+
 
     }
 
@@ -48,6 +56,12 @@ public class Explore extends Fragment implements ExploreView {
         binding.recyclerDiscoverNewPlace.setAdapter(discoverNewPlacesAdapter);
         binding.recyclerDiscoverNewPlace.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 
+
+
+
+        popularThisWeek = new PopularthisWeekAdapter(getActivity(),shopsItemList);
+        binding.recyclerPopularWeek.setAdapter(popularThisWeek);
+        binding.recyclerPopularWeek.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override

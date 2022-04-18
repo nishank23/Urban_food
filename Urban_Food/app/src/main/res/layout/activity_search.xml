@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activites.SearchScreen.SearchActivity">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_icon_close" />
+
+    <TextView
+        android:id="@+id/tv_search_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/avenir_black"
+        android:text="Search"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_back" />
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/ic_edit_text"
+        android:fontFamily="@font/avenir_book"
+        android:hint="Search"
+        android:paddingStart="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_search_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_search_header" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_search">
+
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_baseline_search_24"
+        app:layout_constraintBottom_toBottomOf="@id/et_search"
+        app:layout_constraintStart_toStartOf="@id/et_search"
+        app:layout_constraintTop_toTopOf="@+id/et_search" />
+
+    <TextView
+        android:id="@+id/tv_recentsearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/avenir_heavy"
+        android:text="Recent Search"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/tv_search_header"
+        app:layout_constraintTop_toBottomOf="@id/et_search"
+
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recentsearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_search_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_recentsearch"/>
+
+    <TextView
+        android:id="@+id/tv_recommend_for_you"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/avenir_heavy"
+        android:text="Recommend for you"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/tv_search_header"
+        app:layout_constraintTop_toBottomOf="@id/rv_recentsearch"
+
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_recommend_for_you"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_search_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_recommend_for_you"/>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
