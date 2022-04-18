@@ -7,6 +7,7 @@ import com.example.urban_food.Modal.ProfileModal.ProfileResponse;
 import com.example.urban_food.Modal.RegisterModal.RegistrationResponse;
 import com.example.urban_food.Modal.ExploreModal.ShopResponse;
 import com.example.urban_food.Modal.SearchModal.SearchResponse;
+import com.example.urban_food.Modal.ShopsDetailsModal.ShopDetailsResponse;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,4 +57,7 @@ public interface ApiInterface {
 
     @GET("api/user/search")
     Call<SearchResponse> getSearch(@Query("user_id")String user_id,@Query("name")String name);
+
+    @GET("api/user/categories")
+    Call<ShopDetailsResponse> getShopDetails(@Query("user_id")String user_id,@Query("shop")String shop);
 }

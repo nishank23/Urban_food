@@ -12,4 +12,5 @@
     <color name="titleblue">#0A1F44</color>
     <color name="romanGrey">#B8BBC6</color>
     <color name="backgroundWhite">#F7F8FA</color>
+    <color name="red">#ff0000</color>
 </resources>

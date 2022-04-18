@@ -42,6 +42,9 @@ public class DiscoverNewPlacesAdapter extends RecyclerView.Adapter<DiscoverNewPl
       holder.binding.tvRatingDigit.setText(String.valueOf(shopsList.get(position).getRating()));
       holder.binding.tvRatingCount.setText("("+String.valueOf(shopsList.get(position).getRatingStatus())+" Rating)");
 
+      holder.itemView.setOnClickListener(view -> {
+
+      });
     }
 
     @Override
