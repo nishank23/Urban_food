@@ -12,14 +12,17 @@ import android.view.ViewGroup;
 import com.example.urban_food.Adapter.CuisineCategoryAdapter;
 import com.example.urban_food.Adapter.DiscoverNewPlacesAdapter;
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
+import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Modal.CuisineModal.Cuisine;
 import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.FragmentExploreBinding;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Explore extends Fragment implements ExploreView {
     FragmentExploreBinding binding;
+    String cuisineItem="";
 
     DiscoverNewPlacesAdapter discoverNewPlacesAdapter;
     PopularthisWeekAdapter popularThisWeek;
@@ -34,7 +37,11 @@ public class Explore extends Fragment implements ExploreView {
         binding=FragmentExploreBinding.inflate(getLayoutInflater(),container,false);
 
         shopspresenter = new ExplorePresenter(this);
-        shopspresenter.shops(21.1702,72.8311);
+        HashMap<String,String> map=new HashMap();
+        map.put("user_id","1");
+        map.put("latitude", String.valueOf(GlobalData.latitude));
+        map.put("longitude",String.valueOf(GlobalData.longitude));
+        shopspresenter.shops(map);
         shopspresenter.cuisine();
         return binding.getRoot();
     }
@@ -42,7 +49,12 @@ public class Explore extends Fragment implements ExploreView {
 
     @Override
     public void onSuccessCuisine(List<Cuisine> cuisineResponseItems) {
-        cuisineCategoryAdapter = new CuisineCategoryAdapter(getActivity(),cuisineResponseItems);
+        cuisineCategoryAdapter = new CuisineCategoryAdapter(getActivity(), cuisineResponseItems, new CuisineInterface() {
+            @Override
+            public void cuisineItem(String data) {
+                cuisineItem=data;
+            }
+        });
         binding.recyclerCategories.setAdapter(cuisineCategoryAdapter);
         binding.recyclerCategories.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 

@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
         <activity
+            android:name=".Activites.ClickPage.ClickCuisineActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activites.SearchScreen.SearchActivity"
             android:exported="false" />
         <activity
