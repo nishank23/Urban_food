@@ -207,7 +207,11 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         binding.homeViewpager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
         ExplorePresenter explorePresenter=new ExplorePresenter(this);
-        explorePresenter.shops(GlobalData.latitude,GlobalData.longitude);
+        HashMap<String,String> map=new HashMap<>();
+        map.put("user_id","1");
+        map.put("latitude", String.valueOf(GlobalData.latitude));
+        map.put("longitude",String.valueOf(GlobalData.longitude));
+        explorePresenter.shops(map);
 
         new TabLayoutMediator(binding.homeTab, binding.homeViewpager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override

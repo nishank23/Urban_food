@@ -12,17 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Modal.CuisineModal.Cuisine;
 import com.example.urban_food.databinding.TopCategoryRecyclerLayoutBinding;
+import com.example.urban_food.fragment.explore.CuisineInterface;
 
 import java.util.List;
 
 public class CuisineCategoryAdapter extends RecyclerView.Adapter<CuisineCategoryAdapter.MyHolder> {
 Activity activity;
 List<Cuisine> cuisines;
+CuisineInterface callback;
 
 
-    public CuisineCategoryAdapter(Activity activity, List<Cuisine> cuisines) {
+    public CuisineCategoryAdapter(Activity activity, List<Cuisine> cuisines,CuisineInterface callback) {
         this.activity = activity;
         this.cuisines = cuisines;
+        this.callback=callback;
     }
 
     @NonNull
@@ -39,6 +42,9 @@ List<Cuisine> cuisines;
                 .into(holder.binding.ivImage);
 
         holder.binding.tvProductName.setText(cuisines.get(position).getName());
+        holder.itemView.setOnClickListener(view -> {
+            callback.cuisineItem(holder.binding.tvProductName.getText().toString());
+        });
 
     }
 

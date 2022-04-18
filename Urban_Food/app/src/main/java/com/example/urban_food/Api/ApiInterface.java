@@ -49,7 +49,7 @@ public interface ApiInterface {
 
 
     @GET("api/user/shops")
-    Call<ShopResponse> getShops(@Query("user_id") String user_id, @Query("latitude") double latitude, @Query("longitude") double longitude);
+    Call<ShopResponse> getShops(@QueryMap HashMap<String, String> map);
 
     @GET("api/user/cuisines")
     Call<List<Cuisine>> getCuisineCategories();

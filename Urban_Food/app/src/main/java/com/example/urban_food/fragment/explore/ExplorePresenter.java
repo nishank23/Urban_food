@@ -4,6 +4,7 @@ import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.Modal.CuisineModal.Cuisine;
 import com.example.urban_food.Modal.ExploreModal.ShopResponse;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -18,9 +19,9 @@ public class ExplorePresenter {
         this.view = view;
     }
 
-    public void shops(double latitude, double longitude) {
+    public void shops(HashMap<String,String> map) {
         view.showProgressShops();
-        ApiClient.getRetrofit().getShops("1", latitude, longitude).enqueue(new Callback<ShopResponse>() {
+        ApiClient.getRetrofit().getShops(map).enqueue(new Callback<ShopResponse>() {
             @Override
             public void onResponse(Call<ShopResponse> call, Response<ShopResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
