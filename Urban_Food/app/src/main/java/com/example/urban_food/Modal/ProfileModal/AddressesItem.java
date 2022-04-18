@@ -9,7 +9,7 @@ public class AddressesItem{
 	private String building;
 	private int userId;
 	private Object street;
-	private String mapAddress;
+	private String map_address;
 	private int id;
 	private String state;
 	private String landmark;
@@ -48,7 +48,7 @@ public class AddressesItem{
 	}
 
 	public String getMapAddress(){
-		return mapAddress;
+		return map_address;
 	}
 
 	public int getId(){

@@ -1,13 +1,16 @@
 package com.example.urban_food.Activites.Home;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -28,10 +32,14 @@ import com.example.urban_food.Adapter.HomeViewPager;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Helper.PrefUtils;
+import com.example.urban_food.Modal.CuisineModal.Cuisine;
+import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityHomeBinding;
 import com.example.urban_food.databinding.BottomsheetHomeLayoutBinding;
 import com.example.urban_food.fragment.explore.Explore;
+import com.example.urban_food.fragment.explore.ExplorePresenter;
+import com.example.urban_food.fragment.explore.ExploreView;
 import com.example.urban_food.fragment.favorite.Favorite;
 import com.example.urban_food.fragment.myorder.MyOrder;
 import com.example.urban_food.fragment.profile.Profile;
@@ -43,13 +51,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements LocationListener {
+public class HomeActivity extends AppCompatActivity implements LocationListener , ExploreView {
     ActivityHomeBinding binding;
+    ArrayList<Fragment> fragments;
+    ArrayList<Integer> icons;
+    ArrayList<String> texts;
 
     boolean bottomClickChecker=false;
     private String device_id;
     private String fcm_token;
     int location = 44;
+    boolean homeScreen=false;
 
     final String TAG = "GPS";
     private final static int ALL_PERMISSIONS_RESULT = 101;
@@ -65,59 +77,35 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     boolean isNetwork = false;
     boolean canGetLocation = true;
 
+    BottomSheetDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments = new ArrayList<>();
         fragments.add(new Explore());
         fragments.add(new Favorite());
         fragments.add(new MyOrder());
         fragments.add(new Profile());
 
-        ArrayList<Integer> icons = new ArrayList<>();
+        icons = new ArrayList<>();
         icons.add(R.drawable.ic_explore);
         icons.add(R.drawable.ic_favroite);
         icons.add(R.drawable.ic_myorder);
         icons.add(R.drawable.ic_myprofile);
 
-        ArrayList<String> texts = new ArrayList<>();
+        texts = new ArrayList<>();
         texts.add("Explore");
         texts.add("Favorite");
         texts.add("MyOrder");
         texts.add("Profile");
 
-        HomeViewPager adapter = new HomeViewPager(this, fragments);
-        binding.homeViewpager.setAdapter(adapter);
-        binding.homeViewpager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
-        new TabLayoutMediator(binding.homeTab, binding.homeViewpager, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setIcon(icons.get(position));
-                tab.setText(texts.get(position));
-            }
-        }).attach();
 
-        if (!isGPS && !isNetwork) {
-            bottom();
 
-        } else {
-            Log.d(TAG, "Connection on");
-            // check permissions
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (permissionsToRequest.size() > 0) {
-                    requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]),
-                            ALL_PERMISSIONS_RESULT);
-                    Log.d(TAG, "Permission requests");
-                    canGetLocation = false;
-                }
-            }
-            // get location
-            getLocation();
-        }
     }
     @Override
     protected void onResume() {
@@ -129,6 +117,25 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         permissionsToRequest = findUnAskedPermissions(permissions);
+
+        if (!isGPS && !isNetwork) {
+            bottom();
+
+        } else {
+            Log.d(TAG, "Connection on");
+            // check permissions
+            homeScreen=true;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (permissionsToRequest.size() > 0) {
+                    requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]),
+                            ALL_PERMISSIONS_RESULT);
+                    Log.d(TAG, "Permission requests");
+                    canGetLocation = false;
+                }
+            }
+            // get location
+            getLocation();
+        }
     }
 
 
@@ -157,13 +164,17 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     }
     void bottom(){
         //bottomSheet
-        BottomSheetDialog dialog=new BottomSheetDialog(this);
+        dialog=new BottomSheetDialog(this);
         BottomsheetHomeLayoutBinding bottomsheetHomeLayoutBinding=BottomsheetHomeLayoutBinding.inflate(getLayoutInflater());
         dialog.setContentView(bottomsheetHomeLayoutBinding.getRoot());
         HomeBottomSheetAdapter adapter=new HomeBottomSheetAdapter(this, GlobalData.Address, new SpalshInterface() {
             @Override
             public void passer(boolean value) {
                 bottomClickChecker=value;
+                if(bottomClickChecker){
+                    setAdapter();
+                    dialog.dismiss();
+                }
             }
         });
         bottomsheetHomeLayoutBinding.recyclerViewBottom.setAdapter(adapter);
@@ -180,14 +191,31 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
                     getLocation();
                     dialog.dismiss();
+
+                    setAdapter();
                 }
             }
         });
-        if(bottomClickChecker){
-            dialog.dismiss();
-        }
+
         dialog.setCancelable(false);
         dialog.show();
+    }
+
+    private void setAdapter() {
+        HomeViewPager adapter = new HomeViewPager(this, fragments);
+        binding.homeViewpager.setAdapter(adapter);
+        binding.homeViewpager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+
+        ExplorePresenter explorePresenter=new ExplorePresenter(this);
+        explorePresenter.shops(GlobalData.latitude,GlobalData.longitude);
+
+        new TabLayoutMediator(binding.homeTab, binding.homeViewpager, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setIcon(icons.get(position));
+                tab.setText(texts.get(position));
+            }
+        }).attach();
     }
 
     private void getLocation() {
@@ -234,6 +262,10 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         GlobalData.latitude=loc.getLatitude();
         GlobalData.longitude=loc.getLongitude();
 
+        if(homeScreen){
+           setAdapter();
+        }
+
     }
 
     public void showSettingsAlert() {
@@ -241,7 +273,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         alertDialog.setTitle("GPS is not Enabled!");
         alertDialog.setMessage("Do you want to turn on GPS?");
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog1, int which) {
+                dialog.dismiss();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
             }
@@ -283,7 +316,49 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onProviderDisabled(@NonNull String provider) {
-        LocationListener.super.onProviderDisabled(provider);
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(isGPS || isNetwork){
+            getLocation();
+            setAdapter();
+        }else{
+            //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},location);
+            bottom();
+        }
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+
+    }
+
+    @Override
+    public void onSuccessCuisine(List<Cuisine> cuisineResponseItems) {
+
+    }
+
+    @Override
+    public void onSuccessShops(List<ShopsItem> shopsItemList) {
+
+    }
+
+    @Override
+    public void onErrorShops() {
+
+    }
+
+    @Override
+    public void showProgressShops() {
+
+    }
+
+    @Override
+    public void dismissProgressShops() {
+
+    }
 }

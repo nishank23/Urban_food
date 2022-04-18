@@ -196,6 +196,8 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
     public void onSuccessProfile(List<CartItem> cardItemlist, List<AddressesItem> addressesItemList) {
         GlobalData.Address=addressesItemList;
         GlobalData.Cart=cardItemlist;
+        Intent intent=new Intent(this,HomeActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -376,7 +378,12 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
     @Override
     public void onProviderDisabled(@NonNull String provider) {
-        LocationListener.super.onProviderDisabled(provider);
+        try{
+            LocationListener.super.onProviderDisabled(provider);
+        }
+        catch (SecurityException e){
+
+        }
     }
 
 }
