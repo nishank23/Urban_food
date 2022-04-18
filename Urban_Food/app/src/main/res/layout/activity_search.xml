@@ -44,64 +44,40 @@
         app:layout_constraintStart_toStartOf="@id/tv_search_header"
         app:layout_constraintTop_toBottomOf="@id/tv_search_header" />
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsv1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_search">
-
-    <ImageView
-        android:id="@+id/iv_search"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/ic_baseline_search_24"
-        app:layout_constraintBottom_toBottomOf="@id/et_search"
         app:layout_constraintStart_toStartOf="@id/et_search"
-        app:layout_constraintTop_toTopOf="@+id/et_search" />
-
-    <TextView
-        android:id="@+id/tv_recentsearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/avenir_heavy"
-        android:text="Recent Search"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/tv_search_header"
         app:layout_constraintTop_toBottomOf="@id/et_search"
+        android:fontFamily="@font/avenir_book"
+        app:singleSelection="true"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+
 
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_recentsearch"
+        android:id="@+id/rv_restaurant"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_search_header"
-        app:layout_constraintTop_toBottomOf="@id/tv_recentsearch"/>
-
-    <TextView
-        android:id="@+id/tv_recommend_for_you"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/chip_group"
+        app:layout_constraintTop_toBottomOf="@id/chip_group"
+        app:layout_constraintEnd_toEndOf="@id/et_search"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/avenir_heavy"
-        android:text="Recommend for you"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/tv_search_header"
-        app:layout_constraintTop_toBottomOf="@id/rv_recentsearch"
-
         />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_recommend_for_you"
+        android:id="@+id/rv_shop"
         android:layout_width="0dp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_search_header"
-        app:layout_constraintTop_toBottomOf="@id/tv_recommend_for_you"/>
-    </androidx.core.widget.NestedScrollView>
+        app:layout_constraintStart_toStartOf="@id/chip_group"
+        app:layout_constraintTop_toBottomOf="@id/chip_group"
+        app:layout_constraintEnd_toEndOf="@id/et_search"
+        android:layout_marginTop="30dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
