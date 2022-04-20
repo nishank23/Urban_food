@@ -65,7 +65,7 @@ public class Shop{
 	private String bankName;
 
 	@SerializedName("commission")
-	private int commission;
+	private Double commission;
 
 	@SerializedName("id")
 	private int id;
@@ -228,7 +228,7 @@ public class Shop{
 		return bankName;
 	}
 
-	public int getCommission(){
+	public double getCommission(){
 		return commission;
 	}
 

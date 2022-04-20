@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.urban_food.Activites.SearchScreen.SearchActivity;
 import com.example.urban_food.Activites.ShopsDetail.ClickCuisineActivity;
 import com.example.urban_food.Activites.ShopsDetail.ShopsDetailsActivity;
 import com.example.urban_food.Adapter.CuisineCategoryAdapter;
@@ -34,7 +35,7 @@ public class Explore extends Fragment implements ExploreView {
 
     ExplorePresenter shopspresenter;
 
-    
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,6 +76,18 @@ public class Explore extends Fragment implements ExploreView {
             binding.etSearch.setVisibility(View.GONE);
             binding.ivSearch.setVisibility(View.GONE);
         }
+        shopspresenter = new ExplorePresenter(this);
+        shopspresenter.shops(21.1702,72.8311);
+        shopspresenter.cuisine();
+        binding.etSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+            }
+        });
+
+
+
         return binding.getRoot();
     }
 

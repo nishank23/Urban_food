@@ -126,7 +126,7 @@ public class ShopsItem{
 	private List<TimingsItem> timings;
 
 	@SerializedName("commission")
-	private int commission;
+	private Double commission;
 
 	@SerializedName("categories")
 	private List<CategoriesItem> categories;
@@ -324,7 +324,7 @@ public class ShopsItem{
 		return timings;
 	}
 
-	public int getCommission(){
+	public Double getCommission(){
 		return commission;
 	}
 

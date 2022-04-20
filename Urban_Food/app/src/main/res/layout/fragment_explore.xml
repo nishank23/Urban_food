@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Activites.CreateAccount.CreateAccount">
 
-    <EditText
+    <TextView
         android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Search"
+        android:paddingStart="35dp"
+        android:paddingTop="10dp"
+        android:textSize="20sp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toEndOf="@id/iv_search"
         android:background="@drawable/ic_edit_text"
         app:layout_constraintTop_toTopOf="parent" />
 

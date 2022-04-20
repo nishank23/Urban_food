@@ -21,7 +21,7 @@ public class Shop{
 	private int estimatedDeliveryTime;
 	private String foodLicenceNoPhoto;
 	private String bankName;
-	private int commission;
+	private double commission;
 	private int id;
 	private Object defaultBanner;
 	private int state;
@@ -130,7 +130,7 @@ public class Shop{
 		return bankName;
 	}
 
-	public int getCommission(){
+	public double getCommission(){
 		return commission;
 	}
 
