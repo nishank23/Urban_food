@@ -11,16 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.PopularWeekRecyclerLayoutBinding;
+import com.example.urban_food.fragment.explore.ExploreInterface;
 
 import java.util.List;
 
 public class PopularthisWeekAdapter extends RecyclerView.Adapter<PopularthisWeekAdapter.MyHolder> {
     Activity activity;
     List<ShopsItem> shopsList;
+    ExploreInterface callback;
 
-    public PopularthisWeekAdapter(Activity activity, List<ShopsItem> shopsList) {
+    public PopularthisWeekAdapter(Activity activity, List<ShopsItem> shopsList,ExploreInterface callback) {
         this.activity = activity;
         this.shopsList = shopsList;
+        this.callback=callback;
     }
 
     @NonNull
@@ -39,7 +42,9 @@ public class PopularthisWeekAdapter extends RecyclerView.Adapter<PopularthisWeek
         holder.binding.tvPopularRestaurantAddress.setText(shopsList.get(position).getAddress());
         holder.binding.tvRatingDigitPopular.setText(String.valueOf(shopsList.get(position).getRating()));
         holder.binding.tvRatingCountPopular.setText("("+String.valueOf(shopsList.get(position).getRatingStatus())+" Rating)");
-
+        holder.itemView.setOnClickListener(view -> {
+            callback.cuisineItem(String.valueOf(shopsList.get(position).getId()),shopsList.get(position).getPhoto());
+        });
     }
 
     @Override

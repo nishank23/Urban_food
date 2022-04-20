@@ -37,10 +37,15 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         holder.binding.tvItemCategory.setText(shopDetailList.get(position).getName());
+        int childAdapterSize=shopDetailList.get(position).getProducts().size();
 
-        RvMenuAdapter rvMenuAdapter = new RvMenuAdapter(activity,shopDetailList.get(holder.getAdapterPosition()).getProducts());
-        holder.binding.rvMenu.setAdapter(rvMenuAdapter);
-        holder.binding.rvMenu.setLayoutManager(new LinearLayoutManager(activity));
+        if(childAdapterSize != 0){
+            RvMenuAdapter rvMenuAdapter = new RvMenuAdapter(activity,shopDetailList.get(holder.getAdapterPosition()).getProducts());
+            holder.binding.rvMenu.setAdapter(rvMenuAdapter);
+            holder.binding.rvMenu.setLayoutManager(new LinearLayoutManager(activity));
+        }else{
+            holder.binding.tvItemCategory.setVisibility(View.GONE);
+        }
     }
 
     @Override

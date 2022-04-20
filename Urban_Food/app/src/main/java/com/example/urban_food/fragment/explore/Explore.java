@@ -142,7 +142,15 @@ public class Explore extends Fragment implements ExploreView {
             binding.recyclerDiscoverNewPlace.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
 
 
-            popularThisWeek = new PopularthisWeekAdapter(getActivity(),shopsItemList);
+            popularThisWeek = new PopularthisWeekAdapter(getActivity(), shopsItemList, new ExploreInterface() {
+                @Override
+                public void cuisineItem(String data, String path) {
+                    Intent intent = new Intent(getActivity(), ShopsDetailsActivity.class);
+                    intent.putExtra("ShopId",data);
+                    intent.putExtra("pathImage",path);
+                    startActivity(intent);
+                }
+            });
             binding.recyclerPopularWeek.setAdapter(popularThisWeek);
             binding.recyclerPopularWeek.setLayoutManager(new LinearLayoutManager(getActivity()));
 

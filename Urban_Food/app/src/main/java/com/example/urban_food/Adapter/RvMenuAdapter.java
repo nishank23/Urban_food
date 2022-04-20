@@ -33,12 +33,42 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-//        holder.binding.tvPrice.setText(productList.get(position).getPrices().getPrice());
-        holder.binding.tvItemNameMenu.setText(productList.get(position).getName());
-        Glide
-                .with(activity)
-                .load(productList.get(position).getImages().get(0).getUrl())
-                .into(holder.binding.ivItem);
+            holder.binding.tvPrice.setText(String.valueOf(productList.get(position).getPrices().getPrice()));
+            holder.binding.tvItemNameMenu.setText(productList.get(position).getName());
+            Glide
+                    .with(activity)
+                    .load(productList.get(position).getImages().get(0).getUrl())
+                    .into(holder.binding.ivItem);
+
+            holder.binding.btnAdd.setOnClickListener(view -> {
+                holder.binding.btnAdd.setVisibility(View.GONE);
+                holder.binding.btnMinus.setVisibility(View.VISIBLE);
+                holder.binding.btnPlus.setVisibility(View.VISIBLE);
+                holder.binding.etQuantity.setVisibility(View.VISIBLE);
+            });
+
+            //order quantity increse
+            holder.binding.btnPlus.setOnClickListener(view -> {
+                int qty=Integer.parseInt(holder.binding.etQuantity.getText().toString());
+                qty++;
+                holder.binding.etQuantity.setText(String.valueOf(qty));
+            });
+        //order quantity decrese
+        holder.binding.btnMinus.setOnClickListener(view -> {
+                int qty=Integer.parseInt(holder.binding.etQuantity.getText().toString());
+                if(qty==1){
+                    holder.binding.btnAdd.setVisibility(View.VISIBLE);
+
+                    holder.binding.btnMinus.setVisibility(View.GONE);
+                    holder.binding.btnPlus.setVisibility(View.GONE);
+                    holder.binding.etQuantity.setVisibility(View.GONE);
+                }else{
+                    qty--;
+                    holder.binding.etQuantity.setText(String.valueOf(qty));
+
+                }
+
+            });
     }
 
     @Override

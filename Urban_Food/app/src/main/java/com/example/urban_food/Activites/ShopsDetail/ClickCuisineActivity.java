@@ -3,6 +3,7 @@ package com.example.urban_food.Activites.ShopsDetail;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,6 +14,7 @@ import com.example.urban_food.Modal.CuisineModal.Cuisine;
 import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.ActivityClickCuisineBinding;
 import com.example.urban_food.fragment.explore.Explore;
+import com.example.urban_food.fragment.explore.ExploreInterface;
 import com.example.urban_food.fragment.explore.ExplorePresenter;
 import com.example.urban_food.fragment.explore.ExploreView;
 
@@ -77,7 +79,15 @@ public class ClickCuisineActivity extends AppCompatActivity implements ExploreVi
             binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
             binding.rvCuisinesShops.setVisibility(View.VISIBLE);
 
-            PopularthisWeekAdapter adapterCuisine = new PopularthisWeekAdapter(this, shopsItemList);
+            PopularthisWeekAdapter adapterCuisine = new PopularthisWeekAdapter(this, shopsItemList, new ExploreInterface() {
+                @Override
+                public void cuisineItem(String data, String path) {
+                    Intent intent = new Intent(ClickCuisineActivity.this,ShopsDetailsActivity.class);
+                    intent.putExtra("ShopId",data);
+                    intent.putExtra("pathImage",path);
+                    startActivity(intent);
+                }
+            });
             binding.rvCuisinesShops.setAdapter(adapterCuisine);
             binding.rvCuisinesShops.setLayoutManager(new LinearLayoutManager(this));
         }
