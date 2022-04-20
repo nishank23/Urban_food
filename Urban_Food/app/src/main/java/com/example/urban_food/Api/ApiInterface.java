@@ -59,5 +59,5 @@ public interface ApiInterface {
     Call<SearchResponse> getSearch(@Query("user_id")String user_id,@Query("name")String name);
 
     @GET("api/user/categories")
-    Call<ShopDetailsResponse> getShopDetails(@Query("user_id")String user_id,@Query("shop")String shop);
+    Call<ShopDetailsResponse> getShopDetails(@QueryMap HashMap<String, String> map);
 }

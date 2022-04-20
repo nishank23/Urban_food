@@ -1,7 +1,39 @@
 package com.example.urban_food.Activites.ShopsDetail;
 
+import com.example.urban_food.Api.ApiClient;
+import com.example.urban_food.Api.ApiInterface;
+import com.example.urban_food.Modal.ShopsDetailsModal.ShopDetailsResponse;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ShopDetailsPresenter {
 
+    ShopDetailsView view;
 
+    public ShopDetailsPresenter(ShopDetailsView view) {
+        this.view = view;
+    }
 
+    public void getShopDetails(HashMap<String, String> map){
+        ApiClient.getRetrofit().getShopDetails(map).enqueue(new Callback<ShopDetailsResponse>() {
+            @Override
+            public void onResponse(Call<ShopDetailsResponse> call, Response<ShopDetailsResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    view.dismissShopDetails();
+                    view.onSuccessShopDetails(response.body().getCategories());
+                } else {
+                    view.onErrorShopDetails();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ShopDetailsResponse> call, Throwable t) {
+                view.onErrorShopDetails();
+            }
+        });
+    }
 }

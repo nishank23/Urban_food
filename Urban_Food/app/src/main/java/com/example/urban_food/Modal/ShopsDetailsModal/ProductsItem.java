@@ -12,7 +12,7 @@ public class ProductsItem{
 	private int featured;
 
 	@SerializedName("images")
-	private List<Object> images;
+	private List<ImageResponse> images;
 
 	@SerializedName("max_quantity")
 	private int maxQuantity;
@@ -53,6 +53,8 @@ public class ProductsItem{
 	@SerializedName("status")
 	private String status;
 
+
+
 	public String getOutOfStock(){
 		return outOfStock;
 	}
@@ -61,7 +63,7 @@ public class ProductsItem{
 		return featured;
 	}
 
-	public List<Object> getImages(){
+	public List<ImageResponse> getImages(){
 		return images;
 	}
 
@@ -116,4 +118,5 @@ public class ProductsItem{
 	public String getStatus(){
 		return status;
 	}
+
 }

@@ -9,13 +9,13 @@ public class ShopDetailsResponse{
 	private List<FeaturedProductsItem> featuredProducts;
 
 	@SerializedName("categories")
-	private List<CategoriesItem> categories;
+	private List<ShopDetailsCategoriesItem> categories;
 
 	public List<FeaturedProductsItem> getFeaturedProducts(){
 		return featuredProducts;
 	}
 
-	public List<CategoriesItem> getCategories(){
+	public List<ShopDetailsCategoriesItem> getCategories(){
 		return categories;
 	}
 }

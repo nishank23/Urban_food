@@ -1,0 +1,20 @@
+package com.example.urban_food.Modal.ShopsDetailsModal;
+
+import com.google.gson.annotations.SerializedName;
+
+public class ImageResponse{
+
+	@SerializedName("position")
+	private int position;
+
+	@SerializedName("url")
+	private String url;
+
+	public int getPosition(){
+		return position;
+	}
+
+	public String getUrl(){
+		return url;
+	}
+}

@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
+import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Modal.CuisineModal.Cuisine;
 import com.example.urban_food.Modal.ExploreModal.ShopsItem;
@@ -19,22 +21,38 @@ import java.util.List;
 
 public class ClickCuisineActivity extends AppCompatActivity implements ExploreView {
     ActivityClickCuisineBinding binding;
-    String cuisine_id="";
-    ExplorePresenter explorePresenter=new ExplorePresenter(this);
+    String cuisine_id = "";
+    ExplorePresenter explorePresenter = new ExplorePresenter(this);
     PopularthisWeekAdapter adapterCuisine;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding =ActivityClickCuisineBinding.inflate(getLayoutInflater());
+        binding = ActivityClickCuisineBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        cuisine_id=getIntent().getStringExtra("cuisine");
-        HashMap<String,String> map=new HashMap();
-        map.put("user_id","1");
-        map.put("latitude", String.valueOf(GlobalData.latitude));
-        map.put("longitude",String.valueOf(GlobalData.longitude));
-        map.put("cuisine[" + "" + 0 + "]",cuisine_id);
-        explorePresenter.shops(map);
+        cuisine_id = getIntent().getStringExtra("cuisine");
+
+        if (Common.isConnected()) {
+            binding.layoutLoading.clLoading.setVisibility(View.VISIBLE);
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.GONE);
+            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
+            binding.rvCuisinesShops.setVisibility(View.GONE);
+
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("user_id", "1");
+            map.put("latitude", String.valueOf(GlobalData.latitude));
+            map.put("longitude", String.valueOf(GlobalData.longitude));
+            map.put("cuisine[" + "" + 0 + "]", cuisine_id);
+            explorePresenter.shops(map);
+        } else {
+            binding.layoutLoading.clLoading.setVisibility(View.GONE);
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.GONE);
+            binding.layoutNoInternet.clNoInternet.setVisibility(View.VISIBLE);
+            binding.rvCuisinesShops.setVisibility(View.GONE);
+        }
 
 
     }
@@ -46,15 +64,33 @@ public class ClickCuisineActivity extends AppCompatActivity implements ExploreVi
 
     @Override
     public void onSuccessShops(List<ShopsItem> shopsItemList) {
-        PopularthisWeekAdapter adapterCuisine=new PopularthisWeekAdapter(this,shopsItemList);
-        binding.rvCuisinesShops.setAdapter(adapterCuisine);
-        binding.rvCuisinesShops.setLayoutManager(new LinearLayoutManager(this));
+        if (shopsItemList.isEmpty()) {
+            binding.layoutLoading.clLoading.setVisibility(View.GONE);
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
+            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
+            binding.rvCuisinesShops.setVisibility(View.GONE);
+        } else {
+            binding.layoutLoading.clLoading.setVisibility(View.GONE);
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.GONE);
+            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
+            binding.rvCuisinesShops.setVisibility(View.VISIBLE);
+
+            PopularthisWeekAdapter adapterCuisine = new PopularthisWeekAdapter(this, shopsItemList);
+            binding.rvCuisinesShops.setAdapter(adapterCuisine);
+            binding.rvCuisinesShops.setLayoutManager(new LinearLayoutManager(this));
+        }
 
     }
 
     @Override
     public void onErrorShops() {
-
+        binding.layoutLoading.clLoading.setVisibility(View.GONE);
+        binding.layoutError.clError.setVisibility(View.VISIBLE);
+        binding.layoutNodata.clNoData.setVisibility(View.GONE);
+        binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
+        binding.rvCuisinesShops.setVisibility(View.GONE);
     }
 
     @Override

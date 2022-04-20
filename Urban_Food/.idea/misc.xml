@@ -8,14 +8,22 @@
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/ic_lock_overturning.xml" value="0.1105" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/shape.xml" value="0.1105" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/drawable/shape_for_activitylogin.xml" value="0.1105" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_click_cuisine.xml" value="0.16203703703703703" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_create_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_forgetpassword.xml" value="0.176" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_login.xml" value="0.25052083333333336" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_otp.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/activity_shops_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/create_account.xml" value="0.25416666666666665" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/fragment_explore.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/layout_error.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/layout_loading.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/layout_no_internet.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/layout_nodata.xml" value="0.25416666666666665" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/location_custom_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/menu_recycler_recyclerview.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/recycler_layout_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Andriod_project/Urban_food/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.15833333333333333" />
         <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/activity_login.xml" value="0.1718683197947841" />
         <entry key="..\:/Android Project/Urban_food/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.22" />

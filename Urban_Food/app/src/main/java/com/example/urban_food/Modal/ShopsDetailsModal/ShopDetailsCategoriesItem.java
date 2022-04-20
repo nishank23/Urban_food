@@ -3,7 +3,7 @@ package com.example.urban_food.Modal.ShopsDetailsModal;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class CategoriesItem{
+public class ShopDetailsCategoriesItem {
 
 	@SerializedName("shop_id")
 	private int shopId;

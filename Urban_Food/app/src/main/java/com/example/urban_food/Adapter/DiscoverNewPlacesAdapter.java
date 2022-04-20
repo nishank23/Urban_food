@@ -1,6 +1,7 @@
 package com.example.urban_food.Adapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.DiscoverNewplaceRecyclerlayoutBinding;
+import com.example.urban_food.fragment.explore.ExploreInterface;
 
 import java.util.List;
 
@@ -17,10 +19,13 @@ public class DiscoverNewPlacesAdapter extends RecyclerView.Adapter<DiscoverNewPl
 
     Activity activity;
     List<ShopsItem> shopsList;
+    ExploreInterface CallBack;
 
-    public DiscoverNewPlacesAdapter(Activity activity, List<ShopsItem> shopsList) {
+
+    public DiscoverNewPlacesAdapter(Activity activity, List<ShopsItem> shopsList, ExploreInterface callBack) {
         this.activity = activity;
         this.shopsList = shopsList;
+        CallBack = callBack;
     }
 
     @NonNull
@@ -43,7 +48,8 @@ public class DiscoverNewPlacesAdapter extends RecyclerView.Adapter<DiscoverNewPl
       holder.binding.tvRatingCount.setText("("+String.valueOf(shopsList.get(position).getRatingStatus())+" Rating)");
 
       holder.itemView.setOnClickListener(view -> {
-
+          CallBack.cuisineItem(String.valueOf(shopsList.get(position).getId()),shopsList.get(position).getPhoto());
+          Log.d("shopid",""+shopsList.get(position).getId());
       });
     }
 

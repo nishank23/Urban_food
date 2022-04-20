@@ -41,7 +41,43 @@
         android:id="@+id/rv_cuisines_shops"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cl_actionBar"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/cl_actionBar" />
+
+    <include
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_actionBar" />
+
+    <include
+        android:id="@+id/layout_error"
+        layout="@layout/layout_error"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_actionBar" />
+
+    <include
+        android:id="@+id/layout_no_internet"
+        layout="@layout/layout_no_internet"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_actionBar" />
+
+    <include
+        android:id="@+id/layout_nodata"
+        layout="@layout/layout_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_actionBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
