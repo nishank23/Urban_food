@@ -35,4 +35,8 @@
     <string name="phone_number">Phone Number</string>
     <string name="apply_promo_code">Apply Promo Code</string>
     <string name="add">Add</string>
+    <string name="Explore">Explore</string>
+    <string name="Favorite">Favorite</string>
+    <string name="MyOrder">MyOrder</string>
+    <string name="MyProfile">My Profile</string>
 </resources>

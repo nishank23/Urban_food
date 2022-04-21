@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -51,17 +52,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements LocationListener , ExploreView {
+public class HomeActivity extends AppCompatActivity implements LocationListener, ExploreView {
     ActivityHomeBinding binding;
     ArrayList<Fragment> fragments;
     ArrayList<Integer> icons;
     ArrayList<String> texts;
 
-    boolean bottomClickChecker=false;
+    boolean bottomClickChecker = false;
     private String device_id;
     private String fcm_token;
     int location = 44;
-    boolean homeScreen=false;
+    boolean homeScreen = false;
 
     final String TAG = "GPS";
     private final static int ALL_PERMISSIONS_RESULT = 101;
@@ -104,9 +105,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         texts.add("Profile");
 
 
-
-
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -124,7 +124,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         } else {
             Log.d(TAG, "Connection on");
             // check permissions
-            homeScreen=true;
+            homeScreen = true;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (permissionsToRequest.size() > 0) {
                     requestPermissions(permissionsToRequest.toArray(new String[permissionsToRequest.size()]),
@@ -150,6 +150,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
         return result;
     }
+
     private boolean hasPermission(String permission) {
         if (canAskPermission()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -162,16 +163,17 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     private boolean canAskPermission() {
         return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
     }
-    void bottom(){
+
+    void bottom() {
         //bottomSheet
-        dialog=new BottomSheetDialog(this);
-        BottomsheetHomeLayoutBinding bottomsheetHomeLayoutBinding=BottomsheetHomeLayoutBinding.inflate(getLayoutInflater());
+        dialog = new BottomSheetDialog(this);
+        BottomsheetHomeLayoutBinding bottomsheetHomeLayoutBinding = BottomsheetHomeLayoutBinding.inflate(getLayoutInflater());
         dialog.setContentView(bottomsheetHomeLayoutBinding.getRoot());
-        HomeBottomSheetAdapter adapter=new HomeBottomSheetAdapter(this, GlobalData.Address, new SpalshInterface() {
+        HomeBottomSheetAdapter adapter = new HomeBottomSheetAdapter(this, GlobalData.Address, new SpalshInterface() {
             @Override
             public void passer(boolean value) {
-                bottomClickChecker=value;
-                if(bottomClickChecker){
+                bottomClickChecker = value;
+                if (bottomClickChecker) {
                     setAdapter();
                     dialog.dismiss();
                 }
@@ -206,20 +208,25 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         binding.homeViewpager.setAdapter(adapter);
         binding.homeViewpager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
-        ExplorePresenter explorePresenter=new ExplorePresenter(this);
-        HashMap<String,String> map=new HashMap<>();
-        map.put("user_id","1");
+        ExplorePresenter explorePresenter = new ExplorePresenter(this);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("user_id", "1");
         map.put("latitude", String.valueOf(GlobalData.latitude));
-        map.put("longitude",String.valueOf(GlobalData.longitude));
+        map.put("longitude", String.valueOf(GlobalData.longitude));
         explorePresenter.shops(map);
 
-        new TabLayoutMediator(binding.homeTab, binding.homeViewpager, new TabLayoutMediator.TabConfigurationStrategy() {
+
+        binding.bottomBar.setupWithViewPager2(binding.homeViewpager);
+
+
+
+        /*new TabLayoutMediator(binding.homeTab, binding.homeViewpager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 tab.setIcon(icons.get(position));
                 tab.setText(texts.get(position));
             }
-        }).attach();
+        }).attach();*/
     }
 
     private void getLocation() {
@@ -261,13 +268,14 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             e.printStackTrace();
         }
     }
+
     private void updateUI(Location loc) {
         Log.d(TAG, "updateUI");
-        GlobalData.latitude=loc.getLatitude();
-        GlobalData.longitude=loc.getLongitude();
+        GlobalData.latitude = loc.getLatitude();
+        GlobalData.longitude = loc.getLongitude();
 
-        if(homeScreen){
-           setAdapter();
+        if (homeScreen) {
+            setAdapter();
         }
 
     }
@@ -326,10 +334,10 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(isGPS || isNetwork){
+        if (isGPS || isNetwork) {
             getLocation();
             setAdapter();
-        }else{
+        } else {
             //ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},location);
             bottom();
         }

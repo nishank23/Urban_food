@@ -35,6 +35,7 @@ public class Explore extends Fragment implements ExploreView {
 
     ExplorePresenter shopspresenter;
 
+    HashMap<String,String> map=new HashMap();
 
 
     @Override
@@ -46,7 +47,6 @@ public class Explore extends Fragment implements ExploreView {
 
         if(Common.isConnected()){
             shopspresenter = new ExplorePresenter(this);
-            HashMap<String,String> map=new HashMap();
             map.put("user_id","1");
             map.put("latitude", String.valueOf(GlobalData.latitude));
             map.put("longitude",String.valueOf(GlobalData.longitude));
@@ -77,7 +77,10 @@ public class Explore extends Fragment implements ExploreView {
             binding.ivSearch.setVisibility(View.GONE);
         }
         shopspresenter = new ExplorePresenter(this);
-        shopspresenter.shops(21.1702,72.8311);
+
+
+
+        shopspresenter.shops(map);
         shopspresenter.cuisine();
         binding.etSearch.setOnClickListener(new View.OnClickListener() {
             @Override
