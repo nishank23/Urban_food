@@ -5,9 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.urban_food.Api.ApiClient;
-import com.example.urban_food.Modal.LoginModal.LoginResponse;
-import com.example.urban_food.Modal.ProfileModal.ProfileResponse;
-import com.example.urban_food.Modal.SearchModal.SearchResponse;
+import com.example.urban_food.model.Search;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,9 +23,9 @@ public class SearchActivityPresenter {
     }
 
     public void getSearch(String search) {
-        ApiClient.getRetrofit().getSearch("1",search).enqueue(new Callback<SearchResponse>() {
+        ApiClient.getRetrofit().getSearch("1",search).enqueue(new Callback<Search>() {
             @Override
-            public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
+            public void onResponse(@NonNull Call<Search> call, @NonNull Response<Search> response) {
                 if (response.isSuccessful() && response.body() != null) {
 
                     view.onSuccessSearch(response.body());
@@ -39,7 +37,7 @@ public class SearchActivityPresenter {
             }
 
             @Override
-            public void onFailure(@NonNull Call<SearchResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<Search> call, @NonNull Throwable t) {
                 view.onError("Something went wrong");
             }
         });

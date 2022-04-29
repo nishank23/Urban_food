@@ -5,26 +5,34 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.urban_food.Activites.ShopsDetail.cart.CartPresenter;
+import com.example.urban_food.Activites.ShopsDetail.cart.CartView;
+import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.Adapter.MenuAdapter;
-import com.example.urban_food.Adapter.RvMenuAdapter;
 import com.example.urban_food.Helper.Common;
-import com.example.urban_food.Modal.ShopsDetailsModal.ProductsItem;
-import com.example.urban_food.Modal.ShopsDetailsModal.ShopDetailsCategoriesItem;
 import com.example.urban_food.databinding.ActivityShopsDetailsBinding;
+import com.example.urban_food.model.AddCart;
+import com.example.urban_food.model.Cart;
+import com.example.urban_food.model.Category;
+import com.example.urban_food.model.ShopDetail;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetailsView {
+public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetailsView , CartView {
 
     ActivityShopsDetailsBinding binding;
     String shopId="";
     String pathImage="";
+    int cartProductId;
+    int cartQty;
+    int cartId;
 
 
+    CartPresenter cartPresenter;
     ShopDetailsPresenter shopDetailsPresenter;
 
     @Override
@@ -69,7 +77,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     }
 
     @Override
-    public void onSuccessShopDetails(List<ShopDetailsCategoriesItem> shopDetailList) {
+    public void onSuccessShopDetails(List<Category> shopDetailList) {
         if (shopDetailList.isEmpty()) {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
@@ -100,7 +108,33 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                     .load(pathImage)
                     .into(binding.ivShopShopsDetail);
 
-            MenuAdapter menuAdapter = new MenuAdapter(this,shopDetailList);
+            MenuAdapter menuAdapter = new MenuAdapter(this, shopDetailList, new RvMenuInterface() {
+                @Override
+                public void cartParaWithCardId(int id, int value, String CartValue) {
+                    cartProductId=id;
+                    cartQty=value;
+                    cartId=Integer.parseInt(CartValue);
+                    cartPresenter=new CartPresenter(ShopsDetailsActivity.this);
+                    HashMap<String,String> map=new HashMap<>();
+                    map.put("product_id",String.valueOf(cartProductId));
+                    map.put("quantity",String.valueOf(cartQty));
+                    map.put("cart_id",String.valueOf(cartId));
+                    cartPresenter.callCart(map);
+                }
+
+                @Override
+                public void cartPara(int id, int value) {
+                    cartProductId=id;
+                    cartQty=value;
+                    cartPresenter=new CartPresenter(ShopsDetailsActivity.this);
+                    HashMap<String,String> map=new HashMap<>();
+                    map.put("product_id",String.valueOf(cartProductId));
+                    map.put("quantity",String.valueOf(cartQty));
+                    cartPresenter.callCart(map);
+                }
+
+
+            });
             binding.rvMenu.setAdapter(menuAdapter);
             binding.rvMenu.setLayoutManager(new LinearLayoutManager(this));
 
@@ -133,4 +167,28 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     }
 
+    @Override
+    public void onSuccessCartView(List<Cart> cartResponse) {
+
+    }
+
+    @Override
+    public void onErrorCartView() {
+
+    }
+
+    @Override
+    public void onSuccessGetCartView(List<Cart> getCartResponse) {
+
+    }
+
+    @Override
+    public void showProgressShops() {
+
+    }
+
+    @Override
+    public void dismissProgressShops() {
+
+    }
 }

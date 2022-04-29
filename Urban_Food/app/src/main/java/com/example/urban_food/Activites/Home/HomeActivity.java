@@ -33,8 +33,6 @@ import com.example.urban_food.Adapter.HomeViewPager;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Helper.PrefUtils;
-import com.example.urban_food.Modal.CuisineModal.Cuisine;
-import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityHomeBinding;
 import com.example.urban_food.databinding.BottomsheetHomeLayoutBinding;
@@ -44,6 +42,8 @@ import com.example.urban_food.fragment.explore.ExploreView;
 import com.example.urban_food.fragment.favorite.Favorite;
 import com.example.urban_food.fragment.myorder.MyOrder;
 import com.example.urban_food.fragment.profile.Profile;
+import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.Shop;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -355,7 +355,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
     }
 
     @Override
-    public void onSuccessShops(List<ShopsItem> shopsItemList) {
+    public void onSuccessShops(List<Shop> shopsItemList) {
 
     }
 

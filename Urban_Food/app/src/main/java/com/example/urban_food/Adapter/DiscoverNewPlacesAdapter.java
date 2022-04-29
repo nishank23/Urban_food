@@ -9,20 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.DiscoverNewplaceRecyclerlayoutBinding;
 import com.example.urban_food.fragment.explore.ExploreInterface;
+import com.example.urban_food.model.Shop;
 
 import java.util.List;
 
 public class DiscoverNewPlacesAdapter extends RecyclerView.Adapter<DiscoverNewPlacesAdapter.MyHolder> {
 
     Activity activity;
-    List<ShopsItem> shopsList;
+    List<Shop> shopsList;
     ExploreInterface CallBack;
 
 
-    public DiscoverNewPlacesAdapter(Activity activity, List<ShopsItem> shopsList, ExploreInterface callBack) {
+    public DiscoverNewPlacesAdapter(Activity activity, List<Shop> shopsList, ExploreInterface callBack) {
         this.activity = activity;
         this.shopsList = shopsList;
         CallBack = callBack;

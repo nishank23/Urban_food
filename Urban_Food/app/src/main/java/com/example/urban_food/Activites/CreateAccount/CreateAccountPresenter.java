@@ -1,7 +1,8 @@
 package com.example.urban_food.Activites.CreateAccount;
 
 import com.example.urban_food.Api.ApiClient;
-import com.example.urban_food.Modal.RegisterModal.RegistrationResponse;
+import com.example.urban_food.model.RegisterModel;
+
 
 import java.util.HashMap;
 
@@ -18,9 +19,9 @@ public class CreateAccountPresenter {
     }
 
     public void registration(HashMap<String, String> map){
-        ApiClient.getRetrofit().registration(map).enqueue(new Callback<RegistrationResponse>() {
+        ApiClient.getRetrofit().registration(map).enqueue(new Callback<RegisterModel>() {
             @Override
-            public void onResponse(Call<RegistrationResponse> call, Response<RegistrationResponse> response) {
+            public void onResponse(Call<RegisterModel> call, Response<RegisterModel> response) {
                 view.ShowProgress();
                 if(response.isSuccessful() && response.body() != null){
                     view.dismissProgress();
@@ -32,7 +33,7 @@ public class CreateAccountPresenter {
             }
 
             @Override
-            public void onFailure(Call<RegistrationResponse> call, Throwable t) {
+            public void onFailure(Call<RegisterModel> call, Throwable t) {
 
             }
         });

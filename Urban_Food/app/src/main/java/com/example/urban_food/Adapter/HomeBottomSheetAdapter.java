@@ -13,19 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.urban_food.Activites.Home.HomeActivity;
 import com.example.urban_food.Activites.SplashScreen.SpalshInterface;
 import com.example.urban_food.Helper.GlobalData;
-import com.example.urban_food.Modal.ProfileModal.AddressesItem;
 import com.example.urban_food.databinding.BottomsheetHomeLayoutBinding;
 import com.example.urban_food.databinding.RecyclerBottomHomeBinding;
+import com.example.urban_food.model.Address;
 
 import java.util.List;
 
 public class HomeBottomSheetAdapter extends RecyclerView.Adapter<HomeBottomSheetAdapter.Holder> {
     @NonNull
     Context context;
-    List<AddressesItem> addressList;
+    List<Address> addressList;
     SpalshInterface callback;
 
-    public HomeBottomSheetAdapter(@NonNull Context context, List<AddressesItem> addressList,SpalshInterface callback) {
+    public HomeBottomSheetAdapter(@NonNull Context context, List<Address> addressList,SpalshInterface callback) {
         this.context = context;
         this.addressList = addressList;
         this.callback=callback;

@@ -1,7 +1,8 @@
 package com.example.urban_food.Activites.Verifyphonescreen;
 
 import com.example.urban_food.Api.ApiClient;
-import com.example.urban_food.Modal.OtpModal.OtpResponse;
+import com.example.urban_food.model.Otp;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,9 +18,9 @@ public class VerifyPhonePresenter {
 
     public void callApiOtp(String phone){
         view.ShowProgress();
-        ApiClient.getRetrofit().getingOtp(phone).enqueue(new Callback<OtpResponse>() {
+        ApiClient.getRetrofit().getingOtp(phone).enqueue(new Callback<Otp>() {
             @Override
-            public void onResponse(Call<OtpResponse> call, Response<OtpResponse> response) {
+            public void onResponse(Call<Otp> call, Response<Otp> response) {
                 if(response.isSuccessful() && response.body() != null){
                     view.dismissProgress();
                     view.onSuccessOtp(response.body().getOtp());
@@ -30,7 +31,7 @@ public class VerifyPhonePresenter {
             }
 
             @Override
-            public void onFailure(Call<OtpResponse> call, Throwable t) {
+            public void onFailure(Call<Otp> call, Throwable t) {
 
             }
         });

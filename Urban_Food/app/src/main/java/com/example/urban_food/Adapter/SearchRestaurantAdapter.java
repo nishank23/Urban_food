@@ -9,17 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.urban_food.Modal.SearchModal.ShopsItem;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.PopularWeekRecyclerLayoutBinding;
+import com.example.urban_food.model.Shop;
 
 import java.util.List;
 
 public class SearchRestaurantAdapter extends RecyclerView.Adapter<SearchRestaurantAdapter.MyHolder> {
     Activity context;
-    List<ShopsItem> list;
+    List<Shop> list;
 
-    public SearchRestaurantAdapter(Activity context, List<ShopsItem> list) {
+    public SearchRestaurantAdapter(Activity context, List<Shop> list) {
         this.context = context;
         this.list = list;
     }

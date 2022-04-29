@@ -13,20 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Helper.GlobalData;
-import com.example.urban_food.Modal.SearchModal.ProductsItem;
-import com.example.urban_food.Modal.SearchModal.SearchResponse;
-import com.example.urban_food.Modal.SearchModal.ShopsItem;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.PopularWeekRecyclerLayoutBinding;
 import com.example.urban_food.databinding.SearchProductRecylcerLayoutBinding;
+import com.example.urban_food.model.Product;
 
 import java.util.List;
 
 public class SearchProductAdapter extends RecyclerView.Adapter<SearchProductAdapter.MyHolder> {
     Activity context;
-    List<ProductsItem> productItemList;
+    List<Product> productItemList;
 
-    public SearchProductAdapter(Activity context, List<ProductsItem> productItemList) {
+    public SearchProductAdapter(Activity context, List<Product> productItemList) {
         this.context = context;
         this.productItemList = productItemList;
     }

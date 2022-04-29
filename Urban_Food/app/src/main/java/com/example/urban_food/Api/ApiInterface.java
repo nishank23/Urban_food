@@ -1,13 +1,14 @@
 package com.example.urban_food.Api;
 
-import com.example.urban_food.Modal.CuisineModal.Cuisine;
-import com.example.urban_food.Modal.LoginModal.LoginResponse;
-import com.example.urban_food.Modal.OtpModal.OtpResponse;
-import com.example.urban_food.Modal.ProfileModal.ProfileResponse;
-import com.example.urban_food.Modal.RegisterModal.RegistrationResponse;
-import com.example.urban_food.Modal.ExploreModal.ShopResponse;
-import com.example.urban_food.Modal.SearchModal.SearchResponse;
-import com.example.urban_food.Modal.ShopsDetailsModal.ShopDetailsResponse;
+import com.example.urban_food.model.AddCart;
+import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.LoginModel;
+import com.example.urban_food.model.Otp;
+import com.example.urban_food.model.RegisterModel;
+import com.example.urban_food.model.RestaurantsData;
+import com.example.urban_food.model.Search;
+import com.example.urban_food.model.ShopDetail;
+import com.example.urban_food.model.User;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,29 +36,36 @@ public interface ApiInterface {
 */
     @FormUrlEncoded
     @POST("api/user/otp")
-    Call<OtpResponse> getingOtp(@Field("phone") String phone);
+    Call<Otp> getingOtp(@Field("phone") String phone);
 
     @FormUrlEncoded
     @POST("api/user/register")
-    Call<RegistrationResponse> registration(@FieldMap HashMap<String, String> map);
+    Call<RegisterModel> registration(@FieldMap HashMap<String, String> map);
 
     @FormUrlEncoded
     @POST("oauth/token")
-    Call<LoginResponse> Login(@FieldMap HashMap<String,String> map);
+    Call<LoginModel> Login(@FieldMap HashMap<String,String> map);
 
     @GET("api/user/profile")
-    Call<ProfileResponse> getProfile(@QueryMap HashMap<String, String> map);
+    Call<User> getProfile(@QueryMap HashMap<String, String> map);
 
 
     @GET("api/user/shops")
-    Call<ShopResponse> getShops(@QueryMap HashMap<String, String> map);
+    Call<RestaurantsData> getShops(@QueryMap HashMap<String, String> map);
 
     @GET("api/user/cuisines")
     Call<List<Cuisine>> getCuisineCategories();
 
     @GET("api/user/search")
-    Call<SearchResponse> getSearch(@Query("user_id")String user_id,@Query("name")String name);
+    Call<Search> getSearch(@Query("user_id")String user_id, @Query("name")String name);
 
     @GET("api/user/categories")
-    Call<ShopDetailsResponse> getShopDetails(@QueryMap HashMap<String, String> map);
+    Call<ShopDetail> getShopDetails(@QueryMap HashMap<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/user/cart")
+    Call<AddCart> postCartDetails(@FieldMap HashMap<String,String> map);
+
+    @GET("api/user/cart")
+    Call<AddCart> getCartDetail();
 }

@@ -18,9 +18,9 @@ import com.example.urban_food.Adapter.DiscoverNewPlacesAdapter;
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
-import com.example.urban_food.Modal.CuisineModal.Cuisine;
-import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.FragmentExploreBinding;
+import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.Shop;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +31,6 @@ public class Explore extends Fragment implements ExploreView {
     DiscoverNewPlacesAdapter discoverNewPlacesAdapter;
     PopularthisWeekAdapter popularThisWeek;
     CuisineCategoryAdapter cuisineCategoryAdapter;
-
 
     ExplorePresenter shopspresenter;
 
@@ -47,6 +46,7 @@ public class Explore extends Fragment implements ExploreView {
 
         if(Common.isConnected()){
             shopspresenter = new ExplorePresenter(this);
+            map=new HashMap();
             map.put("user_id","1");
             map.put("latitude", String.valueOf(GlobalData.latitude));
             map.put("longitude",String.valueOf(GlobalData.longitude));
@@ -77,6 +77,7 @@ public class Explore extends Fragment implements ExploreView {
             binding.ivSearch.setVisibility(View.GONE);
         }
         shopspresenter = new ExplorePresenter(this);
+        shopspresenter.shops(map);
 
 
 
@@ -131,7 +132,7 @@ public class Explore extends Fragment implements ExploreView {
     }
 
     @Override
-    public void onSuccessShops(List<ShopsItem> shopsItemList) {
+    public void onSuccessShops(List<Shop> shopsItemList) {
         if(shopsItemList.isEmpty()){
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);

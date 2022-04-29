@@ -10,13 +10,13 @@ import android.view.View;
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
-import com.example.urban_food.Modal.CuisineModal.Cuisine;
-import com.example.urban_food.Modal.ExploreModal.ShopsItem;
 import com.example.urban_food.databinding.ActivityClickCuisineBinding;
 import com.example.urban_food.fragment.explore.Explore;
 import com.example.urban_food.fragment.explore.ExploreInterface;
 import com.example.urban_food.fragment.explore.ExplorePresenter;
 import com.example.urban_food.fragment.explore.ExploreView;
+import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.Shop;
 
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +65,7 @@ public class ClickCuisineActivity extends AppCompatActivity implements ExploreVi
     }
 
     @Override
-    public void onSuccessShops(List<ShopsItem> shopsItemList) {
+    public void onSuccessShops(List<Shop> shopsItemList) {
         if (shopsItemList.isEmpty()) {
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);

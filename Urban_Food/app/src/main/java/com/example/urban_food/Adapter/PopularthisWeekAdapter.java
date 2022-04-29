@@ -9,18 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.urban_food.Modal.ExploreModal.ShopsItem;
+
 import com.example.urban_food.databinding.PopularWeekRecyclerLayoutBinding;
 import com.example.urban_food.fragment.explore.ExploreInterface;
+import com.example.urban_food.model.Shop;
 
 import java.util.List;
 
 public class PopularthisWeekAdapter extends RecyclerView.Adapter<PopularthisWeekAdapter.MyHolder> {
     Activity activity;
-    List<ShopsItem> shopsList;
+    List<Shop> shopsList;
     ExploreInterface callback;
 
-    public PopularthisWeekAdapter(Activity activity, List<ShopsItem> shopsList,ExploreInterface callback) {
+    public PopularthisWeekAdapter(Activity activity, List<Shop> shopsList,ExploreInterface callback) {
         this.activity = activity;
         this.shopsList = shopsList;
         this.callback=callback;

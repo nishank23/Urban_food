@@ -2,7 +2,8 @@ package com.example.urban_food.Activites.ShopsDetail;
 
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.Api.ApiInterface;
-import com.example.urban_food.Modal.ShopsDetailsModal.ShopDetailsResponse;
+import com.example.urban_food.model.ShopDetail;
+
 
 import java.util.HashMap;
 
@@ -19,9 +20,9 @@ public class ShopDetailsPresenter {
     }
 
     public void getShopDetails(HashMap<String, String> map){
-        ApiClient.getRetrofit().getShopDetails(map).enqueue(new Callback<ShopDetailsResponse>() {
+        ApiClient.getRetrofit().getShopDetails(map).enqueue(new Callback<ShopDetail>() {
             @Override
-            public void onResponse(Call<ShopDetailsResponse> call, Response<ShopDetailsResponse> response) {
+            public void onResponse(Call<ShopDetail> call, Response<ShopDetail> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     view.dismissShopDetails();
                     view.onSuccessShopDetails(response.body().getCategories());
@@ -31,7 +32,7 @@ public class ShopDetailsPresenter {
             }
 
             @Override
-            public void onFailure(Call<ShopDetailsResponse> call, Throwable t) {
+            public void onFailure(Call<ShopDetail> call, Throwable t) {
                 view.onErrorShopDetails();
             }
         });

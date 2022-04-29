@@ -5,8 +5,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.urban_food.Api.ApiClient;
-import com.example.urban_food.Modal.LoginModal.LoginResponse;
-import com.example.urban_food.Modal.ProfileModal.ProfileResponse;
+import com.example.urban_food.model.LoginModel;
+import com.example.urban_food.model.User;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,9 +25,9 @@ public class LoginActivityPresenter {
 
     public void login(HashMap<String, String> map) {
         view.ShowProgress();
-        ApiClient.getRetrofit().Login(map).enqueue(new Callback<LoginResponse>() {
+        ApiClient.getRetrofit().Login(map).enqueue(new Callback<LoginModel>() {
             @Override
-            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+            public void onResponse(@NonNull Call<LoginModel> call, @NonNull Response<LoginModel> response) {
                 view.dismissProgress();
                 if (response.isSuccessful() && response.body() != null) {
 
@@ -40,7 +40,7 @@ public class LoginActivityPresenter {
             }
 
             @Override
-            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<LoginModel> call, @NonNull Throwable t) {
                 view.onError("Either phone no or password is wrong");
             }
         });
@@ -49,9 +49,9 @@ public class LoginActivityPresenter {
     public void getProfile(HashMap<String, String> map) {
         view.ShowProgress();
 
-        ApiClient.getRetrofit().getProfile(map).enqueue(new Callback<ProfileResponse>() {
+        ApiClient.getRetrofit().getProfile(map).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 view.dismissProgress();
                 if (response.isSuccessful() && response.body() != null) {
                     view.onSuccessProfile(response.body().getCart(), response.body().getAddresses());
@@ -67,7 +67,7 @@ public class LoginActivityPresenter {
             }
 
             @Override
-            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 view.dismissProgress();
                 view.onError("Something went wrong");
             }

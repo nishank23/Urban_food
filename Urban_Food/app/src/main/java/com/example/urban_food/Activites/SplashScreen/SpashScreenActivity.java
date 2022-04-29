@@ -28,9 +28,9 @@ import com.example.urban_food.Activites.WelcomeScreen.WelcomeScreenActivity;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Helper.PrefUtils;
-import com.example.urban_food.Modal.ProfileModal.AddressesItem;
-import com.example.urban_food.Modal.ProfileModal.CartItem;
 import com.example.urban_food.databinding.ActivitySpashScreenBinding;
+import com.example.urban_food.model.Address;
+import com.example.urban_food.model.Cart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -173,7 +173,7 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
     }
 
     @Override
-    public void onSuccessProfile(List<CartItem> cardItemlist, List<AddressesItem> addressesItemList) {
+    public void onSuccessProfile(List<Cart> cardItemlist, List<Address> addressesItemList) {
         GlobalData.Cart = cardItemlist;
         GlobalData.Address = addressesItemList;
         startActivity(new Intent(this, HomeActivity.class));

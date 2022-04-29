@@ -18,11 +18,11 @@ import com.example.urban_food.Adapter.SearchProductAdapter;
 import com.example.urban_food.Adapter.SearchRestaurantAdapter;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
-import com.example.urban_food.Modal.SearchModal.ProductsItem;
-import com.example.urban_food.Modal.SearchModal.SearchResponse;
-import com.example.urban_food.Modal.SearchModal.ShopsItem;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivitySearchBinding;
+import com.example.urban_food.model.Product;
+import com.example.urban_food.model.Search;
+import com.example.urban_food.model.Shop;
 import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
@@ -33,8 +33,8 @@ public class SearchActivity extends AppCompatActivity implements SearchActivityV
     SearchActivityPresenter searchActivityPresenter;
     SearchProductAdapter searchProductAdapter;
     SearchRestaurantAdapter searchRestaurantAdapter;
-    List<ProductsItem> list = new ArrayList<>();
-    List<ShopsItem> shoplist = new ArrayList<>();
+    List<Product> list = new ArrayList<>();
+    List<Shop> shoplist = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class SearchActivity extends AppCompatActivity implements SearchActivityV
     }
 
     @Override
-    public void onSuccessSearch(SearchResponse response) {
+    public void onSuccessSearch(Search response) {
 
 
         for (int i = 0; i < response.getProducts().size(); i++) {

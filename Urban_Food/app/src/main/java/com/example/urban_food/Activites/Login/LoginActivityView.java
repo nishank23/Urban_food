@@ -1,7 +1,7 @@
 package com.example.urban_food.Activites.Login;
 
-import com.example.urban_food.Modal.ProfileModal.AddressesItem;
-import com.example.urban_food.Modal.ProfileModal.CartItem;
+import com.example.urban_food.model.Address;
+import com.example.urban_food.model.Cart;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface LoginActivityView {
 
     void onSuccessLogin(String token);
 
-    void onSuccessProfile(List<CartItem> cardItemlist, List<AddressesItem> addressesItemList);
+    void onSuccessProfile(List<Cart> cardItemlist, List<Address> addressesItemList);
 
     void onError(String msg);
 
