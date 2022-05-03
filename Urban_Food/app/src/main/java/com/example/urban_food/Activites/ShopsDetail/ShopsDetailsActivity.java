@@ -13,6 +13,7 @@ import com.example.urban_food.Activites.ShopsDetail.cart.CartView;
 import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.Adapter.MenuAdapter;
 import com.example.urban_food.Helper.Common;
+import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityShopsDetailsBinding;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.Cart;
@@ -34,7 +35,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     CartPresenter cartPresenter;
     ShopDetailsPresenter shopDetailsPresenter;
-
+    boolean checker= false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,20 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
             map.put("user_id","1");
             shopDetailsPresenter.getShopDetails(map);
 
+
+            binding.ivFavrouite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(checker){
+                        binding.ivFavrouite.setImageResource(R.drawable.ic_iconmonstr_bookmark_43);
+                        checker=false;
+                    }
+                    else{
+                        binding.ivFavrouite.setImageResource(R.drawable.ic_favroite);
+                        checker = true;
+                    }
+                }
+            });
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);

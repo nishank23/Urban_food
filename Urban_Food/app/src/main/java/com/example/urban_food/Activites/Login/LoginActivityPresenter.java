@@ -54,7 +54,7 @@ public class LoginActivityPresenter {
             public void onResponse(Call<User> call, Response<User> response) {
                 view.dismissProgress();
                 if (response.isSuccessful() && response.body() != null) {
-                    view.onSuccessProfile(response.body().getCart(), response.body().getAddresses());
+                    view.onSuccessProfile(response.body().getCart(), response.body().getAddresses(), response.body());
                 } else {
                     try {
                         String error = response.errorBody().string();

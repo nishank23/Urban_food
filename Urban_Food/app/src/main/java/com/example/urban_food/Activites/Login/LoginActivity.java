@@ -18,6 +18,7 @@ import com.example.urban_food.Helper.PrefUtils;
 import com.example.urban_food.databinding.ActivityLoginBinding;
 import com.example.urban_food.model.Address;
 import com.example.urban_food.model.Cart;
+import com.example.urban_food.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -119,9 +120,10 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
     }
 
     @Override
-    public void onSuccessProfile(List<Cart> cardItemlist, List<Address> addressesItemList) {
+    public void onSuccessProfile(List<Cart> cardItemlist, List<Address> addressesItemList, User user) {
         GlobalData.Cart = cardItemlist;
         GlobalData.Address = addressesItemList;
+        GlobalData.users=user;
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();

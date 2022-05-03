@@ -1,6 +1,8 @@
 package com.example.urban_food.Api;
 
+import com.example.urban_food.Modal.FavoriteModal.GetFavoriteResponse;
 import com.example.urban_food.model.AddCart;
+import com.example.urban_food.model.AddFavoriteResponse;
 import com.example.urban_food.model.Cuisine;
 import com.example.urban_food.model.LoginModel;
 import com.example.urban_food.model.Otp;
@@ -61,11 +63,17 @@ public interface ApiInterface {
 
     @GET("api/user/categories")
     Call<ShopDetail> getShopDetails(@QueryMap HashMap<String, String> map);
-
     @FormUrlEncoded
     @POST("api/user/cart")
     Call<AddCart> postCartDetails(@FieldMap HashMap<String,String> map);
 
     @GET("api/user/cart")
     Call<AddCart> getCartDetail();
+
+    @FormUrlEncoded
+    @POST("api/user/favorite")
+    Call<AddFavoriteResponse> addFavorite(@Query("shop_id")String shop_id);
+
+
+
 }
