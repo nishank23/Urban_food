@@ -18,6 +18,7 @@ import com.example.urban_food.databinding.ActivityShopsDetailsBinding;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.Cart;
 import com.example.urban_food.model.Category;
+import com.example.urban_food.model.ClearCart;
 import com.example.urban_food.model.ShopDetail;
 
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     int cartId;
 
 
-    CartPresenter cartPresenter;
+    CartPresenter cartPresenter=new CartPresenter(ShopsDetailsActivity.this);
     ShopDetailsPresenter shopDetailsPresenter;
     boolean checker= false;
     @Override
@@ -129,7 +130,6 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                     cartProductId=id;
                     cartQty=value;
                     cartId=Integer.parseInt(CartValue);
-                    cartPresenter=new CartPresenter(ShopsDetailsActivity.this);
                     HashMap<String,String> map=new HashMap<>();
                     map.put("product_id",String.valueOf(cartProductId));
                     map.put("quantity",String.valueOf(cartQty));
@@ -141,11 +141,17 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                 public void cartPara(int id, int value) {
                     cartProductId=id;
                     cartQty=value;
-                    cartPresenter=new CartPresenter(ShopsDetailsActivity.this);
                     HashMap<String,String> map=new HashMap<>();
                     map.put("product_id",String.valueOf(cartProductId));
                     map.put("quantity",String.valueOf(cartQty));
                     cartPresenter.callCart(map);
+                }
+
+                @Override
+                public void clearCartPara(Boolean check, int id, int value) {
+                    cartProductId=id;
+                    cartQty=value;
+                    cartPresenter.getClearCart();
                 }
 
 
@@ -195,6 +201,14 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     @Override
     public void onSuccessGetCartView(List<Cart> getCartResponse) {
 
+    }
+
+    @Override
+    public void onSuccessGetClearCartView(String message) {
+        HashMap<String,String> map=new HashMap<>();
+        map.put("product_id",String.valueOf(cartProductId));
+        map.put("quantity",String.valueOf(cartQty));
+        cartPresenter.callCart(map);
     }
 
     @Override
