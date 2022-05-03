@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
+import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.databinding.MenuRecyclerRecyclerviewBinding;
 import com.example.urban_food.model.Product;
 import com.example.urban_food.model.ProductsItem;
@@ -60,6 +61,8 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
         }
 
         holder.binding.btnAdd.setOnClickListener(view -> {
+
+            if(GlobalData.Cart.get(0).getProduct().getId() == productList.get(position).getShopId()){}
             holder.binding.btnAdd.setVisibility(View.GONE);
             holder.binding.btnMinus.setVisibility(View.VISIBLE);
             holder.binding.btnPlus.setVisibility(View.VISIBLE);
@@ -67,11 +70,6 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
 
             if (productList.get(position).getCart().size() == 0) {
                 callback.cartPara(productList.get(position).getId(), 1);
-            } else {
-                if(productList.get(position).getShopId() == 1 ){
-
-                }
-                //callback.cartParaWithCardId(productList.get(position).getId(), 1, String.valueOf(productList.get(position).getCart().get(position).getId()));
             }
         });
 
