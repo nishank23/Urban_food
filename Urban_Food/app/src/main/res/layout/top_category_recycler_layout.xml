@@ -28,6 +28,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/avenir_heavy"
         android:textSize="17sp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="@id/card1"
         app:layout_constraintStart_toStartOf="@id/card1"
