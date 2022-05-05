@@ -24,6 +24,7 @@ public class LoginActivityPresenter {
         this.view = view;
     }
 
+
     public void login(HashMap<String, String> map) {
         view.ShowProgress();
         ApiClient.getRetrofit().Login(map).enqueue(new Callback<LoginModel>() {
