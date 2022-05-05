@@ -50,6 +50,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MyHolder> {
                     callback.cartPara(id,value);
                 }
 
+                @Override
+                public void clearCartPara(Boolean check, int id, int value) {
+                    callback.clearCartPara(check,id,value);
+                }
+
             });
             holder.binding.rvMenu.setAdapter(rvMenuAdapter);
             holder.binding.rvMenu.setLayoutManager(new LinearLayoutManager(activity));
