@@ -11,19 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.urban_food.Activites.ShopsDetail.ShopsDetailsActivity;
+import com.example.urban_food.Adapter.FavoriteAdapter;
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
 import com.example.urban_food.Modal.FavoriteModal.GetFavoriteResponse;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentFavoriteBinding;
 import com.example.urban_food.fragment.explore.ExploreInterface;
+import com.example.urban_food.model.FavoriteList;
 
 public class Favorite extends Fragment implements FavoriteView {
 
     FragmentFavoriteBinding binding;
     FavoritePresenter favoritePresenter;
-/*
     FavoriteAdapter favoriteAdapter;
-*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +34,7 @@ public class Favorite extends Fragment implements FavoriteView {
         favoritePresenter = new FavoritePresenter(this);
 
 
-
+        favoritePresenter.getFavorite();
         return binding.getRoot();
 
 
@@ -46,11 +46,10 @@ public class Favorite extends Fragment implements FavoriteView {
     }
 
     @Override
-    public void getFavorite(GetFavoriteResponse getFavoriteResponse) {
+    public void getFavorite(FavoriteList response) {
 
-/*
-        if (getFavoriteResponse.getAvailable().size() != 0) {
-            favoriteAdapter = new FavoriteAdapter(getActivity(), getFavoriteResponse.getAvailable(), new ExploreInterface() {
+        if (response.getAvailable().size() != 0) {
+            favoriteAdapter = new FavoriteAdapter(getActivity(), response.getAvailable(), new ExploreInterface() {
                 @Override
                 public void cuisineItem(String data, String path) {
                     Intent intent = new Intent(getActivity(), ShopsDetailsActivity.class);
@@ -64,6 +63,5 @@ public class Favorite extends Fragment implements FavoriteView {
             binding.rvFavorite.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         }
-*/
     }
 }

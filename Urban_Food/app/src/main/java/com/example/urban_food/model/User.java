@@ -25,7 +25,7 @@ public class User {
     private String phone;
     @SerializedName("avatar")
     @Expose
-    private Object avatar;
+    private String avatar;
     @SerializedName("device_token")
     @Expose
     private String deviceToken;
@@ -89,11 +89,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Object getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Object avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

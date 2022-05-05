@@ -13,17 +13,21 @@ import com.example.urban_food.Activites.ShopsDetail.cart.CartView;
 import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.Adapter.MenuAdapter;
 import com.example.urban_food.Helper.Common;
+import com.example.urban_food.Modal.FavoriteModal.GetFavoriteResponse;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityShopsDetailsBinding;
+import com.example.urban_food.fragment.favorite.FavoritePresenter;
+import com.example.urban_food.fragment.favorite.FavoriteView;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.Cart;
 import com.example.urban_food.model.Category;
+import com.example.urban_food.model.FavoriteList;
 import com.example.urban_food.model.ShopDetail;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetailsView , CartView {
+public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetailsView , CartView, FavoriteView {
 
     ActivityShopsDetailsBinding binding;
     String shopId="";
@@ -31,18 +35,20 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     int cartProductId;
     int cartQty;
     int cartId;
+    String favmsg ="";
 
 
     CartPresenter cartPresenter;
     ShopDetailsPresenter shopDetailsPresenter;
+    FavoritePresenter favoritePresenter;
     boolean checker= false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityShopsDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         shopId=getIntent().getStringExtra("ShopId");
+        favoritePresenter = new FavoritePresenter(ShopsDetailsActivity.this);
         pathImage=getIntent().getStringExtra("pathImage");
         shopDetailsPresenter = new ShopDetailsPresenter(this);
         if(Common.isConnected()){
@@ -58,6 +64,8 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                 public void onClick(View view) {
                     if(checker){
                         binding.ivFavrouite.setImageResource(R.drawable.ic_iconmonstr_bookmark_43);
+                        favoritePresenter.addFavorite(shopId);
+                        Common.showToast(favmsg);
                         checker=false;
                     }
                     else{
@@ -204,6 +212,16 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void dismissProgressShops() {
+
+    }
+
+    @Override
+    public void onSuccessFavorite(String msg) {
+        favmsg=msg;
+    }
+
+    @Override
+    public void getFavorite(FavoriteList response) {
 
     }
 }

@@ -94,7 +94,7 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
             public void run() {
                 checkactivity();
             }
-        }, 3000);
+        }, 1000);
 
     }
 
@@ -177,6 +177,7 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
     public void onSuccessProfile(List<Cart> cardItemlist, List<Address> addressesItemList, User user) {
         GlobalData.Cart = cardItemlist;
         GlobalData.Address = addressesItemList;
+        GlobalData.users=user;
         startActivity(new Intent(this, HomeActivity.class));
         finish();
 

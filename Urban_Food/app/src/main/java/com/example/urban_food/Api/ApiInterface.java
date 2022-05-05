@@ -4,6 +4,7 @@ import com.example.urban_food.Modal.FavoriteModal.GetFavoriteResponse;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.AddFavoriteResponse;
 import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.FavoriteList;
 import com.example.urban_food.model.LoginModel;
 import com.example.urban_food.model.Otp;
 import com.example.urban_food.model.RegisterModel;
@@ -72,7 +73,11 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("api/user/favorite")
-    Call<AddFavoriteResponse> addFavorite(@Query("shop_id")String shop_id);
+    Call<AddFavoriteResponse> addFavorite(@Field("shop_id")String shop_id);
+
+
+    @GET("api/user/favorite")
+    Call<FavoriteList> getFavorite();
 
 
 
