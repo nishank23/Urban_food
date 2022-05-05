@@ -20,6 +20,7 @@ import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentMyOrderBinding;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.Cart;
+import com.example.urban_food.model.ClearCart;
 
 import java.util.HashMap;
 import java.util.List;
@@ -100,9 +101,19 @@ public class MyOrder extends Fragment  implements CartView{
             public void cartPara(int id, int value) {
 
             }
+
+            @Override
+            public void clearCartPara(Boolean check, int id, int value) {
+
+            }
         });
         binding.rvItemDetailsMyOrder.setAdapter(cartAdapter);
         binding.rvItemDetailsMyOrder.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    @Override
+    public void onSuccessGetClearCartView(String message) {
+
     }
 
     @Override

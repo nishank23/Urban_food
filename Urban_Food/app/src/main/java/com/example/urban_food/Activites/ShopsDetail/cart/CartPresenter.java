@@ -2,6 +2,7 @@ package com.example.urban_food.Activites.ShopsDetail.cart;
 
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.model.AddCart;
+import com.example.urban_food.model.ClearCart;
 
 import java.util.HashMap;
 
@@ -51,6 +52,25 @@ public class CartPresenter {
 
             @Override
             public void onFailure(Call<AddCart> call, Throwable t) {
+                view.dismissProgressShops();
+                view.onErrorCartView();
+            }
+        });
+    }
+
+    public void getClearCart(){
+        ApiClient.getRetrofit().clearCartCall().enqueue(new Callback<ClearCart>() {
+            @Override
+            public void onResponse(Call<ClearCart> call, Response<ClearCart> response) {
+                view.showProgressShops();
+                if (response.isSuccessful() && response.body()!= null){
+                    view.dismissProgressShops();
+                    view.onSuccessGetClearCartView(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ClearCart> call, Throwable t) {
                 view.dismissProgressShops();
                 view.onErrorCartView();
             }
