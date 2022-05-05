@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
         <activity
+            android:name=".Activites.MyProfile.PofileView"
+            android:exported="false" />
+        <activity
             android:name=".Activites.ShopsDetail.ClickCuisineActivity"
             android:exported="false" />
         <activity
@@ -62,12 +65,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
