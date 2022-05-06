@@ -156,6 +156,11 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                     cartPresenter.callCart(map);
                 }
 
+                @Override
+                public void clearCartPara(Boolean check, int id, int value) {
+
+                }
+
 
             });
             binding.rvMenu.setAdapter(menuAdapter);
@@ -202,6 +207,11 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessGetCartView(List<Cart> getCartResponse) {
+
+    }
+
+    @Override
+    public void onSuccessGetClearCartView(String message) {
 
     }
 
