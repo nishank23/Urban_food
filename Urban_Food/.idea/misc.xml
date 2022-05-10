@@ -62,6 +62,7 @@
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/drawable/ic_back.xml" value="0.128" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.135" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.135" />
+        <entry key="..\:/Final Project/Urban_Food/app/src/main/res/drawable/shape_for_activitylogin.xml" value="0.135" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/activity_change_password.xml" value="0.25" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/activity_click_cuisine.xml" value="0.12158054711246201" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/activity_create_account.xml" value="0.25" />
@@ -73,6 +74,7 @@
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/activity_shops_details.xml" value="0.25" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/activity_spash_screen.xml" value="0.25" />
+        <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/activity_verifyphone.xml" value="0.25" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/bottomsheet_home_layout.xml" value="0.25" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/discover_newplace_recyclerlayout.xml" value="0.25" />
         <entry key="..\:/Final Project/Urban_Food/app/src/main/res/layout/fragment_explore.xml" value="0.25" />

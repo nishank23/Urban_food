@@ -1,8 +1,10 @@
 package com.example.urban_food.Api;
 
 import com.example.urban_food.model.AddCart;
+import com.example.urban_food.model.AddFavoriteResponse;
 import com.example.urban_food.model.ClearCart;
 import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.FavoriteList;
 import com.example.urban_food.model.LoginModel;
 import com.example.urban_food.model.Otp;
 import com.example.urban_food.model.RegisterModel;
@@ -69,4 +71,10 @@ public interface ApiInterface {
 
     @GET("api/user/cart")
     Call<AddCart> getCartDetail();
+
+    Call<ClearCart> clearCartCall();
+
+    Call<AddFavoriteResponse> addFavorite(String shopid);
+
+    Call<FavoriteList> getFavorite();
 }
