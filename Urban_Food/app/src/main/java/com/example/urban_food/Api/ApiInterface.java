@@ -69,5 +69,4 @@ public interface ApiInterface {
 
     @GET("api/user/cart")
     Call<AddCart> getCartDetail();
-
 }

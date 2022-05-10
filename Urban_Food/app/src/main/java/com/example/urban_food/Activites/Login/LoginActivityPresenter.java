@@ -3,6 +3,7 @@ package com.example.urban_food.Activites.Login;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.model.LoginModel;
@@ -22,6 +23,7 @@ public class LoginActivityPresenter {
     public LoginActivityPresenter(LoginActivityView view) {
         this.view = view;
     }
+
 
     public void login(HashMap<String, String> map) {
         view.ShowProgress();

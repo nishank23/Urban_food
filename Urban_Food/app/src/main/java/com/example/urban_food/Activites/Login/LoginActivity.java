@@ -110,7 +110,8 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
 
         PrefUtils.putBooleanPref(Common.isLoggedIn, true, this);
         PrefUtils.putStringPref(Common.userToken, "Bearer " + token, this);
-
+        GlobalData.device_id=device_id;
+        GlobalData.fcm_token=fcm_token;
         HashMap<String, String> map = new HashMap<>();
         map.put("device_type", "android");
         map.put("device_id", device_id);
@@ -120,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
     }
 
     @Override
-    public void onSuccessProfile(List<Cart> cardItemlist, List<Address> addressesItemList, User user) {
+    public void onSuccessProfile(List<Cart> cardItemlist, List<Address> addressesItemList,User user) {
         GlobalData.Cart = cardItemlist;
         GlobalData.Address = addressesItemList;
         GlobalData.users=user;
