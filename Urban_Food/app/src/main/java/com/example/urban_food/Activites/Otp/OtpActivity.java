@@ -84,7 +84,7 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
                     }
                 }
             } else {
-                Common.showToast("Otp is not valid");
+                Common.showToast("Enter OTP");
             }
 
 

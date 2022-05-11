@@ -65,7 +65,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                     if(checker){
                         binding.ivFavrouite.setImageResource(R.drawable.ic_iconmonstr_bookmark_43);
                         favoritePresenter.addFavorite(shopId);
-                        Common.showToast(favmsg);
+                       // Common.showToast(favmsg);
                         checker=false;
                     }
                     else{
@@ -227,7 +227,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessFavorite(String msg) {
-        favmsg=msg;
+        Toast.makeText(this, "Added as favourite", Toast.LENGTH_SHORT).show();
     }
 
     @Override
