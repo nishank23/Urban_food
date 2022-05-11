@@ -60,6 +60,10 @@
             android:name=".Activites.WelcomeScreen.WelcomeScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activites.ChangePassowrdScreen.ChangePassword"
+            android:exported="true"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

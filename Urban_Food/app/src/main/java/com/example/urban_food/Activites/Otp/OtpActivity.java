@@ -1,15 +1,15 @@
 package com.example.urban_food.Activites.Otp;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
-import com.example.urban_food.Activites.ForgetPasswordScreen.Forgetpassword;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.urban_food.Activites.CreateAccount.CreateAccount;
+import com.example.urban_food.Activites.ForgetPasswordScreen.Forgetpassword;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityOtpBinding;
@@ -23,9 +23,10 @@ import java.util.regex.Pattern;
 public class OtpActivity extends AppCompatActivity implements OtpView {
     private static final int REQ_USER_CONSENT = 200;
     ActivityOtpBinding binding;
-    String otpData = "111111";
-    String checker = "";
+    String otpData = "";
+    boolean checker = false;
     String phoneString="";
+    String userid="";
     CountDownTimer countDownTimer;
     SmsBroadcastReceiver smsBroadcastReceiver;
 
@@ -41,9 +42,8 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
 
 
         otpData = getIntent().getStringExtra("otpNo");
-        checker = getIntent().getStringExtra("checker");
+        checker = getIntent().getBooleanExtra("checker",false);
         phoneString=getIntent().getStringExtra("phone");
-
 
         countDownTimer = new CountDownTimer(60000, 1000) {
             @Override
@@ -64,7 +64,7 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
         binding.buttonNextOtp.setOnClickListener(view -> {
 
             if (!binding.etOtp.getText().toString().isEmpty()) {
-                if (checker.equals("true")) {
+                if (checker) {
                     if (binding.etOtp.getText().toString().equals(otpData)) {
                         Intent intent=new Intent(this,CreateAccount.class);
                         intent.putExtra("phone",phoneString);
@@ -75,7 +75,10 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
                     }
                 } else {
                     if (binding.etOtp.getText().toString().equals(otpData)) {
-                        startActivity(new Intent(this, Forgetpassword.class));
+
+                        Intent intent=new Intent(this,Forgetpassword.class);
+                        startActivity(intent);
+                        intent.putExtra("userid",userid);
                     } else {
                         Common.showToast("Otp is not valid");
                     }

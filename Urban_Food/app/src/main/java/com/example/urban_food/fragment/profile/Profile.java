@@ -1,5 +1,6 @@
 package com.example.urban_food.fragment.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,31 +10,42 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.urban_food.Activites.Login.LoginActivityPresenter;
-import com.example.urban_food.Activites.Login.LoginActivityView;
+import com.example.urban_food.Activites.ChangePassowrdScreen.ChangePassword;
 import com.example.urban_food.Helper.GlobalData;
+import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
-import com.example.urban_food.model.Address;
-import com.example.urban_food.model.Cart;
-import com.example.urban_food.model.User;
-
-import java.util.HashMap;
-import java.util.List;
 
 
 public class Profile extends Fragment {
 
     FragmentProfileBinding binding;
-    LoginActivityPresenter loginActivityPresenter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentProfileBinding.inflate(getLayoutInflater(),container,false);
-        Glide .with(getContext())
-                .load(GlobalData.users.getAvatar())
-                .into(binding.ivImage);
         binding.tvProfileName.setText(GlobalData.users.getName());
+
+        if(GlobalData.users.getAvatar()==null){
+            Glide .with(getContext())
+                    .load(R.drawable.ic_myprofile)
+                    .circleCrop()
+                    .into(binding.ivImage);
+        }else{
+            Glide .with(getContext())
+                    .load(GlobalData.users.getAvatar())
+                    .into(binding.ivImage);
+        }
+
+        binding.constraintChangePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ChangePassword.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         return binding.getRoot();
     }

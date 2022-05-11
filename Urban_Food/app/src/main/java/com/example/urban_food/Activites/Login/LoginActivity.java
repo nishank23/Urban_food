@@ -46,12 +46,12 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
         if (Common.isConnected()) {
             binding.tvSignUp.setOnClickListener(view -> {
                 Intent intent = new Intent(this, VerifyPhone.class);
-                intent.putExtra("checker", "true");
+                intent.putExtra("checker", true);
                 startActivity(intent);
             });
             binding.tvForgrtPasswordLogin.setOnClickListener(view -> {
                 Intent intent = new Intent(this, VerifyPhone.class);
-                intent.putExtra("checker", "false");
+                intent.putExtra("checker", false);
                 startActivity(intent);
             });
 

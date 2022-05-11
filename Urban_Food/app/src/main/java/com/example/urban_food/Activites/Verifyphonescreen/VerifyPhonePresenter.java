@@ -1,8 +1,12 @@
 package com.example.urban_food.Activites.Verifyphonescreen;
 
 import com.example.urban_food.Api.ApiClient;
+import com.example.urban_food.Helper.Common;
+import com.example.urban_food.model.ForgotPassword;
 import com.example.urban_food.model.Otp;
 
+
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,5 +40,26 @@ public class VerifyPhonePresenter {
             }
         });
     }
+
+
+    public void forgetpassword(String phone){
+        ApiClient.getRetrofit().forgotPassword(phone).enqueue(new Callback<ForgotPassword>() {
+            @Override
+            public void onResponse(Call<ForgotPassword> call, Response<ForgotPassword> response) {
+                if(response.isSuccessful()&& response.body()!=null) {
+                    view.onSucuessForget(response.body());
+                }else{
+                    Common.showToast("Something  wrong");
+                }
+            }
+            @Override
+            public void onFailure(Call<ForgotPassword> call, Throwable t) {
+                Common.showToast("Something went wrong"+t.getLocalizedMessage());
+            }
+        });
+    }
+
+
+
 
 }

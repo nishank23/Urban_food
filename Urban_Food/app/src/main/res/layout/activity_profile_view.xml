@@ -31,13 +31,14 @@
                 android:layout_margin="15dp"
                 android:fontFamily="@font/avenir_book"
                 android:hint="Parth"
+                android:inputType="textPersonName"
                 android:includeFontPadding="true"
                 android:paddingBottom="5dp"
                 android:paddingEnd="5dp"
                 android:paddingStart="5dp"
                 android:paddingTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_camera" />
+                app:layout_constraintTop_toBottomOf="@id/iv_profile_avatar" />
 
 
             <EditText
@@ -48,6 +49,7 @@
                 android:fontFamily="@font/avenir_book"
                 android:hint="example@gmail.com"
                 android:includeFontPadding="true"
+                android:inputType="textEmailAddress"
                 android:paddingBottom="5dp"
                 android:paddingEnd="5dp"
                 android:paddingStart="5dp"
@@ -63,6 +65,7 @@
                 android:layout_margin="15dp"
                 android:fontFamily="@font/avenir_book"
                 android:hint="+91123456789"
+                android:inputType="phone"
                 android:includeFontPadding="true"
                 android:paddingBottom="5dp"
                 android:paddingEnd="5dp"
@@ -71,16 +74,23 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_email" />
-
-            <ImageButton
+<ImageView
+    android:id="@+id/iv_profile_avatar"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
+            <ImageView
                 android:id="@+id/img_camera"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_camera_alt_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_margin="15dp"/>
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_camera"
+                app:layout_constraintTop_toTopOf="@id/iv_profile_avatar"
+                app:layout_constraintStart_toEndOf="@id/iv_profile_avatar"
+                android:layout_marginStart="2dp"
+                />
 
             <TextView
                 android:id="@+id/txt_username"
@@ -98,7 +108,7 @@
                 app:layout_constraintBottom_toTopOf="@id/txt_email"
                 app:layout_constraintEnd_toStartOf="@id/et_username1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_camera" />
+                app:layout_constraintTop_toBottomOf="@id/iv_profile_avatar" />
 
             <TextView
                 android:id="@+id/txt_email"

@@ -2,12 +2,16 @@ package com.example.urban_food.Api;
 
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.AddFavoriteResponse;
+import com.example.urban_food.model.ChangePassword;
+import com.example.urban_food.model.ClearCart;
 import com.example.urban_food.model.ClearCart;
 import com.example.urban_food.model.Cuisine;
 import com.example.urban_food.model.FavoriteList;
+import com.example.urban_food.model.ForgotPassword;
 import com.example.urban_food.model.LoginModel;
 import com.example.urban_food.model.Otp;
 import com.example.urban_food.model.RegisterModel;
+import com.example.urban_food.model.ResetPassword;
 import com.example.urban_food.model.RestaurantsData;
 import com.example.urban_food.model.Search;
 import com.example.urban_food.model.ShopDetail;
@@ -37,9 +41,9 @@ public interface ApiInterface {
     @POST("Common/get_cities")
   *//*  Call<CityResponse> getCity(@Field("state_id")String state_id);
 */
-    @FormUrlEncoded
-    @POST("api/user/otp")
-    Call<Otp> getingOtp(@Field("phone") String phone);
+@FormUrlEncoded
+@POST("api/user/otp")
+Call<Otp> getingOtp(@Field("phone") String phone);
 
     @FormUrlEncoded
     @POST("api/user/register")
@@ -64,7 +68,6 @@ public interface ApiInterface {
 
     @GET("api/user/categories")
     Call<ShopDetail> getShopDetails(@QueryMap HashMap<String, String> map);
-
     @FormUrlEncoded
     @POST("api/user/cart")
     Call<AddCart> postCartDetails(@FieldMap HashMap<String,String> map);
@@ -72,9 +75,31 @@ public interface ApiInterface {
     @GET("api/user/cart")
     Call<AddCart> getCartDetail();
 
+    @FormUrlEncoded
+    @POST("api/user/favorite")
+    Call<AddFavoriteResponse> addFavorite(@Field("shop_id")String shop_id);
+
+
+    @GET("api/user/favorite")
+    Call<FavoriteList> getFavorite();
+
+
+    @GET("api/user/clear/cart")
     Call<ClearCart> clearCartCall();
 
-    Call<AddFavoriteResponse> addFavorite(String shopid);
 
-    Call<FavoriteList> getFavorite();
+    @FormUrlEncoded
+    @POST("api/user/profile/password")
+    Call<ChangePassword> changePassword(@FieldMap HashMap<String, String> map);
+
+
+    @FormUrlEncoded
+    @POST("api/user/forgot/password")
+    Call<ForgotPassword> forgotPassword(@Field("phone") String phone);
+
+    @FormUrlEncoded
+    @POST("api/user/reset/password")
+    Call<ResetPassword> resetPassword(@FieldMap HashMap<String, String> map);
+
+
 }

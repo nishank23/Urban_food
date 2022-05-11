@@ -108,12 +108,12 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
                 finish();
             } else {
                 if (!isGPS && !isNetwork) {
-
                     HashMap<String, String> map = new HashMap<>();
                     map.put("device_type", "android");
                     map.put("device_id", device_id);
                     map.put("device_token", fcm_token);
                     loginActivityPresenter.getProfile(map);
+
 
 
                 } else {
@@ -181,8 +181,7 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         startActivity(new Intent(this, HomeActivity.class));
         finish();
 
-        Intent intent=new Intent(this,HomeActivity.class);
-        startActivity(intent);
+
     }
 
     @Override
