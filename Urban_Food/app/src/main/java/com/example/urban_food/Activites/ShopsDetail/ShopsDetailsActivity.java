@@ -3,6 +3,8 @@ package com.example.urban_food.Activites.ShopsDetail;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,17 +15,20 @@ import com.example.urban_food.Activites.ShopsDetail.cart.CartView;
 import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.Adapter.MenuAdapter;
 import com.example.urban_food.Helper.Common;
+import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Modal.FavoriteModal.GetFavoriteResponse;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityShopsDetailsBinding;
 import com.example.urban_food.fragment.favorite.FavoritePresenter;
 import com.example.urban_food.fragment.favorite.FavoriteView;
 import com.example.urban_food.model.AddCart;
+import com.example.urban_food.model.Available;
 import com.example.urban_food.model.Cart;
 import com.example.urban_food.model.Category;
 import com.example.urban_food.model.FavoriteList;
 import com.example.urban_food.model.ShopDetail;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,8 +41,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     int cartQty;
     int cartId;
     String favmsg ="";
-
-
+    List<Available> availableList = new ArrayList<>();
     CartPresenter cartPresenter;
     ShopDetailsPresenter shopDetailsPresenter;
     FavoritePresenter favoritePresenter;
@@ -57,7 +61,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
             map.put("shop", shopId);
             map.put("user_id","1");
             shopDetailsPresenter.getShopDetails(map);
-
+            favoritePresenter.getFavorite();
 
             binding.ivFavrouite.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,6 +78,11 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                     }
                 }
             });
+
+
+
+
+
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
@@ -232,6 +241,37 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void getFavorite(FavoriteList response) {
+        availableList=response.getAvailable();
+        for(int i =0;i<availableList.size();i++){
+            if(availableList.isEmpty()){
 
+            }else{
+                if(String.valueOf(availableList.get(i).getShopId()).equals(shopId)){
+                    binding.ivFavrouite.setImageResource(R.drawable.ic_iconmonstr_bookmark_43);
+                    binding.ivFavrouite.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            android.app.AlertDialog.Builder dialog=new AlertDialog.Builder(ShopsDetailsActivity.this);
+                            dialog.setTitle("Delete Favorite");
+                            dialog.setMessage("Do you want to delete the Favorite");
+                            dialog.setNegativeButton("No",(dialogInterface, i) -> dialogInterface.dismiss());
+                            dialog.setPositiveButton("Yes",(dialogInterface, i) -> {
+                                favoritePresenter.deleteFavorite(shopId);
+
+                            });
+                            dialog.show();
+
+                        }
+                    });
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void deleteFavorite(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        binding.ivFavrouite.setImageResource(R.drawable.ic_favroite);
     }
 }

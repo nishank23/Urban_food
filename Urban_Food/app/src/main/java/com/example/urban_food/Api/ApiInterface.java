@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -100,6 +101,11 @@ Call<Otp> getingOtp(@Field("phone") String phone);
     @FormUrlEncoded
     @POST("api/user/reset/password")
     Call<ResetPassword> resetPassword(@FieldMap HashMap<String, String> map);
+
+
+    @FormUrlEncoded
+    @DELETE("api/user/favorite/{id}")
+    Call<AddFavoriteResponse> deleteFavorite(@Field("id") String shopid);
 
 
 }

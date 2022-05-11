@@ -55,5 +55,23 @@ public class FavoritePresenter {
         });
     }
 
+    public void deleteFavorite(String shopid){
+        ApiClient.getRetrofit().deleteFavorite(shopid).enqueue(new Callback<AddFavoriteResponse>() {
+            @Override
+            public void onResponse(Call<AddFavoriteResponse> call, Response<AddFavoriteResponse> response) {
+                if(response.body()!=null && response.isSuccessful()){
+                    view.deleteFavorite(response.message());
+                }else{
+                    Common.showSomethingWentWrong();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddFavoriteResponse> call, Throwable t) {
+                Common.showSomethingWentWrong();
+            }
+        });
+    }
+
 
 }

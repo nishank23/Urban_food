@@ -64,4 +64,9 @@ public class Favorite extends Fragment implements FavoriteView {
 
         }
     }
+
+    @Override
+    public void deleteFavorite(String msg) {
+
+    }
 }
