@@ -27,6 +27,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -102,10 +103,8 @@ Call<Otp> getingOtp(@Field("phone") String phone);
     @POST("api/user/reset/password")
     Call<ResetPassword> resetPassword(@FieldMap HashMap<String, String> map);
 
-
-    @FormUrlEncoded
     @DELETE("api/user/favorite/{id}")
-    Call<AddFavoriteResponse> deleteFavorite(@Field("id") String shopid);
+    Call<AddFavoriteResponse> deleteFavorite(@Path("id") String shopid);
 
 
 }

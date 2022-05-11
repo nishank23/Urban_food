@@ -32,56 +32,62 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetailsView , CartView, FavoriteView {
+public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetailsView, CartView, FavoriteView {
 
     ActivityShopsDetailsBinding binding;
-    String shopId="";
-    String pathImage="";
+    String shopId = "";
+    String pathImage = "";
     int cartProductId;
     int cartQty;
     int cartId;
-    String favmsg ="";
+    String favmsg = "";
     List<Available> availableList = new ArrayList<>();
     CartPresenter cartPresenter;
     ShopDetailsPresenter shopDetailsPresenter;
     FavoritePresenter favoritePresenter;
-    boolean checker= false;
+    boolean checker = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityShopsDetailsBinding.inflate(getLayoutInflater());
+        binding = ActivityShopsDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        shopId=getIntent().getStringExtra("ShopId");
+        shopId = getIntent().getStringExtra("ShopId");
         favoritePresenter = new FavoritePresenter(ShopsDetailsActivity.this);
-        pathImage=getIntent().getStringExtra("pathImage");
+        pathImage = getIntent().getStringExtra("pathImage");
         shopDetailsPresenter = new ShopDetailsPresenter(this);
-        if(Common.isConnected()){
+        if (Common.isConnected()) {
 
-            HashMap<String,String> map=new HashMap();
+            HashMap<String, String> map = new HashMap();
             map.put("shop", shopId);
-            map.put("user_id","1");
+            map.put("user_id", "1");
             shopDetailsPresenter.getShopDetails(map);
             favoritePresenter.getFavorite();
 
-            binding.ivFavrouite.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(checker){
-                        binding.ivFavrouite.setImageResource(R.drawable.ic_iconmonstr_bookmark_43);
-                        favoritePresenter.addFavorite(shopId);
-                       // Common.showToast(favmsg);
-                        checker=false;
-                    }
-                    else{
-                        binding.ivFavrouite.setImageResource(R.drawable.ic_favroite);
-                        checker = true;
-                    }
+
+            binding.ivFavrouite.setOnClickListener(view -> {
+                if (!checker) {
+                    favoritePresenter.addFavorite(shopId);
+/*
+                    Toast.makeText(ShopsDetailsActivity.this, "" + checker, Toast.LENGTH_SHORT).show();
+*/
+                    // Common.showToast(favmsg);
+                } else {
+/*
+                    Toast.makeText(ShopsDetailsActivity.this, "" + checker, Toast.LENGTH_SHORT).show();
+*/
+                    android.app.AlertDialog.Builder dialog = new AlertDialog.Builder(ShopsDetailsActivity.this);
+                    dialog.setTitle("Delete Favorite");
+                    dialog.setMessage("Do you want to delete the Favorite");
+                    dialog.setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss());
+                    dialog.setPositiveButton("Yes", (dialogInterface, i) -> {
+                        favoritePresenter.deleteFavorite(shopId);
+
+                    });
+                    dialog.show();
+
                 }
             });
-
-
-
-
 
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
@@ -93,7 +99,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
             binding.ivBackShopsDetail.setVisibility(View.VISIBLE);
             binding.tvFullMenu.setVisibility(View.VISIBLE);
             binding.rvMenu.setVisibility(View.VISIBLE);
-        }else{
+        } else {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
@@ -122,7 +128,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
             binding.ivBackShopsDetail.setVisibility(View.GONE);
             binding.tvFullMenu.setVisibility(View.GONE);
             binding.rvMenu.setVisibility(View.GONE);
-        }else {
+        } else {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
@@ -143,25 +149,25 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
             MenuAdapter menuAdapter = new MenuAdapter(this, shopDetailList, new RvMenuInterface() {
                 @Override
                 public void cartParaWithCardId(int id, int value, String CartValue) {
-                    cartProductId=id;
-                    cartQty=value;
-                    cartId=Integer.parseInt(CartValue);
-                    cartPresenter=new CartPresenter(ShopsDetailsActivity.this);
-                    HashMap<String,String> map=new HashMap<>();
-                    map.put("product_id",String.valueOf(cartProductId));
-                    map.put("quantity",String.valueOf(cartQty));
-                    map.put("cart_id",String.valueOf(cartId));
+                    cartProductId = id;
+                    cartQty = value;
+                    cartId = Integer.parseInt(CartValue);
+                    cartPresenter = new CartPresenter(ShopsDetailsActivity.this);
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("product_id", String.valueOf(cartProductId));
+                    map.put("quantity", String.valueOf(cartQty));
+                    map.put("cart_id", String.valueOf(cartId));
                     cartPresenter.callCart(map);
                 }
 
                 @Override
                 public void cartPara(int id, int value) {
-                    cartProductId=id;
-                    cartQty=value;
-                    cartPresenter=new CartPresenter(ShopsDetailsActivity.this);
-                    HashMap<String,String> map=new HashMap<>();
-                    map.put("product_id",String.valueOf(cartProductId));
-                    map.put("quantity",String.valueOf(cartQty));
+                    cartProductId = id;
+                    cartQty = value;
+                    cartPresenter = new CartPresenter(ShopsDetailsActivity.this);
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("product_id", String.valueOf(cartProductId));
+                    map.put("quantity", String.valueOf(cartQty));
                     cartPresenter.callCart(map);
                 }
 
@@ -236,42 +242,29 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessFavorite(String msg) {
+        checker = true;
+        binding.ivFavrouite.setImageResource(R.drawable.ic_iconmonstr_bookmark_43);
         Toast.makeText(this, "Added as favourite", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void getFavorite(FavoriteList response) {
-        availableList=response.getAvailable();
-        for(int i =0;i<availableList.size();i++){
-            if(availableList.isEmpty()){
-
-            }else{
-                if(String.valueOf(availableList.get(i).getShopId()).equals(shopId)){
-                    binding.ivFavrouite.setImageResource(R.drawable.ic_iconmonstr_bookmark_43);
-                    binding.ivFavrouite.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            android.app.AlertDialog.Builder dialog=new AlertDialog.Builder(ShopsDetailsActivity.this);
-                            dialog.setTitle("Delete Favorite");
-                            dialog.setMessage("Do you want to delete the Favorite");
-                            dialog.setNegativeButton("No",(dialogInterface, i) -> dialogInterface.dismiss());
-                            dialog.setPositiveButton("Yes",(dialogInterface, i) -> {
-                                favoritePresenter.deleteFavorite(shopId);
-
-                            });
-                            dialog.show();
-
-                        }
-                    });
-                }
+        /*checker=false;*/
+        availableList = response.getAvailable();
+        for (int i = 0; i < availableList.size(); i++) {
+            if (String.valueOf(availableList.get(i).getShopId()).equals(shopId)) {
+                checker = true;
             }
         }
+        binding.ivFavrouite.setImageResource(checker ? R.drawable.ic_iconmonstr_bookmark_43 : R.drawable.ic_favroite);
 
     }
 
     @Override
     public void deleteFavorite(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        checker = false;
+        Toast.makeText(this, "Favorite Removed", Toast.LENGTH_SHORT).show();
         binding.ivFavrouite.setImageResource(R.drawable.ic_favroite);
     }
 }
