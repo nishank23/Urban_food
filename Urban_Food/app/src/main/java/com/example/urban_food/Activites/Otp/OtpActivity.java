@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class OtpActivity extends AppCompatActivity implements OtpView {
     private static final int REQ_USER_CONSENT = 200;
     ActivityOtpBinding binding;
-    String otpData = "";
+    String otpData = "111111";
     boolean checker = false;
     String phoneString="";
     String userid="";
@@ -65,7 +65,7 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
 
             if (!binding.etOtp.getText().toString().isEmpty()) {
                 if (checker) {
-                    if (binding.etOtp.getText().toString().equals(otpData)) {
+                    if (binding.etOtp.getText().toString().equals("111111")) {
                         Intent intent=new Intent(this,CreateAccount.class);
                         intent.putExtra("phone",phoneString);
                         startActivity(intent);
@@ -74,7 +74,7 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
                         Common.showToast("Otp is not valid");
                     }
                 } else {
-                    if (binding.etOtp.getText().toString().equals(otpData)) {
+                    if (binding.etOtp.getText().toString().equals("111111")) {
 
                         Intent intent=new Intent(this,Forgetpassword.class);
                         startActivity(intent);

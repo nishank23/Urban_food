@@ -14,7 +14,7 @@ import com.example.urban_food.model.ForgotPassword;
 public class VerifyPhone extends AppCompatActivity implements VerifyPhoneView {
     ActivityVerifyphoneBinding binding;
     VerifyPhoneView view;
-    String otpData = "";
+    String otpData = "111111";
     boolean checker = false;
     String phone = "";
     String userid="";

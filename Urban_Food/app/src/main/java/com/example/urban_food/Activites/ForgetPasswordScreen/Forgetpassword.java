@@ -16,11 +16,12 @@ import java.util.HashMap;
 public class Forgetpassword extends AppCompatActivity implements ForgetpasswordView {
     ActivityForgetpasswordBinding binding;
     ForgetPasswordPresenter presenter;
+    String message="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         binding = ActivityForgetpasswordBinding.inflate(getLayoutInflater());
+        super.onCreate(savedInstanceState);
         presenter = new ForgetPasswordPresenter(this);
         setContentView(binding.getRoot());
 
@@ -35,6 +36,8 @@ public class Forgetpassword extends AppCompatActivity implements ForgetpasswordV
 
                     presenter.resetPassword(map);
                 }
+
+
             }
         });
 
@@ -42,10 +45,10 @@ public class Forgetpassword extends AppCompatActivity implements ForgetpasswordV
 
     @Override
     public void getSuccess(String msg) {
-        if (!msg.isEmpty()) {
-            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, "Password changed successfully", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LoginActivity.class));
-        }
+
     }
 
     @Override
