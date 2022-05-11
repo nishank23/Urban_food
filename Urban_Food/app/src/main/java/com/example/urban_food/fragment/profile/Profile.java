@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.avatarfirst.avatargenlib.AvatarConstants;
+import com.avatarfirst.avatargenlib.AvatarGenerator;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Activites.ChangePassowrdScreen.ChangePassword;
 import com.example.urban_food.Activites.MyProfile.ProfileDetailActivity;
@@ -28,21 +30,10 @@ public class Profile extends Fragment {
 
         if (GlobalData.users != null) {
             binding.tvProfileName.setText(GlobalData.users.getName());
-            if (GlobalData.users.getAvatar() == null) {
-                Glide.with(getContext())
-                        .load(R.drawable.ic_myprofile)
-                        .circleCrop()
-                        .into(binding.ivImage);
-            } else {
-                Glide.with(getContext())
-                        .load(GlobalData.users.getAvatar())
-                        .circleCrop()
-                        .into(binding.ivImage);
-            }
-        } else {
+
             Glide.with(getContext())
-                    .load(R.drawable.ic_myprofile)
-                    .circleCrop()
+                    .load("https://brokenfortest")
+                    .placeholder(AvatarGenerator.Companion.avatarImage(getActivity(),25,AvatarConstants.Companion.getRECTANGLE(), GlobalData.users.getName()))
                     .into(binding.ivImage);
         }
 
