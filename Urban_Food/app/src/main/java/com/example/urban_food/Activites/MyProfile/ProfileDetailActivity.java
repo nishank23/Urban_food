@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.urban_food.R;
 
-public class PofileView extends AppCompatActivity {
+public class ProfileDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

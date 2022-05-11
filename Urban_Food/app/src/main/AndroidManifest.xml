@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
         <activity
-            android:name=".Activites.MyProfile.PofileView"
+            android:name=".Activites.MyProfile.ProfileDetailActivity"
             android:exported="false" />
         <activity
             android:name=".Activites.ShopsDetail.ClickCuisineActivity"

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Activites.ChangePassowrdScreen.ChangePassword;
+import com.example.urban_food.Activites.MyProfile.ProfileDetailActivity;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
@@ -43,6 +44,14 @@ public class Profile extends Fragment {
                 Intent intent = new Intent(getActivity(), ChangePassword.class);
                 startActivity(intent);
 
+            }
+        });
+
+        binding.arrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent  intent = new Intent(getActivity(), ProfileDetailActivity.class);
+                startActivity(intent);
             }
         });
 
