@@ -108,6 +108,7 @@
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/activity_forgetpassword.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/layout/activity_profile_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.33" />
         <entry key="app/src/main/res/layout/discover_newplace_recyclerlayout.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.33" />

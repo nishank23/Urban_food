@@ -20,7 +20,9 @@ import com.example.urban_food.model.User;
 import java.util.HashMap;
 import java.util.List;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -107,4 +109,6 @@ Call<Otp> getingOtp(@Field("phone") String phone);
     Call<AddFavoriteResponse> deleteFavorite(@Path("id") String shopid);
 
 
+    @POST("api/user/profile")
+    Call<User> updateProfile(@Body RequestBody requestBody);
 }

@@ -25,16 +25,24 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentProfileBinding.inflate(getLayoutInflater(),container,false);
-        binding.tvProfileName.setText(GlobalData.users.getName());
 
-        if(GlobalData.users.getAvatar()==null){
-            Glide .with(getContext())
+        if (GlobalData.users != null) {
+            binding.tvProfileName.setText(GlobalData.users.getName());
+            if (GlobalData.users.getAvatar() == null) {
+                Glide.with(getContext())
+                        .load(R.drawable.ic_myprofile)
+                        .circleCrop()
+                        .into(binding.ivImage);
+            } else {
+                Glide.with(getContext())
+                        .load(GlobalData.users.getAvatar())
+                        .circleCrop()
+                        .into(binding.ivImage);
+            }
+        } else {
+            Glide.with(getContext())
                     .load(R.drawable.ic_myprofile)
                     .circleCrop()
-                    .into(binding.ivImage);
-        }else{
-            Glide .with(getContext())
-                    .load(GlobalData.users.getAvatar())
                     .into(binding.ivImage);
         }
 
