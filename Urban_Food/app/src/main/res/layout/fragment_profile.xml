@@ -64,9 +64,8 @@
 -->
                 <ImageView
                     android:id="@+id/iv_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"

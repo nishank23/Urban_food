@@ -76,4 +76,6 @@ dependencies {
 
     //Avatar Generator
     implementation 'com.github.amoskorir:avatarimagegenerator:1.5.0'
+
+    implementation 'com.squareup.picasso:picasso:2.8'
 }

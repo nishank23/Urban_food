@@ -17,6 +17,7 @@ import com.example.urban_food.Activites.MyProfile.ProfileDetailActivity;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
+import com.squareup.picasso.Picasso;
 
 
 public class Profile extends Fragment {
@@ -30,10 +31,18 @@ public class Profile extends Fragment {
 
         if (GlobalData.users != null) {
             binding.tvProfileName.setText(GlobalData.users.getName());
+//            Glide.with(getContext())
+//                    .load("https://brokenfortest")
+//
+//                    .placeholder(AvatarGenerator.Companion.avatarImage(getActivity(),200,AvatarConstants.Companion.getRECTANGLE(), GlobalData.users.getName()))
+//                    .into(binding.ivImage);
 
-            Glide.with(getContext())
+
+
+            Picasso.get()
                     .load("https://brokenfortest")
-                    .placeholder(AvatarGenerator.Companion.avatarImage(getActivity(),25,AvatarConstants.Companion.getRECTANGLE(), GlobalData.users.getName()))
+                    .resize(100, 100)
+                    .placeholder(AvatarGenerator.Companion.avatarImage(getActivity(), 200, AvatarConstants.Companion.getCIRCLE(), "Android"))
                     .into(binding.ivImage);
         }
 
