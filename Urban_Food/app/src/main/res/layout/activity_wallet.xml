@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundWhite"
+    tools:context=".Activites.Wallet.Wallet">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title_my_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_heavy"
+            android:padding="10dp"
+            android:text="Wallet"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_back_my_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wallet"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="15dp"/>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@id/tv_wallet"
+        app:layout_constraintTop_toBottomOf="@id/tv_wallet"
+        android:maxWidth="1dp"/>
+
+
+    <TextView
+        android:id="@+id/tv_wallet1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Wallet Amount"
+        android:textSize="23dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/view1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/et_rupees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/avenir_book"
+        android:hint="₹ 0000"
+        android:inputType="textPersonName"
+        android:includeFontPadding="true"
+        android:paddingBottom="5dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view1"/>
+
+
+    <TextView
+        android:id="@+id/tv_wallet2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Wallet History"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/tv_wallet1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"/>
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@id/tv_wallet"
+        app:layout_constraintTop_toBottomOf="@id/tv_wallet2"
+        android:maxWidth="1dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
