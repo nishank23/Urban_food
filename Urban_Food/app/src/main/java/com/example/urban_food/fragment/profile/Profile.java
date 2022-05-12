@@ -1,6 +1,7 @@
 package com.example.urban_food.fragment.profile;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +18,6 @@ import com.example.urban_food.Activites.MyProfile.ProfileDetailActivity;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
-import com.squareup.picasso.Picasso;
 
 
 public class Profile extends Fragment {
@@ -31,19 +31,16 @@ public class Profile extends Fragment {
 
         if (GlobalData.users != null) {
             binding.tvProfileName.setText(GlobalData.users.getName());
-//            Glide.with(getContext())
-//                    .load("https://brokenfortest")
-//
-//                    .placeholder(AvatarGenerator.Companion.avatarImage(getActivity(),200,AvatarConstants.Companion.getRECTANGLE(), GlobalData.users.getName()))
-//                    .into(binding.ivImage);
-
-
-
-            Picasso.get()
+            Glide.with(getContext())
                     .load("https://brokenfortest")
-                    .resize(100, 100)
-                    .placeholder(AvatarGenerator.Companion.avatarImage(getActivity(), 200, AvatarConstants.Companion.getCIRCLE(), "Android"))
+                    .placeholder(new AvatarGenerator.AvatarBuilder(getActivity())
+                            .setLabel(GlobalData.users.getName())
+                            .setAvatarSize(250)
+                            .setTextSize(63)
+                            .toCircle()
+                            .build())
                     .into(binding.ivImage);
+
         }
 
         binding.constraintChangePass.setOnClickListener(new View.OnClickListener() {
