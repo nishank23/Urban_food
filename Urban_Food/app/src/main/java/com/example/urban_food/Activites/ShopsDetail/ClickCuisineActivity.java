@@ -43,7 +43,7 @@ public class ClickCuisineActivity extends AppCompatActivity implements ExploreVi
             binding.rvCuisinesShops.setVisibility(View.GONE);
 
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("user_id", "1");
+            map.put("user_id", String.valueOf(GlobalData.users.getId()));
             map.put("latitude", String.valueOf(GlobalData.latitude));
             map.put("longitude", String.valueOf(GlobalData.longitude));
             map.put("cuisine[" + "" + 0 + "]", cuisine_id);

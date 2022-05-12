@@ -47,7 +47,7 @@ public class Explore extends Fragment implements ExploreView {
         if(Common.isConnected()){
             shopspresenter = new ExplorePresenter(this);
             map=new HashMap();
-            map.put("user_id","1");
+            map.put("user_id",String.valueOf(GlobalData.users.getId()));
             map.put("latitude", String.valueOf(GlobalData.latitude));
             map.put("longitude",String.valueOf(GlobalData.longitude));
             shopspresenter.shops(map);
