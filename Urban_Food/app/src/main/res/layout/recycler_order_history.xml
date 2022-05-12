@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="15dp"
+        android:background="@color/smsp_transparent_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="25dp"
+                android:text="Devi's Coffee bar"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_item_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_name"
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="15dp"
+                android:hint="Geeta Complex, GF 16, Bhatar Rd.,near Bhatar Char Rasta, Surat, Gujarat, 395017,Surat."
+                android:layout_marginStart="10dp"
+                android:maxLines="2"/>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@id/tv_item_address"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_address"
+                android:maxWidth="1dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_ordered_on"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view1"
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="45dp"
+                android:hint="Ordered on"
+                android:layout_marginStart="10dp"
+                android:maxLines="2"/>
+
+            <TextView
+                android:id="@+id/tv_times"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_ordered_on"
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="25dp"
+                android:paddingStart="45dp"
+                android:layout_marginStart="10dp"/>
+
+
+            <TextView
+                android:id="@+id/tv_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_times"
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="45dp"
+                android:hint="Items"
+                android:layout_marginStart="10dp"
+                android:maxLines="2"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/history_item_recyclerview"
+                app:layout_constraintTop_toBottomOf="@id/tv_items"
+                app:layout_constraintStart_toStartOf="@id/tv_items"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/tv_item_total_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/history_item_recyclerview"
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="45dp"
+                android:hint="Total Amount"
+                android:layout_marginStart="10dp"
+                android:maxLines="2"/>
+
+
+
+            <TextView
+                android:id="@+id/tv_item_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_item_total_amount"
+                android:fontFamily="@font/avenir_medium"
+                android:textSize="18dp"
+                android:layout_marginLeft="45dp"
+                android:hint="₹ 0"
+                android:layout_marginStart="10dp"
+                android:maxLines="2"/>
+
+
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
