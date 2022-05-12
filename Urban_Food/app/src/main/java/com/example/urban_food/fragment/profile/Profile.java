@@ -15,6 +15,7 @@ import com.avatarfirst.avatargenlib.AvatarGenerator;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Activites.ChangePassowrdScreen.ChangePassword;
 import com.example.urban_food.Activites.MyProfile.ProfileDetailActivity;
+import com.example.urban_food.Activites.Wallet.Wallet;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
@@ -43,6 +44,8 @@ public class Profile extends Fragment {
 
         }
 
+
+
         binding.constraintChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +59,14 @@ public class Profile extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent  intent = new Intent(getActivity(), ProfileDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.constraintWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent  intent = new  Intent(getActivity(), Wallet.class);
                 startActivity(intent);
             }
         });
