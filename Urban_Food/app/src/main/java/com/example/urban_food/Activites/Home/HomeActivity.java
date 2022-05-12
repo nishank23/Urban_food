@@ -210,7 +210,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
 
         ExplorePresenter explorePresenter = new ExplorePresenter(this);
         HashMap<String, String> map = new HashMap<>();
-        map.put("user_id", String.valueOf(GlobalData.users.getId()));
+        map.put("user_id", "1");
         map.put("latitude", String.valueOf(GlobalData.latitude));
         map.put("longitude", String.valueOf(GlobalData.longitude));
         explorePresenter.shops(map);

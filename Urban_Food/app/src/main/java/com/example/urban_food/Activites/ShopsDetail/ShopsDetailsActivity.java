@@ -62,7 +62,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
             HashMap<String, String> map = new HashMap();
             map.put("shop", shopId);
-            map.put("user_id", String.valueOf(GlobalData.users.getId()));
+            map.put("user_id", "1");
             shopDetailsPresenter.getShopDetails(map);
             favoritePresenter.getFavorite();
 
