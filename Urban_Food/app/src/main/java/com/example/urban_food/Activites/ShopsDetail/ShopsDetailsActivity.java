@@ -45,6 +45,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     CartPresenter cartPresenter;
     ShopDetailsPresenter shopDetailsPresenter;
     FavoritePresenter favoritePresenter;
+
     boolean checker = false;
 
     @Override
@@ -54,16 +55,16 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
         setContentView(binding.getRoot());
         shopId = getIntent().getStringExtra("ShopId");
         favoritePresenter = new FavoritePresenter(ShopsDetailsActivity.this);
+
         pathImage = getIntent().getStringExtra("pathImage");
         shopDetailsPresenter = new ShopDetailsPresenter(this);
         if (Common.isConnected()) {
 
             HashMap<String, String> map = new HashMap();
             map.put("shop", shopId);
-            map.put("user_id", "1");
+            map.put("user_id", String.valueOf(GlobalData.users.getId()));
             shopDetailsPresenter.getShopDetails(map);
             favoritePresenter.getFavorite();
-
 
             binding.ivFavrouite.setOnClickListener(view -> {
                 if (!checker) {
@@ -116,6 +117,8 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessShopDetails(List<Category> shopDetailList) {
+
+
         if (shopDetailList.isEmpty()) {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
@@ -169,6 +172,8 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                     map.put("product_id", String.valueOf(cartProductId));
                     map.put("quantity", String.valueOf(cartQty));
                     cartPresenter.callCart(map);
+                    cartPresenter.getCallCart();
+
                 }
 
                 @Override
@@ -212,7 +217,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessCartView(List<Cart> cartResponse) {
-
+        GlobalData.cart_id=cartResponse.get(0).getId();
     }
 
     @Override
@@ -222,7 +227,6 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessGetCartView(List<Cart> getCartResponse) {
-
     }
 
     @Override

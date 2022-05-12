@@ -11,6 +11,7 @@ public class GlobalData {
     public static double latitude;
     public static double longitude;
     public static String device_id;
+    public static int cart_id;
     public static String fcm_token;
     public static User users;
     public static List<com.example.urban_food.model.Address> Address;

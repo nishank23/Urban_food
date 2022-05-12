@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +47,9 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
                 .load(productList.get(position).getImages().get(0).getUrl())
                 .into(holder.binding.ivItem);
 
+/*
+        Toast.makeText(activity, GlobalData.users.getId() +" "+productList.get(position).getShopId()+"hello" +holder.getAdapterPosition() + " " + productList.get(position).getCart().size(), Toast.LENGTH_SHORT).show();
+*/
         if (productList.get(position).getCart().size() > 0) {
             holder.binding.btnAdd.setVisibility(View.GONE);
             holder.binding.btnMinus.setVisibility(View.VISIBLE);
@@ -71,10 +75,12 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
                 holder.binding.etQuantity.setVisibility(View.VISIBLE);
 
                 if (productList.get(position).getCart().size() == 0) {
+
                     callback.cartPara(productList.get(position).getId(), 1);
+                    holder.binding.etQuantity.setText(String.valueOf(1));
                 }
             }else{
-                if(GlobalData.Cart.get(position).getProduct().getShopId() == productList.get(position).getShopId()){
+                if(GlobalData.Cart.get(0).getProduct().getShopId().equals(productList.get(position).getShopId())){
                     holder.binding.btnAdd.setVisibility(View.GONE);
                     holder.binding.btnMinus.setVisibility(View.VISIBLE);
                     holder.binding.btnPlus.setVisibility(View.VISIBLE);
@@ -82,6 +88,7 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
 
                     if (productList.get(position).getCart().size() == 0) {
                         callback.cartPara(productList.get(position).getId(), 1);
+
                     }
                 }else {
                     AlertDialog.Builder dialog=new AlertDialog.Builder(activity);
@@ -106,11 +113,9 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
 
         //order quantity increse
         holder.binding.btnPlus.setOnClickListener(view -> {
-            int qty = Integer.parseInt(holder.binding.etQuantity.getText().toString());
-            qty++;
+            int qty = Integer.parseInt(holder.binding.etQuantity.getText().toString()) +1;
+            callback.cartParaWithCardId(productList.get(position).getId(), qty, /*String.valueOf(productList.get(position).getCart().get(0).getId())*/ String.valueOf(GlobalData.cart_id));
             holder.binding.etQuantity.setText(String.valueOf(qty));
-            callback.cartParaWithCardId(productList.get(position).getId(), qty, String.valueOf(productList.get(position).getCart().get(0).getId()));
-
 
         });
         //order quantity decrese
@@ -121,11 +126,7 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
                 holder.binding.btnMinus.setVisibility(View.GONE);
                 holder.binding.btnPlus.setVisibility(View.GONE);
                 holder.binding.etQuantity.setVisibility(View.GONE);
-
                 holder.binding.btnAdd.setVisibility(View.VISIBLE);
-
-
-
             } else {
                 qty--;
                 holder.binding.etQuantity.setText(String.valueOf(qty));
