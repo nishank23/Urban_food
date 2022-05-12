@@ -5,16 +5,27 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.avatarfirst.avatargenlib.AvatarGenerator;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityProfileViewBinding;
 import com.example.urban_food.fragment.profile.Profile;
+import com.example.urban_food.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hbisoft.pickit.PickiT;
 import com.hbisoft.pickit.PickiTCallbacks;
 
@@ -32,11 +43,14 @@ public class ProfileDetailActivity extends AppCompatActivity implements PickiTCa
     String savedimg = "";
     PickiT pickiT;
     ProfileDetailPresenter profileDetailPresenter;
+    private String device_id;
+    private String fcm_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivityProfileViewBinding.inflate(getLayoutInflater());
         profileDetailPresenter = new ProfileDetailPresenter(this);
+        getDeviceIdAndToken();
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         pickiT = new PickiT(this, this, this);
@@ -49,26 +63,20 @@ public class ProfileDetailActivity extends AppCompatActivity implements PickiTCa
 
 
         if (GlobalData.users != null) {
-
+            binding.imgCamera.setVisibility(View.GONE);
             binding.etUsername1.setText(GlobalData.users.getName());
             binding.etEmail1.setText(GlobalData.users.getEmail());
             binding.etPhone.setText(GlobalData.users.getPhone());
             binding.etPhone.setEnabled(false);
-            if (GlobalData.users.getAvatar() == null) {
-                Glide.with(this)
-                        .load(R.drawable.ic_myprofile)
-                        .circleCrop()
-                        .into(binding.ivProfileAvatar);
-            } else {
-                Glide.with(this)
-                        .load(GlobalData.users.getAvatar())
-                        .circleCrop()
-                        .into(binding.ivProfileAvatar);
-            }
-        } else {
+
             Glide.with(this)
-                    .load(R.drawable.ic_myprofile)
-                    .circleCrop()
+                    .load("https://brokenfortest")
+                    .placeholder(new AvatarGenerator.AvatarBuilder(this)
+                            .setLabel(GlobalData.users.getName())
+                            .setAvatarSize(250)
+                            .setTextSize(63)
+                            .toCircle()
+                            .build())
                     .into(binding.ivProfileAvatar);
         }
 
@@ -78,21 +86,50 @@ public class ProfileDetailActivity extends AppCompatActivity implements PickiTCa
                 Toast.makeText(this, "Enter UserName", Toast.LENGTH_SHORT).show();
             } else {
 
+/*
 
                 File file  = new File(savedimg);
 
                 RequestBody imageBody = RequestBody.create(file, MediaType.get("image/*"));
 
+*/
                 RequestBody requestBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("name", binding.etUsername1.getText().toString())
                         .addFormDataPart("email", binding.etEmail1.getText().toString())
+/*
                         .addFormDataPart("avatar", file.getName(), imageBody)
+*/
                         .build();
 
                 profileDetailPresenter.updateProfile(requestBody);
             }
         });
+
+    }
+    private void getDeviceIdAndToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("LoginActivity", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+
+                        // Log and toast
+                        fcm_token = task.getResult();
+
+                    }
+                });
+
+        try {
+            device_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        } catch (Exception e) {
+            device_id = "";
+        }
 
     }
 
@@ -140,9 +177,14 @@ public class ProfileDetailActivity extends AppCompatActivity implements PickiTCa
     }
 
     @Override
-    public void onSuccessChange(String msg) {
+    public void onSuccessChange(User user) {
+
+
         Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, Profile.class));
+        GlobalData.users=user;
+        onBackPressed();
+
+
     }
 
     @Override
@@ -157,6 +199,12 @@ public class ProfileDetailActivity extends AppCompatActivity implements PickiTCa
 
     @Override
     public void dismissProgress() {
+
+    }
+
+    @Override
+    public void onSuccessProfile(User user) {
+
 
     }
 }

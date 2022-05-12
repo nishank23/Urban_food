@@ -44,12 +44,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
         //order quantity decrese
         holder.binding.btnMinus.setOnClickListener(view -> {
             int qty = Integer.parseInt(holder.binding.etQuantity.getText().toString());
-            if (qty == 1) {
+            qty--;
+
+            if (qty == 0) {
                 callback.cartParaWithCardId(list.get(position).getProductId(), 0, String.valueOf(list.get(position).getId()));
                 list.remove(position);
                 notifyDataSetChanged();
             } else {
-                qty--;
                 holder.binding.etQuantity.setText(String.valueOf(qty));
                 callback.cartParaWithCardId(list.get(position).getProductId(), qty, String.valueOf(list.get(position).getId()));
 

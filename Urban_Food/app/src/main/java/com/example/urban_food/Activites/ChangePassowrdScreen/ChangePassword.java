@@ -43,6 +43,8 @@ public class ChangePassword extends AppCompatActivity implements ChangePasswordV
     @Override
     public void onSuccessChange(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        onBackPressed();
+
     }
 
     @Override

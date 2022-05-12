@@ -10,9 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
-        <activity
-            android:name=".PastOrder"
-            android:exported="false" />
+
         <activity
             android:name=".Activites.MyProfile.ProfileDetailActivity"
             android:exported="false" />
@@ -80,7 +78,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_SMS" />
-
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.location.network" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

@@ -171,6 +171,8 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
     @Override
     public void onSuccessLogin(String token) {
 
+
+
     }
 
     @Override
@@ -209,9 +211,10 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
 
                     if (locationManager != null) {
-                        loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (loc != null)
+                        loc = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                        if (loc != null){
                             updateUI(loc);
+                        }
                     }
                 } else if (isNetwork) {
                     // from Network Provider
@@ -223,8 +226,11 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
 
                     if (locationManager != null) {
                         loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        if (loc != null)
+                        if (loc != null){
+                            GlobalData.latitude=loc.getLatitude();
+                            GlobalData.longitude=loc.getLongitude();
                             updateUI(loc);
+                        }
                     }
                 } else {
                     loc.setLatitude(0);
@@ -256,7 +262,6 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         Log.d(TAG, "updateUI");
         GlobalData.latitude=loc.getLatitude();
         GlobalData.longitude=loc.getLongitude();
-
 
         HashMap<String, String> map = new HashMap<>();
         map.put("device_type", "android");

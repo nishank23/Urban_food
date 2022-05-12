@@ -146,4 +146,27 @@ public class MyOrder extends Fragment  implements CartView{
         binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
         binding.layoutNoInternet.layoutNoInternet.setVisibility(View.GONE);
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(Common.isConnected()){
+            cartPresenter.getCallCart();
+        }else{
+
+            binding.clActionBar.setVisibility(View.GONE);
+            binding.cardItemsMyOrder.setVisibility(View.GONE);
+            binding.buttonApplyPromoCode.setVisibility(View.GONE);
+            binding.buttonContinue.setVisibility(View.GONE);
+            binding.clBillList.setVisibility(View.GONE);
+
+
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutLoading.clLoading.setVisibility(View.GONE);
+            binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
+            binding.layoutNoInternet.layoutNoInternet.setVisibility(View.VISIBLE);
+        }
+
+    }
 }

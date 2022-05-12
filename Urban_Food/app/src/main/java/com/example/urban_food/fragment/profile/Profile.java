@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +17,48 @@ import com.avatarfirst.avatargenlib.AvatarConstants;
 import com.avatarfirst.avatargenlib.AvatarGenerator;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Activites.ChangePassowrdScreen.ChangePassword;
+import com.example.urban_food.Activites.Login.LoginActivityPresenter;
+import com.example.urban_food.Activites.Login.LoginActivityView;
 import com.example.urban_food.Activites.MyProfile.ProfileDetailActivity;
+import com.example.urban_food.Activites.MyProfile.ProfileDetailPresenter;
+import com.example.urban_food.Activites.MyProfile.ProfileDetailView;
+import com.example.urban_food.Activites.ShopsDetail.ShopDetailsPresenter;
+import com.example.urban_food.Activites.ShopsDetail.ShopDetailsView;
 import com.example.urban_food.Activites.Wallet.Wallet;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
+import com.example.urban_food.model.Address;
+import com.example.urban_food.model.Cart;
+import com.example.urban_food.model.Category;
+import com.example.urban_food.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
+import java.util.List;
 
 
-public class Profile extends Fragment {
+public class Profile extends Fragment implements ProfileDetailView {
 
     FragmentProfileBinding binding;
+    ProfileDetailPresenter presenter = new ProfileDetailPresenter(this);
+    private String device_id;
+    private String fcm_token;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding=FragmentProfileBinding.inflate(getLayoutInflater(),container,false);
-
+  /*      getDeviceIdAndToken();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("device_type", "android");
+        map.put("device_id", device_id);
+        map.put("device_token", fcm_token);
+        presenter.getProfile(map);
+*/
         if (GlobalData.users != null) {
             binding.tvProfileName.setText(GlobalData.users.getName());
             Glide.with(getContext())
@@ -43,9 +72,6 @@ public class Profile extends Fragment {
                     .into(binding.ivImage);
 
         }
-
-
-
         binding.constraintChangePass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +100,76 @@ public class Profile extends Fragment {
 
         return binding.getRoot();
     }
+    private void getDeviceIdAndToken() {
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("LoginActivity", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
 
+                        // Get new FCM registration token
+
+                        // Log and toast
+                        fcm_token = task.getResult();
+
+                    }
+                });
+
+        try {
+            device_id = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        } catch (Exception e) {
+            device_id = "";
+        }
+
+    }
+
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        if (GlobalData.users != null) {
+            binding.tvProfileName.setText(GlobalData.users.getName());
+            Glide.with(getContext())
+                    .load("https://brokenfortest")
+                    .placeholder(new AvatarGenerator.AvatarBuilder(getActivity())
+                            .setLabel(GlobalData.users.getName())
+                            .setAvatarSize(250)
+                            .setTextSize(63)
+                            .toCircle()
+                            .build())
+                    .into(binding.ivImage);
+        }
+
+    }
+
+    @Override
+    public void onSuccessChange(User user) {
+
+    }
+
+    @Override
+    public void onError() {
+
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void dismissProgress() {
+
+    }
+
+    @Override
+    public void onSuccessProfile(User user) {
+
+
+    }
 
 }

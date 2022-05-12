@@ -104,7 +104,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
         texts.add("MyOrder");
         texts.add("Profile");
 
-
+        setAdapter();
     }
 
     @Override

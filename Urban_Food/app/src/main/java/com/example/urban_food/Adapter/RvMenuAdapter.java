@@ -113,25 +113,38 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
 
         //order quantity increse
         holder.binding.btnPlus.setOnClickListener(view -> {
+            int cartid=0;
             int qty = Integer.parseInt(holder.binding.etQuantity.getText().toString()) +1;
-            callback.cartParaWithCardId(productList.get(position).getId(), qty, /*String.valueOf(productList.get(position).getCart().get(0).getId())*/ String.valueOf(GlobalData.cart_id));
+            for(int i =0;i<GlobalData.Cart.size();i++) {
+                if (productList.get(position).getId().equals(GlobalData.Cart.get(i).getProductId()))
+                {
+                    cartid=GlobalData.Cart.get(i).getId();
+                }
+            }
+            callback.cartParaWithCardId(productList.get(position).getId(), qty, /*String.valueOf(productList.get(position).getCart().get(0).getId())*/ String.valueOf(cartid));
             holder.binding.etQuantity.setText(String.valueOf(qty));
 
         });
         //order quantity decrese
         holder.binding.btnMinus.setOnClickListener(view -> {
-            int qty = Integer.parseInt(holder.binding.etQuantity.getText().toString());
-            if (qty == 1) {
-                callback.cartParaWithCardId(productList.get(position).getId(), 0, String.valueOf(productList.get(position).getCart().get(0).getId()));
+            int qty = Integer.parseInt(holder.binding.etQuantity.getText().toString()) - 1 ;
+            int cartid=0;
+            for(int i =0;i<GlobalData.Cart.size();i++) {
+                if (productList.get(position).getId().equals(GlobalData.Cart.get(i).getProductId()) && GlobalData.Cart!=null) {
+                    cartid = GlobalData.Cart.get(i).getId();
+                }
+            }
+            if (qty == 0) {
+
+                callback.cartParaWithCardId(productList.get(position).getId(), 0,String.valueOf(cartid));
                 holder.binding.btnMinus.setVisibility(View.GONE);
                 holder.binding.btnPlus.setVisibility(View.GONE);
                 holder.binding.etQuantity.setVisibility(View.GONE);
                 holder.binding.btnAdd.setVisibility(View.VISIBLE);
             } else {
-                qty--;
                 holder.binding.etQuantity.setText(String.valueOf(qty));
 
-                callback.cartParaWithCardId(productList.get(position).getId(), qty, String.valueOf(productList.get(position).getCart().get(0).getId()));
+                callback.cartParaWithCardId(productList.get(position).getId(), qty, String.valueOf(cartid));
 
             }
 

@@ -217,7 +217,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessCartView(List<Cart> cartResponse) {
-        GlobalData.cart_id=cartResponse.get(0).getId();
+        GlobalData.Cart = cartResponse;
     }
 
     @Override
