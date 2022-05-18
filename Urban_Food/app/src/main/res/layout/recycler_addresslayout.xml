@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<ImageView
+    android:id="@+id/addlogo"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_margin="5dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
+    <TextView
+        android:id="@+id/tv_addressType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="work"
+        android:textSize="20dp"
+        android:textColor="@color/orange"
+        android:fontFamily="@font/avenir_heavy"
+
+        app:layout_constraintStart_toEndOf="@id/addlogo"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/addlogo"
+        />
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        app:layout_constraintStart_toStartOf="@id/addlogo"
+        android:text="abcaksdms"
+        app:layout_constraintTop_toBottomOf="@id/addlogo"
+        android:padding="5dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/linear_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintStart_toStartOf="@id/tv_address"
+        app:layout_constraintTop_toBottomOf="@id/tv_address"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+           android:layout_weight="1"
+
+            android:text="edit"
+            />
+
+        <Space
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_Delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delete"
+
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/light_grey"
+        app:layout_constraintStart_toStartOf="@id/linear_btn"
+        app:layout_constraintTop_toBottomOf="@id/linear_btn"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

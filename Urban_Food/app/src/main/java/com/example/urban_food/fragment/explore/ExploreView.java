@@ -9,7 +9,7 @@ import java.util.List;
 public interface ExploreView {
     void onSuccessCuisine(List<Cuisine> cuisineResponseItems);
     void onSuccessShops(List<Shop> shopsItemList);
-
+    void onSuccessShopsPopular(List<Shop> shopsItemList);
     void onErrorShops();
 
     void showProgressShops();

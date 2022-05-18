@@ -10,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.urban_food.Activites.SearchScreen.SearchActivity;
-import com.example.urban_food.Activites.ShopsDetail.ClickCuisineActivity;
-import com.example.urban_food.Activites.ShopsDetail.ShopsDetailsActivity;
+import com.example.urban_food.Activities.SearchScreen.SearchActivity;
+import com.example.urban_food.Activities.ShopsDetail.ClickCuisineActivity;
+import com.example.urban_food.Activities.ShopsDetail.ShopsDetailsActivity;
 import com.example.urban_food.Adapter.CuisineCategoryAdapter;
 import com.example.urban_food.Adapter.DiscoverNewPlacesAdapter;
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
@@ -34,37 +34,37 @@ public class Explore extends Fragment implements ExploreView {
 
     ExplorePresenter shopspresenter;
 
-    HashMap<String,String> map=new HashMap();
+    HashMap<String, String> map = new HashMap();
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding=FragmentExploreBinding.inflate(getLayoutInflater(),container,false);
+        binding = FragmentExploreBinding.inflate(getLayoutInflater(), container, false);
 
 
-
-        if(Common.isConnected()){
-            shopspresenter = new ExplorePresenter(this);
-            map=new HashMap();
-            map.put("user_id",String.valueOf(GlobalData.users.getId()));
+        shopspresenter = new ExplorePresenter(this);
+        if (Common.isConnected()) {
+            map = new HashMap();
+            if (GlobalData.users != null)
+                map.put("user_id", String.valueOf(GlobalData.users.getId()));
+            else
+                map.put("user_id", "1");
             map.put("latitude", String.valueOf(GlobalData.latitude));
-            map.put("longitude",String.valueOf(GlobalData.longitude));
+            map.put("longitude", String.valueOf(GlobalData.longitude));
             shopspresenter.shops(map);
-            shopspresenter.cuisine();
 
 
-            binding.layoutLoading.clLoading.setVisibility(View.GONE);
+            binding.layoutLoading.clLoading.setVisibility(View.VISIBLE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.GONE);
             binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
 
 
-            binding.nsv1.setVisibility(View.VISIBLE);
-            binding.etSearch.setVisibility(View.VISIBLE);
-            binding.ivSearch.setVisibility(View.VISIBLE);
-        }
-        else{
+            binding.nsv1.setVisibility(View.GONE);
+            binding.etSearch.setVisibility(View.GONE);
+            binding.ivSearch.setVisibility(View.GONE);
+        } else {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
@@ -76,13 +76,7 @@ public class Explore extends Fragment implements ExploreView {
             binding.etSearch.setVisibility(View.GONE);
             binding.ivSearch.setVisibility(View.GONE);
         }
-        shopspresenter = new ExplorePresenter(this);
-        shopspresenter.shops(map);
 
-
-
-        shopspresenter.shops(map);
-        shopspresenter.cuisine();
         binding.etSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,97 +85,80 @@ public class Explore extends Fragment implements ExploreView {
         });
 
 
-
         return binding.getRoot();
     }
 
 
     @Override
     public void onSuccessCuisine(List<Cuisine> cuisineResponseItems) {
-        if(cuisineResponseItems.isEmpty()){
-
-            binding.layoutLoading.clLoading.setVisibility(View.GONE);
-            binding.layoutError.clError.setVisibility(View.GONE);
-            binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
-            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
-
+        if (cuisineResponseItems.isEmpty()) {
             binding.recyclerCategories.setVisibility(View.GONE);
             binding.tvCategories.setVisibility(View.GONE);
-        }else{
+        } else {
             cuisineCategoryAdapter = new CuisineCategoryAdapter(getActivity(), cuisineResponseItems, new ExploreInterface() {
                 @Override
-                public void cuisineItem(String data,String path) {
-                    Intent intent=new Intent(getActivity(), ClickCuisineActivity.class);
-                    intent.putExtra("cuisine",data);
+                public void cuisineItem(String data, String path) {
+                    Intent intent = new Intent(getActivity(), ClickCuisineActivity.class);
+                    intent.putExtra("cuisine", data);
                     startActivity(intent);
                 }
             });
             binding.recyclerCategories.setAdapter(cuisineCategoryAdapter);
-            binding.recyclerCategories.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-
-            binding.layoutLoading.clLoading.setVisibility(View.GONE);
-            binding.layoutError.clError.setVisibility(View.GONE);
-            binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
-            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
-
-            binding.recyclerCategories.setVisibility(View.VISIBLE);
-            binding.tvCategories.setVisibility(View.VISIBLE);
+            binding.recyclerCategories.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         }
 
-
+        shopspresenter.shopsPopular(map);
     }
 
     @Override
     public void onSuccessShops(List<Shop> shopsItemList) {
-        if(shopsItemList.isEmpty()){
-
-            binding.layoutLoading.clLoading.setVisibility(View.GONE);
-            binding.layoutError.clError.setVisibility(View.GONE);
-            binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
-            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
-
+        if (shopsItemList.isEmpty()) {
             binding.recyclerDiscoverNewPlace.setVisibility(View.GONE);
             binding.tvNewPlace.setVisibility(View.GONE);
-            binding.recyclerPopularWeek.setVisibility(View.GONE);
-            binding.tvPopularWeek.setVisibility(View.GONE);
-        }else{
+        } else {
             discoverNewPlacesAdapter = new DiscoverNewPlacesAdapter(getActivity(), shopsItemList, new ExploreInterface() {
                 @Override
-                public void cuisineItem(String data,String path) {
+                public void cuisineItem(String data, String path) {
 
                     Intent intent = new Intent(getActivity(), ShopsDetailsActivity.class);
-                    intent.putExtra("ShopId",data);
-                    intent.putExtra("pathImage",path);
+                    intent.putExtra("ShopId", data);
+                    intent.putExtra("pathImage", path);
                     startActivity(intent);
                 }
             });
             binding.recyclerDiscoverNewPlace.setAdapter(discoverNewPlacesAdapter);
-            binding.recyclerDiscoverNewPlace.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+            binding.recyclerDiscoverNewPlace.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
+
+        }
+        shopspresenter.cuisine();
+    }
+
+    @Override
+    public void onSuccessShopsPopular(List<Shop> shopsItemList) {
+        if (shopsItemList.isEmpty()) {
+            binding.recyclerPopularWeek.setVisibility(View.GONE);
+            binding.tvPopularWeek.setVisibility(View.GONE);
+        } else {
 
             popularThisWeek = new PopularthisWeekAdapter(getActivity(), shopsItemList, new ExploreInterface() {
                 @Override
                 public void cuisineItem(String data, String path) {
                     Intent intent = new Intent(getActivity(), ShopsDetailsActivity.class);
-                    intent.putExtra("ShopId",data);
-                    intent.putExtra("pathImage",path);
+                    intent.putExtra("ShopId", data);
+                    intent.putExtra("pathImage", path);
                     startActivity(intent);
                 }
             });
             binding.recyclerPopularWeek.setAdapter(popularThisWeek);
             binding.recyclerPopularWeek.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-            binding.layoutLoading.clLoading.setVisibility(View.GONE);
-            binding.layoutError.clError.setVisibility(View.GONE);
-            binding.layoutNodata.clNoData.setVisibility(View.GONE);
-            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
-
-            binding.recyclerDiscoverNewPlace.setVisibility(View.VISIBLE);
-            binding.tvNewPlace.setVisibility(View.VISIBLE);
-            binding.recyclerPopularWeek.setVisibility(View.VISIBLE);
-            binding.tvPopularWeek.setVisibility(View.VISIBLE);
         }
+        binding.layoutLoading.clLoading.setVisibility(View.GONE);
+        binding.layoutError.clError.setVisibility(View.GONE);
+        binding.layoutNodata.clNoData.setVisibility(View.GONE);
+        binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
+        binding.nsv1.setVisibility(View.VISIBLE);
     }
 
     @Override

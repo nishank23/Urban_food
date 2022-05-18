@@ -10,11 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.urban_food.Activites.ShopsDetail.ShopsDetailsActivity;
+import com.example.urban_food.Activities.ShopsDetail.ShopsDetailsActivity;
 import com.example.urban_food.Adapter.FavoriteAdapter;
-import com.example.urban_food.Adapter.PopularthisWeekAdapter;
-import com.example.urban_food.Modal.FavoriteModal.GetFavoriteResponse;
-import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentFavoriteBinding;
 import com.example.urban_food.fragment.explore.ExploreInterface;
 import com.example.urban_food.model.FavoriteList;

@@ -1,7 +1,6 @@
 package com.example.urban_food.fragment.profile;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,31 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.avatarfirst.avatargenlib.AvatarConstants;
 import com.avatarfirst.avatargenlib.AvatarGenerator;
 import com.bumptech.glide.Glide;
-import com.example.urban_food.Activites.ChangePassowrdScreen.ChangePassword;
-import com.example.urban_food.Activites.Login.LoginActivityPresenter;
-import com.example.urban_food.Activites.Login.LoginActivityView;
-import com.example.urban_food.Activites.MyProfile.ProfileDetailActivity;
-import com.example.urban_food.Activites.MyProfile.ProfileDetailPresenter;
-import com.example.urban_food.Activites.MyProfile.ProfileDetailView;
-import com.example.urban_food.Activites.ShopsDetail.ShopDetailsPresenter;
-import com.example.urban_food.Activites.ShopsDetail.ShopDetailsView;
-import com.example.urban_food.Activites.Wallet.Wallet;
+import com.example.urban_food.Activities.ChangePassowrdScreen.ChangePassword;
+import com.example.urban_food.Activities.ManageAddress.ManageAddress;
+import com.example.urban_food.Activities.MyProfile.ProfileDetailActivity;
+import com.example.urban_food.Activities.MyProfile.ProfileDetailPresenter;
+import com.example.urban_food.Activities.MyProfile.ProfileDetailView;
+import com.example.urban_food.Activities.PastOrder.PastOrder;
+import com.example.urban_food.Activities.Wallet.Wallet;
 import com.example.urban_food.Helper.GlobalData;
-import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
-import com.example.urban_food.model.Address;
-import com.example.urban_food.model.Cart;
-import com.example.urban_food.model.Category;
 import com.example.urban_food.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.util.HashMap;
-import java.util.List;
 
 
 public class Profile extends Fragment implements ProfileDetailView {
@@ -80,6 +69,14 @@ public class Profile extends Fragment implements ProfileDetailView {
 
             }
         });
+        binding.constraintMyorders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PastOrder.class);
+                startActivity(intent);
+
+            }
+        });
 
         binding.arrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +90,14 @@ public class Profile extends Fragment implements ProfileDetailView {
             @Override
             public void onClick(View view) {
                 Intent  intent = new  Intent(getActivity(), Wallet.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.constraintManageAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ManageAddress.class);
                 startActivity(intent);
             }
         });

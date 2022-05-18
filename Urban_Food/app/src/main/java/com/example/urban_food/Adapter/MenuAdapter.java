@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
+import com.example.urban_food.Activities.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.databinding.RecyclerLayoutMenuBinding;
 import com.example.urban_food.model.Category;
 

@@ -1,19 +1,15 @@
 package com.example.urban_food.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.urban_food.Activites.Home.HomeActivity;
-import com.example.urban_food.Activites.SplashScreen.SpalshInterface;
+import com.example.urban_food.Activities.SplashScreen.SpalshInterface;
 import com.example.urban_food.Helper.GlobalData;
-import com.example.urban_food.databinding.BottomsheetHomeLayoutBinding;
 import com.example.urban_food.databinding.RecyclerBottomHomeBinding;
 import com.example.urban_food.model.Address;
 
@@ -52,6 +48,7 @@ public class HomeBottomSheetAdapter extends RecyclerView.Adapter<HomeBottomSheet
     }
 
     public class Holder extends RecyclerView.ViewHolder {
+
         RecyclerBottomHomeBinding binding;
         public Holder(RecyclerBottomHomeBinding binding) {
             super(binding.getRoot());

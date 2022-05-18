@@ -39,4 +39,13 @@
     <string name="Favorite">Favorite</string>
     <string name="MyOrder">MyOrder</string>
     <string name="MyProfile">My Profile</string>
+    <string name="google_api_key1">AIzaSyClH2UrK-86wwXvFTKLX2nHY7K9Ne9qLs0</string>
+    <string name="title_activity_manage_address">ManageAddress</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

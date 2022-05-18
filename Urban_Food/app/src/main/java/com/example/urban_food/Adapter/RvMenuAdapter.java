@@ -2,22 +2,19 @@ package com.example.urban_food.Adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
+import com.example.urban_food.Activities.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.databinding.MenuRecyclerRecyclerviewBinding;
 import com.example.urban_food.model.Product;
-import com.example.urban_food.model.ProductsItem;
 
 import java.util.List;
 
@@ -97,13 +94,16 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
                     dialog.setNegativeButton("Cancel",(dialogInterface, i) -> dialogInterface.dismiss());
                     dialog.setPositiveButton("Add",(dialogInterface, i) -> {
                         callback.clearCartPara(true,productList.get(position).getId(),1);
+
+                        Log.d("clear",""+productList.get(position).getId());
                         GlobalData.Cart.clear();
                         dialogInterface.dismiss();
 
-                        holder.binding.btnAdd.setVisibility(View.VISIBLE);
-                        holder.binding.btnMinus.setVisibility(View.GONE);
-                        holder.binding.btnPlus.setVisibility(View.GONE);
-                        holder.binding.etQuantity.setVisibility(View.GONE);
+
+                        holder.binding.btnAdd.setVisibility(View.GONE);
+                        holder.binding.btnMinus.setVisibility(View.VISIBLE);
+                        holder.binding.btnPlus.setVisibility(View.VISIBLE);
+                        holder.binding.etQuantity.setVisibility(View.VISIBLE);
                     });
                     dialog.show();
                 }

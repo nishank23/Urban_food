@@ -2,7 +2,6 @@ package com.example.urban_food.fragment.favorite;
 
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.Helper.Common;
-import com.example.urban_food.Modal.FavoriteModal.GetFavoriteResponse;
 import com.example.urban_food.model.AddFavoriteResponse;
 import com.example.urban_food.model.FavoriteList;
 

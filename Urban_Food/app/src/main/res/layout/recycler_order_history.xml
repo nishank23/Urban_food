@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:contentPadding="15dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="15dp"
+        app:cardCornerRadius="15dp"
         android:background="@color/smsp_transparent_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +20,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_item_name"
+                android:id="@+id/tv_restaurant_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
@@ -30,13 +31,13 @@
                 android:layout_marginStart="10dp"/>
 
             <TextView
-                android:id="@+id/tv_item_address"
+                android:id="@+id/tv_restaurant_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_item_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_restaurant_name"
                 android:fontFamily="@font/avenir_medium"
-                android:textSize="15dp"
+                android:textSize="12dp"
                 android:hint="Geeta Complex, GF 16, Bhatar Rd.,near Bhatar Char Rasta, Surat, Gujarat, 395017,Surat."
                 android:layout_marginStart="10dp"
                 android:maxLines="2"/>
@@ -46,8 +47,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
                 android:layout_marginTop="15dp"
-                app:layout_constraintStart_toStartOf="@id/tv_item_address"
-                app:layout_constraintTop_toBottomOf="@id/tv_item_address"
+                app:layout_constraintStart_toStartOf="@id/tv_restaurant_address"
+                app:layout_constraintTop_toBottomOf="@id/tv_restaurant_address"
                 android:maxWidth="1dp"/>
 
 
@@ -59,7 +60,6 @@
                 app:layout_constraintTop_toBottomOf="@id/view1"
                 android:fontFamily="@font/avenir_medium"
                 android:textSize="18dp"
-                android:layout_marginLeft="45dp"
                 android:hint="Ordered on"
                 android:layout_marginStart="10dp"
                 android:maxLines="2"/>
@@ -71,8 +71,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_ordered_on"
                 android:fontFamily="@font/avenir_medium"
-                android:textSize="25dp"
-                android:paddingStart="45dp"
+                android:textSize="15dp"
                 android:layout_marginStart="10dp"/>
 
 
@@ -84,7 +83,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_times"
                 android:fontFamily="@font/avenir_medium"
                 android:textSize="18dp"
-                android:layout_marginLeft="45dp"
                 android:hint="Items"
                 android:layout_marginStart="10dp"
                 android:maxLines="2"/>
@@ -95,6 +93,7 @@
                 android:id="@+id/history_item_recyclerview"
                 app:layout_constraintTop_toBottomOf="@id/tv_items"
                 app:layout_constraintStart_toStartOf="@id/tv_items"
+                app:layout_constraintBottom_toTopOf="@id/tv_item_total_amount"
                 app:layout_constraintEnd_toEndOf="parent">
 
             </androidx.recyclerview.widget.RecyclerView>

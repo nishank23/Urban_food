@@ -2,13 +2,12 @@ package com.example.urban_food.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.urban_food.Activites.ShopsDetail.cart.RvMenuInterface;
+import com.example.urban_food.Activities.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.databinding.RecyclerLayoutItemsMyOrderBinding;
 import com.example.urban_food.model.Cart;
 

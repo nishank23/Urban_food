@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.urban_food">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.location.network" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".Helper.MyApplication"
         android:allowBackup="true"
@@ -10,21 +20,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
-
         <activity
-            android:name=".Activites.MyProfile.ProfileDetailActivity"
+            android:name=".Activities.AddAddress.AddAddress"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.PastOrder.PastOrder"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.ManageAddress.ManageAddress"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.MyProfile.ProfileDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Activites.ShopsDetail.ClickCuisineActivity"
-            android:exported="false" />
+            android:name=".Activities.ShopsDetail.ClickCuisineActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activites.SearchScreen.SearchActivity"
-            android:exported="false" />
+            android:name=".Activities.SearchScreen.SearchActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activites.ShopsDetail.ShopsDetailsActivity"
-            android:exported="false" />
+            android:name=".Activities.ShopsDetail.ShopsDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Activites.SplashScreen.SpashScreenActivity"
+            android:name=".Activities.SplashScreen.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -34,52 +58,50 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activites.Home.HomeActivity"
+            android:name=".Activities.Home.HomeNewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.Otp.OtpActivity"
+            android:name=".Activities.Otp.OtpActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.Verifyphonescreen.VerifyPhone"
+            android:name=".Activities.Verifyphonescreen.VerifyPhone"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.CreateAccount.CreateAccount"
+            android:name=".Activities.CreateAccount.CreateAccount"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.ForgetPasswordScreen.Forgetpassword"
+            android:name=".Activities.ForgetPasswordScreen.Forgetpassword"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.Login.LoginActivity"
+            android:name=".Activities.Login.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.WelcomeScreen.WelcomeScreenActivity"
+            android:name=".Activities.WelcomeScreen.WelcomeScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.ChangePassowrdScreen.ChangePassword"
+            android:name=".Activities.ChangePassowrdScreen.ChangePassword"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activites.Wallet.Wallet"
+            android:name=".Activities.Wallet.Wallet"
             android:exported="true"
             android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_api_key1" />
+
     </application>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-    <uses-feature android:name="android.hardware.location.gps" />
-    <uses-feature android:name="android.hardware.location.network" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

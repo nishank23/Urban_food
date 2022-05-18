@@ -1,5 +1,6 @@
 package com.example.urban_food.Helper;
 
+import com.example.urban_food.Adapter.AddressAdapter;
 import com.example.urban_food.model.Address;
 import com.example.urban_food.model.Cart;
 import com.example.urban_food.model.User;
@@ -16,6 +17,10 @@ public class GlobalData {
     public static User users;
     public static List<com.example.urban_food.model.Address> Address;
     public static String search;
+    public static Address editAddress;
 
-
+    public static double latitudeC;
+    public static double longitudeC;
+    public static String address ="";
+    public static String addressHeader="";
 }

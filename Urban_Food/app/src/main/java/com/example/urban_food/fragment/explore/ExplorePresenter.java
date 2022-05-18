@@ -24,9 +24,30 @@ public class ExplorePresenter {
         ApiClient.getRetrofit().getShops(map).enqueue(new Callback<RestaurantsData>() {
             @Override
             public void onResponse(Call<RestaurantsData> call, Response<RestaurantsData> response) {
+                view.dismissProgressShops();
                 if (response.isSuccessful() && response.body() != null) {
-                    view.dismissProgressShops();
                     view.onSuccessShops(response.body().getShops());
+                } else {
+                    view.onErrorShops();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RestaurantsData> call, Throwable t) {
+                view.onErrorShops();
+
+            }
+        });
+    }
+
+    public void shopsPopular(HashMap<String,String> map) {
+        view.showProgressShops();
+        ApiClient.getRetrofit().getShops(map).enqueue(new Callback<RestaurantsData>() {
+            @Override
+            public void onResponse(Call<RestaurantsData> call, Response<RestaurantsData> response) {
+                view.dismissProgressShops();
+                if (response.isSuccessful() && response.body() != null) {
+                    view.onSuccessShopsPopular(response.body().getShops());
                 } else {
                     view.onErrorShops();
                 }
