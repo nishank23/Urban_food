@@ -71,7 +71,15 @@ public class MyOrder extends Fragment  implements CartView{
     public void onSuccessCartView(AddCart cartResponse) {
 
         GlobalData.Cart = cartResponse.getProducts();
-        binding.tvPriceSubtotal.setText(cartResponse.getTotalPrice().toString());
+        binding.tvPriceSubtotal.setText("₹ "+cartResponse.getTotalPrice().toString());
+
+        float total =(float) cartResponse.getTotalPrice();
+        float  gst_cal =(float)(total * cartResponse.getTaxPercentage())/100;
+        float commission = (total * cartResponse.getGrabitComission())/100;
+        float commisionTax = (commission * cartResponse.getGrabitComissionTax())/100;
+
+        float taxfee = gst_cal + commission + commisionTax;
+        binding.tvPriceTaxFee.setText("₹ "+String.valueOf(taxfee));
     }
 
     @Override
@@ -151,7 +159,17 @@ public class MyOrder extends Fragment  implements CartView{
             });
             binding.rvItemDetailsMyOrder.setAdapter(cartAdapter);
             binding.rvItemDetailsMyOrder.setLayoutManager(new LinearLayoutManager(getContext()));
-            binding.tvPriceSubtotal.setText(getCartResponse.getTotalPrice().toString());
+            binding.tvPriceSubtotal.setText("₹ "+getCartResponse.getTotalPrice().toString());
+
+            float total =(float) getCartResponse.getTotalPrice();
+            float  gst_cal = (total * getCartResponse.getTaxPercentage())/100;
+            float commission = (total * getCartResponse.getGrabitComission())/100;
+            float commisionTax = (commission * getCartResponse.getGrabitComissionTax())/100;
+
+            float taxfee = gst_cal + commission + commisionTax;
+            binding.tvPriceTaxFee.setText("₹ "+String.valueOf(taxfee));
+            binding.tvPriceDelivery.setText("₹ "+getCartResponse.getDeliveryCharges().toString());
+
         }
     }
 
