@@ -23,12 +23,51 @@ public class AddCart {
     @SerializedName("grabit_comission_tax")
     @Expose
     private Integer grabitComissionTax;
+
+    public List<Cart> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Cart> products) {
+        this.products = products;
+    }
+
     @SerializedName("carts")
     @Expose
     private List<Cart> products = new ArrayList<>();
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("order_amount")
+    @Expose
+    private Integer orderAmount;
+
+    @SerializedName("total_price")
+    @Expose
+    private Integer totalPrice;
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+
+
+
+
+    public Integer getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setOrderAmount(Integer orderAmount) {
+        this.orderAmount = orderAmount;
+    }
+
+
+
 
     public Integer getDeliveryCharges() {
         return deliveryCharges;

@@ -14,10 +14,12 @@ import com.example.urban_food.Activities.ShopsDetail.cart.CartView;
 import com.example.urban_food.Activities.ShopsDetail.cart.RvMenuInterface;
 import com.example.urban_food.Adapter.CartAdapter;
 import com.example.urban_food.Helper.Common;
+import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.databinding.FragmentMyOrderBinding;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.Cart;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,8 +27,10 @@ public class MyOrder extends Fragment  implements CartView{
     FragmentMyOrderBinding binding;
     int cartProductId;
     int cartQty;
+    CartAdapter cartAdapter;
     int cartId;
     CartPresenter cartPresenter=new CartPresenter(this);
+    List<Cart> cartList = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,8 +68,10 @@ public class MyOrder extends Fragment  implements CartView{
 
 
     @Override
-    public void onSuccessCartView(List<Cart> cartResponse) {
-        binding.tvPriceSubtotal.setText(String.valueOf(cartResponse.get(0).getProduct().getPrices().getPrice()));
+    public void onSuccessCartView(AddCart cartResponse) {
+
+        GlobalData.Cart = cartResponse.getProducts();
+        binding.tvPriceSubtotal.setText(cartResponse.getTotalPrice().toString());
     }
 
     @Override
@@ -87,6 +93,9 @@ public class MyOrder extends Fragment  implements CartView{
 
     @Override
     public void onSuccessGetCartView(AddCart getCartResponse) {
+        cartList = getCartResponse.getProductList();
+        GlobalData.Cart = getCartResponse.getProducts();
+
         if(getCartResponse.getProductList()==null){
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
@@ -119,7 +128,7 @@ public class MyOrder extends Fragment  implements CartView{
                 binding.tvShopLocation.setText(getCartResponse.getProductList().get(i).getProduct().getShop().getAddress());
             }
             Log.d("sizeCArt", "" + getCartResponse.getProductList().size());
-            CartAdapter cartAdapter = new CartAdapter(getActivity(), getCartResponse.getProductList(), new RvMenuInterface() {
+            cartAdapter = new CartAdapter(getActivity(), cartList, new RvMenuInterface() {
                 @Override
                 public void cartParaWithCardId(int id, int value, String CartValue) {
                     cartProductId = id;
@@ -142,7 +151,7 @@ public class MyOrder extends Fragment  implements CartView{
             });
             binding.rvItemDetailsMyOrder.setAdapter(cartAdapter);
             binding.rvItemDetailsMyOrder.setLayoutManager(new LinearLayoutManager(getContext()));
-            binding.tvPriceSubtotal.setText(String.valueOf(getCartResponse.getProductList().get(0).getProduct().getPrices().getPrice()));
+            binding.tvPriceSubtotal.setText(getCartResponse.getTotalPrice().toString());
         }
     }
 

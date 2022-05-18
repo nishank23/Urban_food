@@ -1,5 +1,7 @@
 package com.example.urban_food.Activities.ShopsDetail.cart;
 
+import android.util.Log;
+
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.ClearCart;
@@ -24,7 +26,7 @@ public class CartPresenter {
             @Override
             public void onResponse(Call<AddCart> call, Response<AddCart> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    view.onSuccessCartView(response.body().getProductList());
+                    view.onSuccessCartView(response.body());
                 } else {
                     view.dismissProgressShops();
                     view.onErrorCartView();
@@ -46,6 +48,7 @@ public class CartPresenter {
                 if (response.isSuccessful() && response.body() != null) {
                     view.dismissProgressShops();
                     view.onSuccessGetCartView(response.body());
+                    Log.d("test1",""+response.body().getTotalPrice().toString());
                 } else {
                     view.dismissProgressShops();
                     view.onErrorCartView();

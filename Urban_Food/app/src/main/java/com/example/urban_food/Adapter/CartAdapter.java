@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.urban_food.Activities.ShopsDetail.cart.RvMenuInterface;
+import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.databinding.RecyclerLayoutItemsMyOrderBinding;
 import com.example.urban_food.model.Cart;
 
@@ -33,12 +34,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
     public void onBindViewHolder(@NonNull CartAdapter.Holder holder, int position) {
         holder.binding.tvItemName.setText(list.get(position).getProduct().getName());
         holder.binding.etQuantity.setText(String.valueOf(list.get(position).getQuantity()));
-
+        int mul = GlobalData.Cart.get(position).getProduct().getPrices().getPrice() * Integer.parseInt(holder.binding.etQuantity.getText().toString());
+        holder.binding.etPrice.setText(String.valueOf(mul));
         holder.binding.btnPlus.setOnClickListener(view -> {
             int qty = Integer.parseInt(holder.binding.etQuantity.getText().toString());
             qty++;
             holder.binding.etQuantity.setText(String.valueOf(qty));
             callback.cartParaWithCardId(list.get(position).getProductId(), qty, String.valueOf(list.get(position).getId()));
+            int mul1 = GlobalData.Cart.get(position).getProduct().getPrices().getPrice() * Integer.parseInt(holder.binding.etQuantity.getText().toString());
+            holder.binding.etPrice.setText(String.valueOf(mul1));
         });
         //order quantity decrese
         holder.binding.btnMinus.setOnClickListener(view -> {
@@ -52,6 +56,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Holder> {
             } else {
                 holder.binding.etQuantity.setText(String.valueOf(qty));
                 callback.cartParaWithCardId(list.get(position).getProductId(), qty, String.valueOf(list.get(position).getId()));
+                int mul1 = GlobalData.Cart.get(position).getProduct().getPrices().getPrice() * Integer.parseInt(holder.binding.etQuantity.getText().toString());
+                holder.binding.etPrice.setText(String.valueOf(mul1));
 
             }
         });

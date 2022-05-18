@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CartView {
 
-    void onSuccessCartView(List<Cart> cartResponse);
+    void onSuccessCartView(AddCart cartResponse);
     void onErrorCartView();
     void onSuccessGetCartView(AddCart getCartResponse);
     void onSuccessGetClearCartView(String message);
