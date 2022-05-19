@@ -2,16 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.urban_food">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-
-    <uses-feature android:name="android.hardware.location.gps" />
-    <uses-feature android:name="android.hardware.location.network" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <application
         android:name=".Helper.MyApplication"
         android:allowBackup="true"
@@ -21,32 +11,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
         <activity
+            android:name=".PastOrderIdActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.AddAddress.AddAddress"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.PastOrder.PastOrder"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.ManageAddress.ManageAddress"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.MyProfile.ProfileDetailActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.ShopsDetail.ClickCuisineActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SearchScreen.SearchActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.ShopsDetail.ShopsDetailsActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SplashScreen.SplashActivity"
             android:exported="true"
@@ -97,11 +90,19 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_api_key1" />
-
     </application>
+    <uses-feature android:name="android.hardware.location.network" />
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
