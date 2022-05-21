@@ -8,6 +8,9 @@ public interface OrderView {
     void getOrder(List<Order> orderList);
     void showProgress();
     void dismissProgress();
+    void getOrderId(int id);
+    void getOrderIdSuccess(Order orderList);
+
 
 
 /*

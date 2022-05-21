@@ -118,11 +118,13 @@
         <entry key="app/src/main/res/drawable-v24/bg_dotted_line.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/bg_dotted_line1.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1225" />
+        <entry key="app/src/main/res/drawable/ic_danger_svgrepo_com.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/ic_edit_text.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_icon_close.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_non-veg.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_non_veg.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/ic_veg.xml" value="0.102" />
+        <entry key="app/src/main/res/drawable/order_cancelled_img.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/roundedbutton_blue.xml" value="0.135" />
         <entry key="app/src/main/res/layout/activity_add_address.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.17552083333333332" />
@@ -131,6 +133,7 @@
         <entry key="app/src/main/res/layout/activity_manage_address.xml" value="0.444" />
         <entry key="app/src/main/res/layout/activity_manage_address2.xml" value="0.1466438648995297" />
         <entry key="app/src/main/res/layout/activity_past_order.xml" value="0.15904232578024796" />
+        <entry key="app/src/main/res/layout/activity_past_order_id.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_profile_view.xml" value="0.10063463281958296" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_shops_details.xml" value="0.10063463281958296" />
@@ -143,6 +146,7 @@
         <entry key="app/src/main/res/layout/layout_location_loading.xml" value="0.67" />
         <entry key="app/src/main/res/layout/layout_no_internet.xml" value="0.5" />
         <entry key="app/src/main/res/layout/layout_nodata.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/layout_orderloading.xml" value="0.15904232578024796" />
         <entry key="app/src/main/res/layout/popular_week_recycler_layout.xml" value="0.36835443037974686" />
         <entry key="app/src/main/res/layout/recycleer_addresslayout.xml" value="0.22" />
         <entry key="app/src/main/res/layout/recycler_itemlist_order_history.xml" value="0.15904232578024796" />

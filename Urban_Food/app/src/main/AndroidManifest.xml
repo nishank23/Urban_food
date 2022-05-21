@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
         <activity
-            android:name=".PastOrderIdActivity"
+            android:name=".Activities.PastOrder.PastOrderIdActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.AddAddress.AddAddress"
@@ -78,6 +78,7 @@
             android:name=".Activities.WelcomeScreen.WelcomeScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Activities.ChangePassowrdScreen.ChangePassword"
             android:exported="true"

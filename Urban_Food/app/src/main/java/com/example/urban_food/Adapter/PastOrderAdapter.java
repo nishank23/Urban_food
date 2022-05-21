@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.urban_food.Activities.PastOrder.OrderView;
 import com.example.urban_food.databinding.RecyclerOrderHistoryBinding;
 import com.example.urban_food.model.Order;
 
@@ -18,10 +19,12 @@ import java.util.List;
 public class PastOrderAdapter extends RecyclerView.Adapter<PastOrderAdapter.MyHolder> {
     Activity context;
     List<Order> orderList;
+    OrderView orderView;
 
-    public PastOrderAdapter(Activity context, List<Order> orderList) {
+    public PastOrderAdapter(Activity context, List<Order> orderList,OrderView orderView) {
         this.context = context;
         this.orderList = orderList;
+        this.orderView = orderView;
     }
 
     @NonNull
@@ -41,7 +44,7 @@ public class PastOrderAdapter extends RecyclerView.Adapter<PastOrderAdapter.MyHo
         holder.binding.historyItemRecyclerview.setAdapter(adapter);
         holder.binding.historyItemRecyclerview.setLayoutManager(new LinearLayoutManager(context));
         holder.itemView.setOnClickListener(view -> {
-
+            orderView.getOrderId(orderList.get(position).getId());
         });
 
     }

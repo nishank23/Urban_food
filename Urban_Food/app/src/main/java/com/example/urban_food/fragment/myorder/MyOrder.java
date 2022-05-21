@@ -1,6 +1,7 @@
 package com.example.urban_food.fragment.myorder;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -23,20 +24,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MyOrder extends Fragment  implements CartView{
+public class MyOrder extends Fragment implements CartView {
     FragmentMyOrderBinding binding;
     int cartProductId;
     int cartQty;
     CartAdapter cartAdapter;
     int cartId;
-    CartPresenter cartPresenter=new CartPresenter(this);
+    CartPresenter cartPresenter = new CartPresenter(this);
     List<Cart> cartList = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding=FragmentMyOrderBinding.inflate(getLayoutInflater(),container,false);
+        binding = FragmentMyOrderBinding.inflate(getLayoutInflater(), container, false);
 
-        if(Common.isConnected()){
+        if (Common.isConnected()) {
             binding.layoutLoading.clLoading.setVisibility(View.VISIBLE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.GONE);
@@ -49,7 +51,7 @@ public class MyOrder extends Fragment  implements CartView{
             binding.rvItemDetailsMyOrder.setVisibility(View.GONE);
 
             cartPresenter.getCallCart();
-        }else{
+        } else {
 
             binding.clActionBar.setVisibility(View.GONE);
             binding.cardItemsMyOrder.setVisibility(View.GONE);
@@ -71,15 +73,15 @@ public class MyOrder extends Fragment  implements CartView{
     public void onSuccessCartView(AddCart cartResponse) {
 
         GlobalData.Cart = cartResponse.getProducts();
-        binding.tvPriceSubtotal.setText("₹ "+cartResponse.getTotalPrice().toString());
+        binding.tvPriceSubtotal.setText("₹ " + cartResponse.getTotalPrice().toString());
 
-        float total =(float) cartResponse.getTotalPrice();
-        float  gst_cal =(float)(total * cartResponse.getTaxPercentage())/100;
-        float commission = (total * cartResponse.getGrabitComission())/100;
-        float commisionTax = (commission * cartResponse.getGrabitComissionTax())/100;
+        float total = (float) cartResponse.getTotalPrice();
+        float gst_cal = (float) (total * cartResponse.getTaxPercentage()) / 100;
+        float commission = (total * cartResponse.getGrabitComission()) / 100;
+        float commisionTax = (commission * cartResponse.getGrabitComissionTax()) / 100;
 
         float taxfee = gst_cal + commission + commisionTax;
-        binding.tvPriceTaxFee.setText("₹ "+String.valueOf(taxfee));
+        binding.tvPriceTaxFee.setText("₹ " + String.valueOf(taxfee));
     }
 
     @Override
@@ -90,8 +92,6 @@ public class MyOrder extends Fragment  implements CartView{
         binding.buttonContinue.setVisibility(View.GONE);
         binding.clBillList.setVisibility(View.GONE);
         binding.rvItemDetailsMyOrder.setVisibility(View.GONE);
-
-
         binding.layoutError.clError.setVisibility(View.VISIBLE);
         binding.layoutLoading.clLoading.setVisibility(View.GONE);
         binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
@@ -104,7 +104,7 @@ public class MyOrder extends Fragment  implements CartView{
         cartList = getCartResponse.getProductList();
         GlobalData.Cart = getCartResponse.getProducts();
 
-        if(getCartResponse.getProductList()==null){
+        if (getCartResponse.getProductList() == null) {
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
@@ -115,8 +115,7 @@ public class MyOrder extends Fragment  implements CartView{
             binding.buttonApplyPromoCode.setVisibility(View.GONE);
             binding.buttonContinue.setVisibility(View.GONE);
             binding.clBillList.setVisibility(View.GONE);
-        }
-        else {
+        } else {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
@@ -159,16 +158,16 @@ public class MyOrder extends Fragment  implements CartView{
             });
             binding.rvItemDetailsMyOrder.setAdapter(cartAdapter);
             binding.rvItemDetailsMyOrder.setLayoutManager(new LinearLayoutManager(getContext()));
-            binding.tvPriceSubtotal.setText("₹ "+getCartResponse.getTotalPrice().toString());
+            binding.tvPriceSubtotal.setText("₹ " + getCartResponse.getTotalPrice().toString());
 
-            float total =(float) getCartResponse.getTotalPrice();
-            float  gst_cal = (total * getCartResponse.getTaxPercentage())/100;
-            float commission = (total * getCartResponse.getGrabitComission())/100;
-            float commisionTax = (commission * getCartResponse.getGrabitComissionTax())/100;
+            float total = (float) getCartResponse.getTotalPrice();
+            float gst_cal = (total * getCartResponse.getTaxPercentage()) / 100;
+            float commission = (total * getCartResponse.getGrabitComission()) / 100;
+            float commisionTax = (commission * getCartResponse.getGrabitComissionTax()) / 100;
 
             float taxfee = gst_cal + commission + commisionTax;
-            binding.tvPriceTaxFee.setText("₹ "+String.valueOf(taxfee));
-            binding.tvPriceDelivery.setText("₹ "+getCartResponse.getDeliveryCharges().toString());
+            binding.tvPriceTaxFee.setText("₹ " + String.valueOf(taxfee));
+            binding.tvPriceDelivery.setText("₹ " + getCartResponse.getDeliveryCharges().toString());
 
         }
     }
@@ -213,9 +212,9 @@ public class MyOrder extends Fragment  implements CartView{
     @Override
     public void onResume() {
         super.onResume();
-        if(Common.isConnected()){
+        if (Common.isConnected()) {
             cartPresenter.getCallCart();
-        }else{
+        } else {
 
             binding.clActionBar.setVisibility(View.GONE);
             binding.cardItemsMyOrder.setVisibility(View.GONE);

@@ -33,6 +33,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -141,6 +142,10 @@ Call<Otp> getingOtp(@Field("phone") String phone);
 
     @GET("api/user/order")
     Call<List<Order>> getOrder();
+
+
+    @GET("api/user/order/{id}")
+    Call<Order> getOrderbyid(@Path("id") int id);
 
 
 }

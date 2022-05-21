@@ -3,6 +3,7 @@ package com.example.urban_food.Helper;
 import com.example.urban_food.Adapter.AddressAdapter;
 import com.example.urban_food.model.Address;
 import com.example.urban_food.model.Cart;
+import com.example.urban_food.model.Order;
 import com.example.urban_food.model.User;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class GlobalData {
     public static List<com.example.urban_food.model.Address> Address;
     public static String search;
     public static Address editAddress;
-
+    public static Order orders;
     public static double latitudeC;
     public static double longitudeC;
     public static String address ="";
