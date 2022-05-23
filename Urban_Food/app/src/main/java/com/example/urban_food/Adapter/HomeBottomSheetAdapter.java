@@ -38,6 +38,8 @@ public class HomeBottomSheetAdapter extends RecyclerView.Adapter<HomeBottomSheet
         holder.binding.tvAddress.setOnClickListener(view -> {
             GlobalData.longitude=addressList.get(position).getLongitude();
             GlobalData.latitude=addressList.get(position).getLatitude();
+
+            GlobalData.userAddressSelect = addressList.get(position);
             callback.passer(true);
         });
     }

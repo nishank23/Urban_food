@@ -1,14 +1,16 @@
 package com.example.urban_food.fragment.myorder;
 
+import android.app.AlertDialog;
+import android.location.Location;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.urban_food.Activities.ShopsDetail.cart.CartPresenter;
 import com.example.urban_food.Activities.ShopsDetail.cart.CartView;
@@ -30,6 +32,8 @@ public class MyOrder extends Fragment implements CartView {
     int cartQty;
     CartAdapter cartAdapter;
     int cartId;
+    float total;
+    double lat,lon;
     CartPresenter cartPresenter = new CartPresenter(this);
     List<Cart> cartList = new ArrayList<>();
 
@@ -49,8 +53,68 @@ public class MyOrder extends Fragment implements CartView {
             binding.buttonContinue.setVisibility(View.GONE);
             binding.clBillList.setVisibility(View.GONE);
             binding.rvItemDetailsMyOrder.setVisibility(View.GONE);
-
             cartPresenter.getCallCart();
+            binding.ivDeleteMyOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                    dialog.setTitle("Confirmation");
+                    dialog.setMessage("Do you want to delete current cart");
+                    dialog.setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss());
+                    dialog.setPositiveButton("Yes", (dialogInterface, i) -> {
+                        cartPresenter.getClearCart();
+                        GlobalData.Cart.clear();
+                        dialogInterface.dismiss();
+                    });
+                    dialog.show();
+
+
+                }
+            });
+            binding.buttonContinue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    //start point
+                    Location startPoint=new Location("locationA");
+                    startPoint.setLatitude(GlobalData.userAddressSelect.getLatitude());
+                    startPoint.setLongitude(GlobalData.userAddressSelect.getLongitude());
+
+                    //end point
+                    Location endPoint=new Location("locationA");
+                    endPoint.setLatitude(GlobalData.Cart.get(0).getProduct().getShop().getLatitude());
+                    endPoint.setLongitude(GlobalData.Cart.get(0).getProduct().getShop().getLongitude());
+
+
+
+                    double distance=startPoint.distanceTo(endPoint);
+                    float distanceround = Math.round(distance * 100) / 100000;
+
+                    if(distanceround>10){
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setTitle("Location is too far");
+                        dialog.setMessage("This location is too far away from the restaurant to deliver.Please pick location near to the restaurant");
+                        dialog.setPositiveButton("Ok", (dialogInterface, i) -> {
+                            dialogInterface.dismiss();
+                        });
+                        dialog.show();
+
+                    }else if (total<150){
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setTitle("Add more items in the cart");
+                        dialog.setMessage("Cart value should be equal to or more then 150");
+                        dialog.setPositiveButton("Ok", (dialogInterface, i) -> {
+                            dialogInterface.dismiss();
+                        });
+                        dialog.show();
+                    }else{
+
+                    }
+                    Log.d("distance",""+String.valueOf(distanceround));
+                }
+            });
+
+
         } else {
 
             binding.clActionBar.setVisibility(View.GONE);
@@ -73,6 +137,8 @@ public class MyOrder extends Fragment implements CartView {
     public void onSuccessCartView(AddCart cartResponse) {
 
         GlobalData.Cart = cartResponse.getProducts();
+
+
         binding.tvPriceSubtotal.setText("₹ " + cartResponse.getTotalPrice().toString());
 
         float total = (float) cartResponse.getTotalPrice();
@@ -81,7 +147,16 @@ public class MyOrder extends Fragment implements CartView {
         float commisionTax = (commission * cartResponse.getGrabitComissionTax()) / 100;
 
         float taxfee = gst_cal + commission + commisionTax;
-        binding.tvPriceTaxFee.setText("₹ " + String.valueOf(taxfee));
+        float taxfeeround = Math.round(taxfee * 100) / 100;
+
+        binding.tvPriceTaxFee.setText("₹ " + taxfeeround);
+        float finaltotal = total + taxfee + cartResponse.getDeliveryCharges();
+        float round = Math.round(finaltotal * 100) / 100;
+        Log.d("final", "" + String.valueOf(round));
+        binding.tvPriceDiscount.setText("₹ " + "0");
+        binding.buttonContinue.setText("Continue           " + "     " + "₹" + String.valueOf(round));
+
+
     }
 
     @Override
@@ -103,7 +178,6 @@ public class MyOrder extends Fragment implements CartView {
     public void onSuccessGetCartView(AddCart getCartResponse) {
         cartList = getCartResponse.getProductList();
         GlobalData.Cart = getCartResponse.getProducts();
-
         if (getCartResponse.getProductList() == null) {
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
@@ -160,21 +234,29 @@ public class MyOrder extends Fragment implements CartView {
             binding.rvItemDetailsMyOrder.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.tvPriceSubtotal.setText("₹ " + getCartResponse.getTotalPrice().toString());
 
-            float total = (float) getCartResponse.getTotalPrice();
+            total = (float) getCartResponse.getTotalPrice();
             float gst_cal = (total * getCartResponse.getTaxPercentage()) / 100;
             float commission = (total * getCartResponse.getGrabitComission()) / 100;
             float commisionTax = (commission * getCartResponse.getGrabitComissionTax()) / 100;
 
             float taxfee = gst_cal + commission + commisionTax;
-            binding.tvPriceTaxFee.setText("₹ " + String.valueOf(taxfee));
+            float taxfeeround = Math.round(taxfee * 100) / 100;
+
+            binding.tvPriceTaxFee.setText("₹ " + taxfeeround);
             binding.tvPriceDelivery.setText("₹ " + getCartResponse.getDeliveryCharges().toString());
+
+            float finaltotal = total + taxfee + getCartResponse.getDeliveryCharges();
+            float round = Math.round(finaltotal * 100) / 100;
+            binding.tvPriceDiscount.setText("₹ " + "0");
+            binding.buttonContinue.setText("Continue           " + "     " + "₹" + String.valueOf(round));
+
 
         }
     }
 
     @Override
     public void onSuccessGetClearCartView(String message) {
-
+        Toast.makeText(getActivity(), "Cart Deleted Successfully", Toast.LENGTH_SHORT).show();
     }
 
     @Override

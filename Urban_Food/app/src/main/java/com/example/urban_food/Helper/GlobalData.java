@@ -19,6 +19,7 @@ public class GlobalData {
     public static List<com.example.urban_food.model.Address> Address;
     public static String search;
     public static Address editAddress;
+    public static Address userAddressSelect;
     public static Order orders;
     public static double latitudeC;
     public static double longitudeC;
