@@ -5,6 +5,7 @@ import com.example.urban_food.Helper.Common;
 import com.example.urban_food.model.Order;
 import com.google.android.gms.common.api.Api;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -60,6 +61,39 @@ public class OrderPresenter {
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
                 Common.showToast(""+t.getLocalizedMessage());
+            }
+        });
+    }
+
+
+   public void getOngoingOrder(){
+        view.showProgress();
+
+        ApiClient.getRetrofit().getOngoingOrder().enqueue(new Callback<List<Order>>() {
+            @Override
+            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+                if(response.isSuccessful() && response.body()!=null) {
+                    view.dismissProgress();
+                    view.getOngoingOrder(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Order>> call, Throwable t) {
+
+            }
+        });
+    }
+    public void orderplaced(HashMap<String,String> map){
+        ApiClient.getRetrofit().orderPlaced(map).enqueue(new Callback<Order>() {
+            @Override
+            public void onResponse(Call<Order> call, Response<Order> response) {
+                view.getOrderIdSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Order> call, Throwable t) {
+
             }
         });
     }

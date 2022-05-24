@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.OngoingOrder.OngoingOrderActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_heavy"
+            android:padding="10dp"
+            android:text="Ongoing Order"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_heavy"
+            android:padding="10dp"
+            android:text="Cancel"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_back_my_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                app:layout_constraintBottom_toTopOf="@id/order_detail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-28dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/order_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order Will be Delivered"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/map" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_orderplace"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/order_detail"
+                >
+            <ImageView
+                android:id="@+id/iv_order_placed"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:alpha=".5"
+                android:layout_marginStart="15dp"
+                android:src="@drawable/ic_icons8_purchase_order"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_order_placed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Placed"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:fontFamily="@font/avenir_heavy"
+                android:textColor="@color/light_grey"
+
+                app:layout_constraintTop_toTopOf="@id/iv_order_placed"
+                app:layout_constraintStart_toEndOf="@id/iv_order_placed"
+                />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_order_placed2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We have received your order."
+                android:textSize="13sp"
+                android:textColor="@color/light_grey"
+
+                android:fontFamily="@font/avenir_book"
+                app:layout_constraintStart_toStartOf="@id/tv_order_placed"
+                app:layout_constraintTop_toBottomOf="@id/tv_order_placed"/>
+            <com.ghedeon.dottedlineview.DottedLineView
+                android:id="@+id/placedot"
+                android:layout_width="12dp"
+                android:layout_height="32dp"
+                app:color="@color/black"
+                android:alpha=".5"
+
+                app:layout_constraintEnd_toEndOf="@id/iv_order_placed"
+                app:layout_constraintStart_toStartOf="@id/iv_order_placed"
+                app:layout_constraintTop_toBottomOf="@id/iv_order_placed"
+                app:minGap="1dp"
+                app:radius="1.5dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_orderconfirmed"
+                android:layout_width="match_parent"
+
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/const_orderplace"
+                >
+            <ImageView
+                android:id="@+id/iv_order_confirmed"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:alpha=".5"
+
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:padding="1.5dp"
+                android:src="@drawable/ic_order_confirmation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_order_confirmed"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:text="Order Confirmed"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:textColor="@color/light_grey"
+
+                android:fontFamily="@font/avenir_heavy"
+                app:layout_constraintTop_toTopOf="@id/iv_order_confirmed"
+                app:layout_constraintStart_toEndOf="@id/iv_order_confirmed"
+                />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_order_confirmed2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your order has been confirmed."
+                android:textSize="13sp"
+                android:textColor="@color/light_grey"
+
+                android:fontFamily="@font/avenir_book"
+                app:layout_constraintStart_toStartOf="@id/tv_order_confirmed"
+                app:layout_constraintTop_toBottomOf="@id/tv_order_confirmed"/>
+            <com.ghedeon.dottedlineview.DottedLineView
+                android:id="@+id/confirmdot"
+                android:layout_width="12dp"
+                android:layout_height="32dp"
+                android:alpha=".5"
+                app:color="@color/black"
+                app:layout_constraintEnd_toEndOf="@id/iv_order_confirmed"
+                app:layout_constraintStart_toStartOf="@id/iv_order_confirmed"
+                app:layout_constraintTop_toBottomOf="@id/iv_order_confirmed"
+                app:minGap="1dp"
+                app:radius="1.5dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_orderprocessed"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/const_orderconfirmed"
+                >
+                <ImageView
+                    android:id="@+id/iv_order_processed"
+                    android:alpha=".5"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_order_newcook"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_order_processed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Processed"
+                    android:layout_marginStart="20dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/light_grey"
+
+                    android:fontFamily="@font/avenir_heavy"
+                    app:layout_constraintTop_toTopOf="@id/iv_order_processed"
+                    app:layout_constraintStart_toEndOf="@id/iv_order_processed"
+                    />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_order_processed2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your food is getting cooked."
+                    android:textSize="13sp"
+                    android:textColor="@color/light_grey"
+
+                    android:fontFamily="@font/avenir_book"
+                    app:layout_constraintStart_toStartOf="@id/tv_order_processed"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_processed"/>
+                <com.ghedeon.dottedlineview.DottedLineView
+                    android:id="@+id/processeddot"
+                    android:alpha=".5"
+                    android:layout_width="12dp"
+                    android:layout_height="32dp"
+                    app:color="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/iv_order_processed"
+                    app:layout_constraintStart_toStartOf="@id/iv_order_processed"
+                    app:layout_constraintTop_toBottomOf="@id/iv_order_processed"
+                    app:minGap="1dp"
+                    app:radius="1.5dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_orderpickedup"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/const_orderprocessed"
+                >
+                <ImageView
+                    android:id="@+id/iv_order_picked"
+                    android:alpha=".5"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_icons8_food_delivery"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_order_picked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Order Pickedup"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/light_grey"
+
+                    android:textSize="20sp"
+                    android:fontFamily="@font/avenir_heavy"
+                    app:layout_constraintTop_toTopOf="@id/iv_order_picked"
+                    app:layout_constraintStart_toEndOf="@id/iv_order_picked"
+                    />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_order_picked2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your food is on its way."
+                    android:textSize="13sp"
+                    android:textColor="@color/light_grey"
+
+                    android:fontFamily="@font/avenir_book"
+                    app:layout_constraintStart_toStartOf="@id/tv_order_picked"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_picked"/>
+                <com.ghedeon.dottedlineview.DottedLineView
+                    android:id="@+id/pickeddot"
+                    android:alpha=".5"
+                    android:layout_width="12dp"
+                    android:layout_height="32dp"
+                    app:color="@color/black"
+                    app:layout_constraintEnd_toEndOf="@id/iv_order_picked"
+                    app:layout_constraintStart_toStartOf="@id/iv_order_picked"
+                    app:layout_constraintTop_toBottomOf="@id/iv_order_picked"
+                    app:minGap="1dp"
+                    app:radius="1.5dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/const_orderdelivered"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/const_orderpickedup"
+                >
+                <ImageView
+                    android:id="@+id/iv_order_delivered"
+                    android:alpha=".5"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_order_delivered"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_order_delivered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_grey"
+
+                    android:text="Order Delivered"
+                    android:layout_marginStart="20dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/avenir_heavy"
+                    app:layout_constraintTop_toTopOf="@id/iv_order_delivered"
+                    app:layout_constraintStart_toEndOf="@id/iv_order_delivered"
+                    />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_order_delivered2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enjoy Your Meal."
+                    android:textSize="13sp"
+                    android:textColor="@color/light_grey"
+
+                    android:fontFamily="@font/avenir_book"
+                    app:layout_constraintStart_toStartOf="@id/tv_order_delivered"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_delivered"/>
+                />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

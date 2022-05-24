@@ -148,6 +148,14 @@ Call<Otp> getingOtp(@Field("phone") String phone);
     Call<Order> getOrderbyid(@Path("id") int id);
 
 
+
+    @GET("api/user/ongoing/order")
+    Call<List<Order>> getOngoingOrder();
+
+    @FormUrlEncoded
+    @POST("api/user/order")
+    Call<Order> orderPlaced(@FieldMap HashMap<String, String> map);
+
 }
 
 

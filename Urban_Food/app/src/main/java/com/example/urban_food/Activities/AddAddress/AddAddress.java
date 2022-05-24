@@ -1,11 +1,5 @@
 package com.example.urban_food.Activities.AddAddress;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.transition.Slide;
-import androidx.transition.TransitionManager;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -22,7 +16,12 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import com.example.urban_food.Activities.SplashScreen.SplashActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.transition.Slide;
+import androidx.transition.TransitionManager;
+
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityAddAddressBinding;
@@ -49,7 +48,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 

@@ -93,4 +93,9 @@ LayoutOrderloadingBinding layoutLoadingBinding;
         finish();
 
     }
+
+    @Override
+    public void getOngoingOrder(List<Order> orderList) {
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.urban_food.fragment.myorder;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.urban_food.Activities.OngoingOrder.OngoingOrderActivity;
+import com.example.urban_food.Activities.PastOrder.OrderPresenter;
+import com.example.urban_food.Activities.PastOrder.OrderView;
 import com.example.urban_food.Activities.ShopsDetail.cart.CartPresenter;
 import com.example.urban_food.Activities.ShopsDetail.cart.CartView;
 import com.example.urban_food.Activities.ShopsDetail.cart.RvMenuInterface;
@@ -21,12 +25,13 @@ import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.databinding.FragmentMyOrderBinding;
 import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.Cart;
+import com.example.urban_food.model.Order;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MyOrder extends Fragment implements CartView {
+public class MyOrder extends Fragment implements CartView, OrderView {
     FragmentMyOrderBinding binding;
     int cartProductId;
     int cartQty;
@@ -35,6 +40,7 @@ public class MyOrder extends Fragment implements CartView {
     float total;
     double lat,lon;
     CartPresenter cartPresenter = new CartPresenter(this);
+    OrderPresenter presenter = new OrderPresenter(this);
     List<Cart> cartList = new ArrayList<>();
 
     @Override
@@ -74,12 +80,18 @@ public class MyOrder extends Fragment implements CartView {
             binding.buttonContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Location startPoint=new Location("locationA");
 
                     //start point
-                    Location startPoint=new Location("locationA");
-                    startPoint.setLatitude(GlobalData.userAddressSelect.getLatitude());
-                    startPoint.setLongitude(GlobalData.userAddressSelect.getLongitude());
+                    if(GlobalData.userAddressSelect==null)
+                    {
+                        startPoint.setLatitude(GlobalData.latitudeC);
+                        startPoint.setLongitude(GlobalData.longitudeC);
+                    }else{
+                        startPoint.setLatitude(GlobalData.userAddressSelect.getLatitude());
+                        startPoint.setLongitude(GlobalData.userAddressSelect.getLongitude());
 
+                    }
                     //end point
                     Location endPoint=new Location("locationA");
                     endPoint.setLatitude(GlobalData.Cart.get(0).getProduct().getShop().getLatitude());
@@ -99,7 +111,7 @@ public class MyOrder extends Fragment implements CartView {
                         });
                         dialog.show();
 
-                    }else if (total<150){
+                    }else if (total<1){
                         AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                         dialog.setTitle("Add more items in the cart");
                         dialog.setMessage("Cart value should be equal to or more then 150");
@@ -108,7 +120,12 @@ public class MyOrder extends Fragment implements CartView {
                         });
                         dialog.show();
                     }else{
+                        HashMap<String,String> map = new HashMap<>();
+                        map.put("payment_mode","cash");
 
+                        map.put("user_address_id",GlobalData.userAddressSelect.getId().toString());
+
+                        presenter.orderplaced(map);
                     }
                     Log.d("distance",""+String.valueOf(distanceround));
                 }
@@ -312,4 +329,37 @@ public class MyOrder extends Fragment implements CartView {
         }
 
     }
+
+    @Override
+    public void getOrder(List<Order> orderList) {
+
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void dismissProgress() {
+
+    }
+
+    @Override
+    public void getOrderId(int id) {
+
+    }
+
+    @Override
+    public void getOrderIdSuccess(Order orderList) {
+        Common.showToast("orderplaced Sucessfuully");
+        startActivity(new Intent(getActivity(), OngoingOrderActivity.class));
+
+    }
+
+    @Override
+    public void getOngoingOrder(List<Order> orderList) {
+
+    }
+
 }

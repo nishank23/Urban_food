@@ -10,7 +10,7 @@ public interface OrderView {
     void dismissProgress();
     void getOrderId(int id);
     void getOrderIdSuccess(Order orderList);
-
+    void getOngoingOrder(List<Order> orderList);
 
 
 /*

@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.urban_food">
 
+    <uses-feature android:name="android.hardware.location.network" />
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Helper.MyApplication"
         android:allowBackup="true"
@@ -10,6 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
+
         <activity
             android:name=".Activities.PastOrder.PastOrderIdActivity"
             android:exported="false" />
@@ -43,12 +53,12 @@
         <activity
             android:name=".Activities.SplashScreen.SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"><!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity
             android:name=".Activities.Home.HomeNewActivity"
@@ -78,7 +88,6 @@
             android:name=".Activities.WelcomeScreen.WelcomeScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Activities.ChangePassowrdScreen.ChangePassword"
             android:exported="true"
@@ -87,6 +96,16 @@
             android:name=".Activities.Wallet.Wallet"
             android:exported="true"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.OngoingOrder.OngoingOrderActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
@@ -95,15 +114,5 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_api_key1" />
     </application>
-    <uses-feature android:name="android.hardware.location.network" />
-    <uses-feature android:name="android.hardware.location.gps" />
-    <uses-permission android:name="android.permission.READ_SMS" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
