@@ -62,18 +62,6 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
         binding = ActivityOngoingOrderBinding.inflate(getLayoutInflater());
         orderPresenter = new OrderPresenter(this);
         setContentView(binding.getRoot());
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        origin = new MarkerOptions().position(new LatLng(GlobalData.userAddressSelect.getLatitude(), GlobalData.userAddressSelect.getLongitude())).title("User").snippet("origin");
-        destination = new MarkerOptions().position(new LatLng(21.185103,  72.8142795)).title("Restaurant").snippet("destination");
-
-        String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
-
-        DownloadTask downloadTask = new DownloadTask();
-
-        // Start downloading json data from Google Directions API
-        downloadTask.execute(url);
 
 
         mHandler = new Handler();
@@ -168,9 +156,21 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
 
 
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
          deslat=orderList.get(0).getShop().getLatitude();
          deslong=orderList.get(0).getShop().getLongitude();
+        origin = new MarkerOptions().position(new LatLng(GlobalData.userAddressSelect.getLatitude(), GlobalData.userAddressSelect.getLongitude())).title("User").snippet("origin");
+        destination = new MarkerOptions().position(new LatLng(deslat,  deslong)).title("Restaurant").snippet("destination");
+
+        String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
+
+        DownloadTask downloadTask = new DownloadTask();
+
+        // Start downloading json data from Google Directions API
+        downloadTask.execute(url);
 
         if (orderList != null) {
             for (int i = 0; i < orderList.get(0).getOrdertiming().size(); i++) {
