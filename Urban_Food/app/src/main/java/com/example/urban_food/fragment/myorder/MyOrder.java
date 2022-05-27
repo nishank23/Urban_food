@@ -171,7 +171,10 @@ public class MyOrder extends Fragment implements CartView, OrderView {
         float round = Math.round(finaltotal * 100) / 100;
         Log.d("final", "" + String.valueOf(round));
         binding.tvPriceDiscount.setText("₹ " + "0");
-        binding.buttonContinue.setText("Continue           " + "     " + "₹" + String.valueOf(round));
+        binding.btnTxtview.setText("₹ " +String.valueOf(round));
+/*
+        binding.buttonContinue.setText("Continue           " + "     " +  );
+*/
 
 
     }
@@ -265,7 +268,8 @@ public class MyOrder extends Fragment implements CartView, OrderView {
             float finaltotal = total + taxfee + getCartResponse.getDeliveryCharges();
             float round = Math.round(finaltotal * 100) / 100;
             binding.tvPriceDiscount.setText("₹ " + "0");
-            binding.buttonContinue.setText("Continue           " + "     " + "₹" + String.valueOf(round));
+
+            binding.btnTxtview.setText("₹ " +String.valueOf(round));
 
 
         }

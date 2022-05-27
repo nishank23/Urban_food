@@ -11,6 +11,8 @@ import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityPastOrderBinding;
 import com.example.urban_food.databinding.ActivityPastOrderIdBinding;
 
+import com.example.urban_food.R;
+
 public class PastOrderIdActivity extends AppCompatActivity {
 ActivityPastOrderIdBinding binding;
     @Override
