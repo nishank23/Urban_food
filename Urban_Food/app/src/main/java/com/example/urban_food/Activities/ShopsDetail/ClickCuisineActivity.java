@@ -15,6 +15,7 @@ import com.example.urban_food.fragment.explore.ExploreInterface;
 import com.example.urban_food.fragment.explore.ExplorePresenter;
 import com.example.urban_food.fragment.explore.ExploreView;
 import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.RestaurantsData;
 import com.example.urban_food.model.Shop;
 
 import java.util.HashMap;
@@ -64,8 +65,8 @@ public class ClickCuisineActivity extends AppCompatActivity implements ExploreVi
     }
 
     @Override
-    public void onSuccessShops(List<Shop> shopsItemList) {
-        if (shopsItemList.isEmpty()) {
+    public void onSuccessShops(RestaurantsData shopsItemList) {
+        if (shopsItemList.getShops().isEmpty()) {
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
@@ -78,7 +79,7 @@ public class ClickCuisineActivity extends AppCompatActivity implements ExploreVi
             binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
             binding.rvCuisinesShops.setVisibility(View.VISIBLE);
 
-            PopularthisWeekAdapter adapterCuisine = new PopularthisWeekAdapter(this, shopsItemList, new ExploreInterface() {
+            PopularthisWeekAdapter adapterCuisine = new PopularthisWeekAdapter(this, shopsItemList.getShops(), new ExploreInterface() {
                 @Override
                 public void cuisineItem(String data, String path) {
                     Intent intent = new Intent(ClickCuisineActivity.this,ShopsDetailsActivity.class);

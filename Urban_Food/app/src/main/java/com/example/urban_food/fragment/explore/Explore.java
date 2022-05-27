@@ -1,5 +1,6 @@
 package com.example.urban_food.fragment.explore;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.urban_food.Activities.Home.HomeActivity;
+import com.example.urban_food.Activities.Home.HomeNewActivity;
+import com.example.urban_food.Activities.OngoingOrder.OngoingOrderActivity;
 import com.example.urban_food.Activities.SearchScreen.SearchActivity;
 import com.example.urban_food.Activities.ShopsDetail.ClickCuisineActivity;
 import com.example.urban_food.Activities.ShopsDetail.ShopsDetailsActivity;
@@ -18,16 +22,20 @@ import com.example.urban_food.Adapter.DiscoverNewPlacesAdapter;
 import com.example.urban_food.Adapter.PopularthisWeekAdapter;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
+import com.example.urban_food.databinding.BottomsheetHomeLayoutBinding;
+import com.example.urban_food.databinding.BottomsheetOngoingOrderBinding;
 import com.example.urban_food.databinding.FragmentExploreBinding;
 import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.RestaurantsData;
 import com.example.urban_food.model.Shop;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class Explore extends Fragment implements ExploreView {
     FragmentExploreBinding binding;
-
+    Dialog dialog;
     DiscoverNewPlacesAdapter discoverNewPlacesAdapter;
     PopularthisWeekAdapter popularThisWeek;
     CuisineCategoryAdapter cuisineCategoryAdapter;
@@ -49,7 +57,8 @@ public class Explore extends Fragment implements ExploreView {
             if (GlobalData.users != null)
                 map.put("user_id", String.valueOf(GlobalData.users.getId()));
             else
-                map.put("user_id", "1");
+
+            map.put("user_id", "1");
             map.put("latitude", String.valueOf(GlobalData.latitude));
             map.put("longitude", String.valueOf(GlobalData.longitude));
             shopspresenter.shops(map);
@@ -64,6 +73,8 @@ public class Explore extends Fragment implements ExploreView {
             binding.nsv1.setVisibility(View.GONE);
             binding.etSearch.setVisibility(View.GONE);
             binding.ivSearch.setVisibility(View.GONE);
+            binding.ivAddress.setVisibility(View.GONE);
+            binding.tvAddresslist.setVisibility(View.GONE);
         } else {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
@@ -75,6 +86,9 @@ public class Explore extends Fragment implements ExploreView {
             binding.nsv1.setVisibility(View.GONE);
             binding.etSearch.setVisibility(View.GONE);
             binding.ivSearch.setVisibility(View.GONE);
+
+            binding.ivAddress.setVisibility(View.GONE);
+            binding.tvAddresslist.setVisibility(View.GONE);
         }
 
         binding.etSearch.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +102,17 @@ public class Explore extends Fragment implements ExploreView {
         return binding.getRoot();
     }
 
+
+    void bottom(){
+        binding.bottomsheet.main.setVisibility(View.VISIBLE);
+        binding.bottomsheet.ongoingviewbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), OngoingOrderActivity.class));
+
+            }
+        });
+    }
 
     @Override
     public void onSuccessCuisine(List<Cuisine> cuisineResponseItems) {
@@ -111,12 +136,14 @@ public class Explore extends Fragment implements ExploreView {
     }
 
     @Override
-    public void onSuccessShops(List<Shop> shopsItemList) {
-        if (shopsItemList.isEmpty()) {
+    public void onSuccessShops(RestaurantsData shopsItemList) {
+        if (shopsItemList.getShops().isEmpty()) {
             binding.recyclerDiscoverNewPlace.setVisibility(View.GONE);
+            binding.bottomsheet.main.setVisibility(View.GONE);
+
             binding.tvNewPlace.setVisibility(View.GONE);
         } else {
-            discoverNewPlacesAdapter = new DiscoverNewPlacesAdapter(getActivity(), shopsItemList, new ExploreInterface() {
+            discoverNewPlacesAdapter = new DiscoverNewPlacesAdapter(getActivity(), shopsItemList.getShops(), new ExploreInterface() {
                 @Override
                 public void cuisineItem(String data, String path) {
 
@@ -126,6 +153,21 @@ public class Explore extends Fragment implements ExploreView {
                     startActivity(intent);
                 }
             });
+            if(shopsItemList.getCurrentOrder()!=null) {
+                binding.bottomsheet.carttext.setText("Ongoing Order :"+shopsItemList.getCurrentOrder().getStatus().toLowerCase());
+                bottom();
+
+            }else{
+                binding.bottomsheet.main.setVisibility(View.GONE);
+            }
+            binding.tvAddresslist.setText(GlobalData.userAddressSelect.getMapAddress());
+            binding.tvAddresslist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getActivity(), HomeNewActivity.class));
+                }
+            });
+
             binding.recyclerDiscoverNewPlace.setAdapter(discoverNewPlacesAdapter);
             binding.recyclerDiscoverNewPlace.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
@@ -159,6 +201,11 @@ public class Explore extends Fragment implements ExploreView {
         binding.layoutNodata.clNoData.setVisibility(View.GONE);
         binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
         binding.nsv1.setVisibility(View.VISIBLE);
+        binding.etSearch.setVisibility(View.VISIBLE);
+        binding.ivSearch.setVisibility(View.VISIBLE);
+
+        binding.ivAddress.setVisibility(View.VISIBLE);
+        binding.tvAddresslist.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -184,4 +231,44 @@ public class Explore extends Fragment implements ExploreView {
 
     //shopsDetails
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Common.isConnected()) {
+            map = new HashMap();
+            if (GlobalData.users != null)
+                map.put("user_id", String.valueOf(GlobalData.users.getId()));
+            else
+
+                map.put("user_id", "1");
+            map.put("latitude", String.valueOf(GlobalData.latitude));
+            map.put("longitude", String.valueOf(GlobalData.longitude));
+            shopspresenter.shops(map);
+
+
+            binding.layoutLoading.clLoading.setVisibility(View.VISIBLE);
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.GONE);
+            binding.layoutNoInternet.clNoInternet.setVisibility(View.GONE);
+
+
+            binding.nsv1.setVisibility(View.GONE);
+            binding.etSearch.setVisibility(View.GONE);
+            binding.ivSearch.setVisibility(View.GONE);
+        } else {
+
+            binding.layoutLoading.clLoading.setVisibility(View.GONE);
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.GONE);
+            binding.layoutNoInternet.clNoInternet.setVisibility(View.VISIBLE);
+
+
+            binding.nsv1.setVisibility(View.GONE);
+            binding.etSearch.setVisibility(View.GONE);
+            binding.ivSearch.setVisibility(View.GONE);
+        }
+
+
+    }
 }

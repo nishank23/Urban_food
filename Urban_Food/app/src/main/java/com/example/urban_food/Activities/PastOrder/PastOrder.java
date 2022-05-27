@@ -98,4 +98,9 @@ LayoutOrderloadingBinding layoutLoadingBinding;
     public void getOngoingOrder(List<Order> orderList) {
 
     }
+
+    @Override
+    public void deleteOrder(String msg) {
+
+    }
 }

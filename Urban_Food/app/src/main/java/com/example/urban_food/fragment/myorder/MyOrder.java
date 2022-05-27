@@ -362,4 +362,9 @@ public class MyOrder extends Fragment implements CartView, OrderView {
 
     }
 
+    @Override
+    public void deleteOrder(String msg) {
+
+    }
+
 }
