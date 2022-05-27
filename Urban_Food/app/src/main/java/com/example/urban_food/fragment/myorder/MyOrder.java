@@ -142,7 +142,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
             binding.rvItemDetailsMyOrder.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
-            binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.GONE);
             binding.layoutNoInternet.layoutNoInternet.setVisibility(View.VISIBLE);
         }
 
@@ -152,31 +152,50 @@ public class MyOrder extends Fragment implements CartView, OrderView {
 
     @Override
     public void onSuccessCartView(AddCart cartResponse) {
+        if(cartResponse.getProducts().size()==0)
+        {
 
-        GlobalData.Cart = cartResponse.getProducts();
+            binding.clActionBar.setVisibility(View.GONE);
+            binding.cardItemsMyOrder.setVisibility(View.GONE);
+            binding.buttonApplyPromoCode.setVisibility(View.GONE);
+            binding.buttonContinue.setVisibility(View.GONE);
+            binding.clBillList.setVisibility(View.GONE);
+            binding.rvItemDetailsMyOrder.setVisibility(View.GONE);
+            binding.layoutError.clError.setVisibility(View.GONE);
+            binding.layoutLoading.clLoading.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
+            binding.layoutNoInternet.layoutNoInternet.setVisibility(View.GONE);
 
 
-        binding.tvPriceSubtotal.setText("₹ " + cartResponse.getTotalPrice().toString());
 
-        float total = (float) cartResponse.getTotalPrice();
-        float gst_cal = (float) (total * cartResponse.getTaxPercentage()) / 100;
-        float commission = (total * cartResponse.getGrabitComission()) / 100;
-        float commisionTax = (commission * cartResponse.getGrabitComissionTax()) / 100;
+        }
 
-        float taxfee = gst_cal + commission + commisionTax;
-        float taxfeeround = Math.round(taxfee * 100) / 100;
+        else {
 
-        binding.tvPriceTaxFee.setText("₹ " + taxfeeround);
-        float finaltotal = total + taxfee + cartResponse.getDeliveryCharges();
-        float round = Math.round(finaltotal * 100) / 100;
-        Log.d("final", "" + String.valueOf(round));
-        binding.tvPriceDiscount.setText("₹ " + "0");
-        binding.btnTxtview.setText("₹ " +String.valueOf(round));
+            GlobalData.Cart = cartResponse.getProducts();
+
+
+            binding.tvPriceSubtotal.setText("₹ " + cartResponse.getTotalPrice().toString());
+
+            float total = (float) cartResponse.getTotalPrice();
+            float gst_cal = (float) (total * cartResponse.getTaxPercentage()) / 100;
+            float commission = (total * cartResponse.getGrabitComission()) / 100;
+            float commisionTax = (commission * cartResponse.getGrabitComissionTax()) / 100;
+
+            float taxfee = gst_cal + commission + commisionTax;
+            float taxfeeround = Math.round(taxfee * 100) / 100;
+
+            binding.tvPriceTaxFee.setText("₹ " + taxfeeround);
+            float finaltotal = total + taxfee + cartResponse.getDeliveryCharges();
+            float round = Math.round(finaltotal * 100) / 100;
+            Log.d("final", "" + String.valueOf(round));
+            binding.tvPriceDiscount.setText("₹ " + "0");
+            binding.btnTxtview.setText("₹ " +String.valueOf(round));
 /*
         binding.buttonContinue.setText("Continue           " + "     " +  );
 */
 
-
+        }
     }
 
     @Override
@@ -198,7 +217,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
     public void onSuccessGetCartView(AddCart getCartResponse) {
         cartList = getCartResponse.getProductList();
         GlobalData.Cart = getCartResponse.getProducts();
-        if (getCartResponse.getProductList() == null) {
+        if (getCartResponse.getProductList().size() == 0) {
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
