@@ -166,11 +166,13 @@ public class MyOrder extends Fragment implements CartView, OrderView {
             binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
             binding.layoutNoInternet.layoutNoInternet.setVisibility(View.GONE);
 
+            binding.llBtn.setVisibility(View.GONE);
 
 
         }
 
         else {
+            binding.llBtn.setVisibility(View.VISIBLE);
 
             GlobalData.Cart = cartResponse.getProducts();
 
@@ -208,7 +210,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
         binding.rvItemDetailsMyOrder.setVisibility(View.GONE);
         binding.layoutError.clError.setVisibility(View.VISIBLE);
         binding.layoutLoading.clLoading.setVisibility(View.GONE);
-        binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
+        binding.layoutNodata.clNoData.setVisibility(View.GONE);
         binding.layoutNoInternet.layoutNoInternet.setVisibility(View.GONE);
 
     }
@@ -228,6 +230,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
             binding.buttonApplyPromoCode.setVisibility(View.GONE);
             binding.buttonContinue.setVisibility(View.GONE);
             binding.clBillList.setVisibility(View.GONE);
+            binding.llBtn.setVisibility(View.GONE);
         } else {
 
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
@@ -241,6 +244,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
             binding.buttonApplyPromoCode.setVisibility(View.VISIBLE);
             binding.buttonContinue.setVisibility(View.VISIBLE);
             binding.clBillList.setVisibility(View.VISIBLE);
+            binding.llBtn.setVisibility(View.VISIBLE);
 
 
             for (int i = 0; i < getCartResponse.getProductList().size(); i++) {
@@ -310,7 +314,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
 
         binding.layoutError.clError.setVisibility(View.GONE);
         binding.layoutLoading.clLoading.setVisibility(View.VISIBLE);
-        binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
+        binding.layoutNodata.clNoData.setVisibility(View.GONE);
         binding.layoutNoInternet.layoutNoInternet.setVisibility(View.GONE);
     }
 
@@ -326,7 +330,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
 
         binding.layoutError.clError.setVisibility(View.GONE);
         binding.layoutLoading.clLoading.setVisibility(View.GONE);
-        binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
+        binding.layoutNodata.clNoData.setVisibility(View.GONE);
         binding.layoutNoInternet.layoutNoInternet.setVisibility(View.GONE);
     }
 
@@ -347,7 +351,7 @@ public class MyOrder extends Fragment implements CartView, OrderView {
 
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
-            binding.layoutNodata.layoutNodata.setVisibility(View.GONE);
+            binding.layoutNodata.clNoData.setVisibility(View.GONE);
             binding.layoutNoInternet.layoutNoInternet.setVisibility(View.VISIBLE);
         }
 
