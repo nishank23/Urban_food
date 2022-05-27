@@ -72,10 +72,10 @@ public class OrderPresenter {
         ApiClient.getRetrofit().getOngoingOrder().enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
-                if(response.isSuccessful() && response.body()!=null) {
+
                     view.dismissProgress();
                     view.getOngoingOrder(response.body());
-                }
+
             }
 
             @Override
@@ -93,6 +93,19 @@ public class OrderPresenter {
 
             @Override
             public void onFailure(Call<Order> call, Throwable t) {
+
+            }
+        });
+    }
+    public void deleteOrder(String path ,String reason ){
+        ApiClient.getRetrofit().cancelOngoingOrder(path,reason).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                view.deleteOrder(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
 
             }
         });

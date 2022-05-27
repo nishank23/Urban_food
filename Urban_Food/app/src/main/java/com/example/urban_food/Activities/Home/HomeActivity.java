@@ -35,6 +35,7 @@ import com.example.urban_food.fragment.favorite.Favorite;
 import com.example.urban_food.fragment.myorder.MyOrder;
 import com.example.urban_food.fragment.profile.Profile;
 import com.example.urban_food.model.Cuisine;
+import com.example.urban_food.model.RestaurantsData;
 import com.example.urban_food.model.Shop;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -349,7 +350,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener,
     }
 
     @Override
-    public void onSuccessShops(List<Shop> shopsItemList) {
+    public void onSuccessShops(RestaurantsData shopsItemList) {
 
     }
 

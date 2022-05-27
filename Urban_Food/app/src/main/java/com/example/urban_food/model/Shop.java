@@ -104,6 +104,10 @@ public class Shop {
     @SerializedName("categories")
     @Expose
     private List<Category> categories = null;
+    @SerializedName("current_order")
+    @Expose
+    private Order currentOrder;
+
 
     public Integer getId() {
         return id;
@@ -327,5 +331,12 @@ public class Shop {
 
     public void setOpenClose(String openClose) {
         this.openClose = openClose;
+    }
+    public Order getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public void setCurrentOrder(Order currentOrder) {
+        this.currentOrder = currentOrder;
     }
 }

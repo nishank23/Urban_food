@@ -82,6 +82,7 @@
                 android:id="@+id/const_orderplace"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/order_detail"
@@ -351,6 +352,8 @@
                 />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 

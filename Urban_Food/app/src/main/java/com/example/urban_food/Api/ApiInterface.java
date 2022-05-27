@@ -156,6 +156,10 @@ Call<Otp> getingOtp(@Field("phone") String phone);
     @POST("api/user/order")
     Call<Order> orderPlaced(@FieldMap HashMap<String, String> map);
 
+
+    @DELETE("api/user/order/{id}")
+    Call<String> cancelOngoingOrder(@Path("id") String orderid,@Query("reason") String reason);
+
 }
 
 

@@ -26,7 +26,7 @@ public class ExplorePresenter {
             public void onResponse(Call<RestaurantsData> call, Response<RestaurantsData> response) {
                 view.dismissProgressShops();
                 if (response.isSuccessful() && response.body() != null) {
-                    view.onSuccessShops(response.body().getShops());
+                    view.onSuccessShops(response.body());
                 } else {
                     view.onErrorShops();
                 }
