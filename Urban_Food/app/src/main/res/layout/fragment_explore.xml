@@ -13,7 +13,7 @@
         android:text="Address"
         android:paddingStart="35dp"
         android:paddingTop="10dp"
-        android:textSize="20sp"
+        android:textSize="10sp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -25,8 +25,8 @@
 
     <ImageView
         android:id="@+id/iv_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="10dp"
         android:src="@drawable/ic_baseline_my_location_24"
         app:layout_constraintBottom_toBottomOf="@id/tv_addresslist"

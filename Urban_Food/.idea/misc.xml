@@ -105,6 +105,7 @@
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/activity_verifyphone.xml" value="0.25" />
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/activity_wallet.xml" value="0.264" />
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/bottomsheet_home_layout.xml" value="0.25" />
+        <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/fragment_explore.xml" value="0.536" />
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/fragment_my_order.xml" value="0.4" />
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/layout_error.xml" value="0.25" />
@@ -114,27 +115,19 @@
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/recycler_layout_items_my_order.xml" value="0.25" />
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/recycler_layout_menu.xml" value="0.25" />
         <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/recycler_order_history.xml" value="0.264" />
+        <entry key="..\:/Urban_food/Urban_Food/app/src/main/res/layout/search_product_recylcer_layout.xml" value="0.25" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/anonymous_pro.xml" value="0.19666524155622062" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/avenir.xml" value="0.20649850363403163" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/font/welcomescreenfonts.xml" value="0.19666524155622062" />
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/bg_dotted_line.xml" value="0.135" />
-        <entry key="app/src/main/res/drawable/backgroundet.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/bg_dotted_line1.xml" value="0.18" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_edit_text.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_icon_close.xml" value="0.1225" />
-        <entry key="app/src/main/res/drawable/ic_myprofile.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_non-veg.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_non_veg.xml" value="0.116" />
-        <entry key="app/src/main/res/drawable/ic_profile_address.xml" value="0.1295" />
-        <entry key="app/src/main/res/drawable/ic_profile_help.xml" value="0.1295" />
-        <entry key="app/src/main/res/drawable/ic_profile_myorder.xml" value="0.1565" />
-        <entry key="app/src/main/res/drawable/ic_proflie_help.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_veg.xml" value="0.102" />
-        <entry key="app/src/main/res/drawable/ic_wallet_profile.xml" value="0.1565" />
-        <entry key="app/src/main/res/drawable/order_cancelled_img.xml" value="0.135" />
-        <entry key="app/src/main/res/drawable/rounded_textview.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/roundedbutton_blue.xml" value="0.135" />
         <entry key="app/src/main/res/layout/activity_add_address.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.17552083333333332" />
@@ -147,14 +140,10 @@
         <entry key="app/src/main/res/layout/activity_profile_view.xml" value="0.10063463281958296" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_shops_details.xml" value="0.10063463281958296" />
-        <entry key="app/src/main/res/layout/bottomsheet_home_layout.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/bottomsheet_ongoing_order.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/dialog_reason.xml" value="0.25" />
         <entry key="app/src/main/res/layout/discover_newplace_recyclerlayout.xml" value="0.12" />
-        <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.19114583333333332" />
         <entry key="app/src/main/res/layout/fragment_my_order.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="app/src/main/res/layout/layout_error.xml" value="0.22" />
         <entry key="app/src/main/res/layout/layout_loading.xml" value="0.5634517766497462" />
         <entry key="app/src/main/res/layout/layout_location_loading.xml" value="0.67" />
