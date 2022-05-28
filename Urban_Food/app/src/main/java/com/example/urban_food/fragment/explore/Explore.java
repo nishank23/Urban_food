@@ -160,7 +160,9 @@ public class Explore extends Fragment implements ExploreView {
             }else{
                 binding.bottomsheet.main.setVisibility(View.GONE);
             }
+            if(GlobalData.userAddressSelect.getMapAddress()!=null)
             binding.tvAddresslist.setText(GlobalData.userAddressSelect.getMapAddress());
+
             binding.tvAddresslist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -119,10 +119,13 @@
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/bg_dotted_line.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/bg_dotted_line1.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_danger_svgrepo_com.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/ic_edit_text.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_icon_close.xml" value="0.1225" />
+        <entry key="app/src/main/res/drawable/ic_locationnew.xml" value="0.2015" />
+        <entry key="app/src/main/res/drawable/ic_lock_overturning.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_non-veg.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_non_veg.xml" value="0.116" />
         <entry key="app/src/main/res/drawable/ic_veg.xml" value="0.102" />

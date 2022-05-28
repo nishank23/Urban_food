@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +32,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -162,8 +167,8 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
 
          deslat=orderList.get(0).getShop().getLatitude();
          deslong=orderList.get(0).getShop().getLongitude();
-        origin = new MarkerOptions().position(new LatLng(GlobalData.userAddressSelect.getLatitude(), GlobalData.userAddressSelect.getLongitude())).title("User").snippet("origin");
-        destination = new MarkerOptions().position(new LatLng(deslat,  deslong)).title("Restaurant").snippet("destination");
+        origin = new MarkerOptions().position(new LatLng(GlobalData.userAddressSelect.getLatitude(), GlobalData.userAddressSelect.getLongitude())).title("User").snippet("origin").icon(bitmapDescriptorFromVector(this,R.drawable.ic_map_location));
+        destination = new MarkerOptions().position(new LatLng(deslat,  deslong)).title("Restaurant").snippet("destination").icon(bitmapDescriptorFromVector(this,R.drawable.ic_map_location));
 
         String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
 
@@ -220,6 +225,14 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
 
         }
     }
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context, int vectorResId) {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
 
     @Override
     public void deleteOrder(String msg) {
@@ -250,7 +263,8 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
         mMap = googleMap;
         mMap.addMarker(origin);
         mMap.addMarker(destination);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(origin.getPosition(), 14));
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(origin.getPosition(), 12));
     }
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
@@ -320,7 +334,7 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
 
                 lineOptions.addAll(points);
                 lineOptions.width(12);
-                lineOptions.color(Color.RED);
+                lineOptions.color(Color.BLACK);
                 lineOptions.geodesic(true);
 
             }

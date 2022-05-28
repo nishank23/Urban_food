@@ -62,12 +62,24 @@
 
             <fragment
                 android:id="@+id/map"
+                xmlns:map="http://schemas.android.com/apk/res-auto"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="450dp"
                 app:layout_constraintBottom_toTopOf="@id/order_detail"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="-28dp" />
+
+                map:cameraBearing="112.5"
+                map:cameraTargetLat="21.187416"
+                map:cameraTargetLng="72.81586"
+                map:cameraTilt="30"
+                map:mapType="normal"
+                map:uiCompass="false"
+                map:uiRotateGestures="true"
+                map:uiScrollGestures="false"
+                map:uiTiltGestures="true"
+                map:uiZoomControls="false"
+                map:uiZoomGestures="true" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/order_detail"

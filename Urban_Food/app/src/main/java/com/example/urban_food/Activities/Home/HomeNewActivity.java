@@ -332,9 +332,9 @@ public class HomeNewActivity extends AppCompatActivity implements LocationListen
             GlobalData.latitudeC = mLastLocation.getLatitude();
             GlobalData.longitudeC = mLastLocation.getLongitude();
             /*Log.e("latitude", "" + mLastLocation.getLatitude());
-            Log.e("longitude", "" + mLastLocation.getLongitude());
+            Log.e("longitude", "" + mLastLocation.getLongitude());*/
             Log.e("GlobalData.latitude", "" + GlobalData.latitude);
-            Log.e("GlobalData.longitude ", "" + GlobalData.longitude);*/
+            Log.e("GlobalData.longitude ", "" + GlobalData.longitude);
             getAddress();
         }
 
