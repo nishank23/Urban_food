@@ -83,6 +83,14 @@ public class AddAddress extends AppCompatActivity implements AddAddressView, OnM
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        binding.ivBackMyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+
         if (isEdit) {
             binding.btnlogin.setText("Update Address");
             binding.etHouse.setText(GlobalData.editAddress.getBuilding());
@@ -99,6 +107,7 @@ public class AddAddress extends AppCompatActivity implements AddAddressView, OnM
                 binding.etOther.setText(GlobalData.editAddress.getType());
             }
         } else {
+            binding.btnlogin.setText("Add Address");
             binding.etHouse.setText("");
             binding.etAddress.setText("");
             binding.etLandmark.setText("");

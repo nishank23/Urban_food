@@ -199,7 +199,9 @@ public class SplashActivity extends AppCompatActivity implements LoginActivityVi
     protected void onResume() {
         super.onResume();
         if (checkPermissions()) {
+/*
             getLastLocation();
+*/
         }
     }
 
@@ -215,6 +217,12 @@ public class SplashActivity extends AppCompatActivity implements LoginActivityVi
                             GlobalData.addressHeader = obj.getAddressLine(0);
                             GlobalData.address = obj.getAddressLine(0);
                             Log.v("Formatted Address", "" + GlobalData.addressHeader);
+                            com.example.urban_food.model.Address currAdd = new com.example.urban_food.model.Address();
+                            currAdd.setMapAddress(obj.getAddressLine(0));
+                            currAdd.setLatitude(latitude1);
+                            currAdd.setLongitude(longitude1);
+                            GlobalData.userAddressSelect = currAdd;
+
                         }
 
                         goToNextScreen();
@@ -222,6 +230,11 @@ public class SplashActivity extends AppCompatActivity implements LoginActivityVi
                         if (GlobalData.addressHeader.equalsIgnoreCase("")) {
                             GlobalData.addressHeader = "" +GlobalData.latitude + "" + GlobalData.longitude;
                             GlobalData.address = "" + GlobalData.latitude + "" + GlobalData.longitude;
+                            com.example.urban_food.model.Address currAdd = new com.example.urban_food.model.Address();
+                            currAdd.setMapAddress(GlobalData.latitude + "" + GlobalData.longitude);
+                            currAdd.setLatitude(latitude1);
+                            currAdd.setLongitude(longitude1);
+                            GlobalData.userAddressSelect = currAdd;
                         }
                         goToNextScreen();
                         e.printStackTrace();
@@ -230,6 +243,11 @@ public class SplashActivity extends AppCompatActivity implements LoginActivityVi
                     if (GlobalData.addressHeader.equalsIgnoreCase("")) {
                         GlobalData.addressHeader = "" + GlobalData.latitude + "" + GlobalData.longitude;
                         GlobalData.address = "" + GlobalData.latitude + "" + GlobalData.longitude;
+                        com.example.urban_food.model.Address currAdd = new com.example.urban_food.model.Address();
+                        currAdd.setMapAddress(GlobalData.latitude + "" + GlobalData.longitude);
+                        currAdd.setLatitude(latitude1);
+                        currAdd.setLongitude(longitude1);
+                        GlobalData.userAddressSelect = currAdd;
                     }
                     goToNextScreen();
                 }

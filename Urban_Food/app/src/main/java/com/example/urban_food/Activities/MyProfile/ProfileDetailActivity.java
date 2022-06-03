@@ -53,6 +53,12 @@ public class ProfileDetailActivity extends AppCompatActivity implements PickiTCa
 
 
         });
+        binding.ivBackMyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
 
         if (GlobalData.users != null) {

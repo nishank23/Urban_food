@@ -15,7 +15,6 @@
         android:text="Order id"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="20dp"
-        android:background="@drawable/rounded_textview"
         app:layout_constraintTop_toTopOf="parent"
         app:cornerRadius="10dp"
         android:layout_marginStart="20dp"

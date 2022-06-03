@@ -7,5 +7,11 @@ public interface FavoriteView {
     void onSuccessFavorite(String msg);
     void getFavorite(FavoriteList response);
     void deleteFavorite(String msg);
+    void onErrorShops();
+
+    void showProgressShops();
+
+    void dismissProgressShops();
+
 
 }

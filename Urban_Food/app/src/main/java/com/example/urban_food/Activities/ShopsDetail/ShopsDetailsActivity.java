@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -42,6 +44,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     CartPresenter cartPresenter;
     ShopDetailsPresenter shopDetailsPresenter;
     FavoritePresenter favoritePresenter;
+    ProgressDialog progressDialog;
 
     boolean checker = false;
 
@@ -56,7 +59,12 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
         pathImage = getIntent().getStringExtra("pathImage");
         shopDetailsPresenter = new ShopDetailsPresenter(this);
         if (Common.isConnected()) {
-
+            binding.ivBackShopsDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onBackPressed();
+                }
+            });
             binding.layoutLoading.clLoading.setVisibility(View.VISIBLE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.GONE);
@@ -69,6 +77,15 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
             map.put("user_id", String.valueOf(GlobalData.users.getId()));
             shopDetailsPresenter.getShopDetails(map);
             favoritePresenter.getFavorite();
+
+            binding.ivCart.cartlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onBackPressed();
+                    GlobalData.pastorder=true;
+                }
+            });
+
 
             binding.ivFavrouite.setOnClickListener(view -> {
                 if (!checker) {
@@ -83,7 +100,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 */
                     android.app.AlertDialog.Builder dialog = new AlertDialog.Builder(ShopsDetailsActivity.this);
                     dialog.setTitle("Delete Favorite");
-                    dialog.setMessage("Do you want to delete the Favorite");
+                    dialog.setMessage("Do you want to remove the Favorite");
                     dialog.setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss());
                     dialog.setPositiveButton("Yes", (dialogInterface, i) -> {
                         favoritePresenter.deleteFavorite(shopId);
@@ -93,9 +110,6 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
                 }
             });
-
-
-
 
 
         } else {
@@ -118,7 +132,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
 
         if (shopDetailList.isEmpty()) {
-
+            binding.ivCart.cartlay.setVisibility(View.GONE);
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.VISIBLE);
@@ -131,7 +145,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
             binding.tvFullMenu.setVisibility(View.GONE);
             binding.rvMenu.setVisibility(View.GONE);
         } else {
-
+            binding.ivCart.cartlay.setVisibility(View.VISIBLE);
             binding.layoutLoading.clLoading.setVisibility(View.GONE);
             binding.layoutError.clError.setVisibility(View.GONE);
             binding.layoutNodata.clNoData.setVisibility(View.GONE);
@@ -148,6 +162,25 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
                     .with(this)
                     .load(pathImage)
                     .into(binding.ivShopShopsDetail);
+            int quantity = 0;
+            for (int i = 0; i < shopDetailList.get(0).getProducts().size(); i++) {
+
+                if (!shopDetailList.get(0).getProducts().get(i).getCart().isEmpty()) {
+                    quantity = quantity + shopDetailList.get(0).getProducts().get(i).getCart().get(0).getQuantity();
+                }
+            }
+            if (quantity == 0) {
+                binding.ivCart.cartlay.setVisibility(View.GONE);
+            } else {
+                binding.ivCart.cartlay.setVisibility(View.VISIBLE);
+                binding.ivCart.badge.setText(String.valueOf(quantity));
+            }
+
+
+
+/*
+            Log.d("checking",""+String.valueOf(shopDetailList.get(0).getProducts().get(0).getCart().get(0).getQuantity())+" "+String.valueOf(shopDetailList.get(0).getProducts().get(1).getCart().get(0).getQuantity())+" "+String.valueOf(shopDetailList.get(0).getProducts().get(2).getCart().get(0).getQuantity()));
+*/
 
             MenuAdapter menuAdapter = new MenuAdapter(this, shopDetailList, new RvMenuInterface() {
                 @Override
@@ -178,20 +211,12 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
                 @Override
                 public void clearCartPara(Boolean check, int id, int value) {
+                    GlobalData.Cart.clear();
                     cartProductId = id;
                     cartQty = value;
                     cartPresenter = new CartPresenter(ShopsDetailsActivity.this);
                     cartPresenter.getClearCart();
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("product_id", String.valueOf(cartProductId));
-                    map.put("quantity", String.valueOf(cartQty));
-                    cartPresenter.callCart(map);
-
-
-
                 }
-
-
             });
             binding.rvMenu.setAdapter(menuAdapter);
             binding.rvMenu.setLayoutManager(new LinearLayoutManager(this));
@@ -199,6 +224,7 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
         }
     }
+
 
     @Override
     public void onErrorShopDetails() {
@@ -228,6 +254,19 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
     @Override
     public void onSuccessCartView(AddCart cartResponse) {
         GlobalData.Cart = cartResponse.getProducts();
+
+        int quantity = 0;
+        if (cartResponse.getProducts().size() == 0) {
+            binding.ivCart.cartlay.setVisibility(View.GONE);
+        } else {
+            for (int i = 0; i < cartResponse.getProducts().size(); i++) {
+
+                quantity = quantity + cartResponse.getProducts().get(i).getQuantity();
+            }
+            binding.ivCart.cartlay.setVisibility(View.VISIBLE);
+            binding.ivCart.badge.setText(String.valueOf(quantity));
+        }
+
     }
 
     @Override
@@ -237,21 +276,46 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
 
     @Override
     public void onSuccessGetCartView(AddCart getCartResponse) {
+        GlobalData.Cart = getCartResponse.getProducts();
+
+
+        int quantity = 0;
+        if (getCartResponse.getProducts().size() == 0) {
+            binding.ivCart.cartlay.setVisibility(View.GONE);
+        } else {
+            for (int i = 0; i < getCartResponse.getProducts().size(); i++) {
+
+                quantity = quantity + getCartResponse.getProducts().get(i).getQuantity();
+            }
+            binding.ivCart.cartlay.setVisibility(View.VISIBLE);
+            binding.ivCart.badge.setText(String.valueOf(quantity));
+        }
     }
 
     @Override
     public void onSuccessGetClearCartView(String message) {
+        cartPresenter = new CartPresenter(ShopsDetailsActivity.this);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("product_id", String.valueOf(cartProductId));
+        map.put("quantity", String.valueOf(cartQty));
+        cartPresenter.callCart(map);
 
     }
 
     @Override
     public void showProgressShops() {
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
     @Override
     public void dismissProgressShops() {
-
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     @Override
@@ -280,5 +344,10 @@ public class ShopsDetailsActivity extends AppCompatActivity implements ShopDetai
         checker = false;
         Toast.makeText(this, "Favorite Removed", Toast.LENGTH_SHORT).show();
         binding.ivFavrouite.setImageResource(R.drawable.ic_favroite);
+    }
+
+    @Override
+    public void onErrorShops() {
+
     }
 }

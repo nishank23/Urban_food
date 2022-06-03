@@ -21,11 +21,14 @@ public class CartPresenter {
     }
 
     public void callCart(HashMap<String, String> map) {
+        view.showProgressShops();
 
         ApiClient.getRetrofit().postCartDetails(map).enqueue(new Callback<AddCart>() {
             @Override
             public void onResponse(Call<AddCart> call, Response<AddCart> response) {
+
                 if (response.isSuccessful() && response.body() != null) {
+                    view.dismissProgressShops();
                     view.onSuccessCartView(response.body());
                 } else {
                     view.dismissProgressShops();
@@ -41,12 +44,11 @@ public class CartPresenter {
     }
 
     public void getCallCart() {
+
         ApiClient.getRetrofit().getCartDetail().enqueue(new Callback<AddCart>() {
             @Override
             public void onResponse(Call<AddCart> call, Response<AddCart> response) {
-                view.showProgressShops();
                 if (response.isSuccessful() && response.body() != null) {
-                    view.dismissProgressShops();
                     view.onSuccessGetCartView(response.body());
                     Log.d("test1",""+response.body().getTotalPrice().toString());
                 } else {
@@ -84,10 +86,10 @@ public class CartPresenter {
     }
 
     public void getClearCart() {
+        view.showProgressShops();
         ApiClient.getRetrofit().clearCartCall().enqueue(new Callback<ClearCart>() {
             @Override
             public void onResponse(Call<ClearCart> call, Response<ClearCart> response) {
-                view.showProgressShops();
                 if (response.isSuccessful() && response.body() != null) {
                     view.dismissProgressShops();
                     view.onSuccessGetClearCartView(response.message());

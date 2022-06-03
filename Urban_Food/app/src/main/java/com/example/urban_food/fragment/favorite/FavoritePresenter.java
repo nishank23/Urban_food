@@ -18,6 +18,7 @@ public class FavoritePresenter {
     }
 
     public void addFavorite(String shopid){
+
         ApiClient.getRetrofit().addFavorite(shopid).enqueue(new Callback<AddFavoriteResponse>() {
             @Override
                 public void onResponse(Call<AddFavoriteResponse> call, Response<AddFavoriteResponse> response) {
@@ -40,6 +41,7 @@ public class FavoritePresenter {
         ApiClient.getRetrofit().getFavorite().enqueue(new Callback<FavoriteList>() {
             @Override
             public void onResponse(Call<FavoriteList> call, Response<FavoriteList> response) {
+
                 if(response.isSuccessful() && response.body()!=null){
                     view.getFavorite(response.body());
                 }else{

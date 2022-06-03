@@ -96,8 +96,8 @@ public class RvMenuAdapter extends RecyclerView.Adapter<RvMenuAdapter.Holder> {
                         callback.clearCartPara(true,productList.get(position).getId(),1);
 
                         Log.d("clear",""+productList.get(position).getId());
-                        GlobalData.Cart.clear();
                         dialogInterface.dismiss();
+                        holder.binding.etQuantity.setText(String.valueOf(1));
 
 
                         holder.binding.btnAdd.setVisibility(View.GONE);

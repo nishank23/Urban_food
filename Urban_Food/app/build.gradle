@@ -91,4 +91,7 @@ dependencies {
     //vertical dotted line
     implementation 'com.github.ghedeon:dottedLineView:1.0.0'
 
+
+    implementation 'com.nex3z:notification-badge:1.0.4'
+
 }

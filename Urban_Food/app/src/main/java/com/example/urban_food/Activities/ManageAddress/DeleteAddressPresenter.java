@@ -38,7 +38,7 @@ public class DeleteAddressPresenter {
     }
 
 
-    void getAddress(){
+    public void getAddress(){
         ApiClient.getRetrofit().getAddress().enqueue(new Callback<List<Address>>() {
             @Override
             public void onResponse(Call<List<Address>> call, Response<List<Address>> response) {

@@ -34,7 +34,12 @@ public class ClickCuisineActivity extends AppCompatActivity implements ExploreVi
         setContentView(binding.getRoot());
 
         cuisine_id = getIntent().getStringExtra("cuisine");
-
+        binding.ivBackCuisines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         if (Common.isConnected()) {
             binding.layoutLoading.clLoading.setVisibility(View.VISIBLE);
             binding.layoutError.clError.setVisibility(View.GONE);

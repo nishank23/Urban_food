@@ -25,4 +25,6 @@ public class GlobalData {
     public static double longitudeC;
     public static String address ="";
     public static String addressHeader="";
+    public static boolean pastorder=false;
+
 }

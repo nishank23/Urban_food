@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Urban_Food">
-
+        <activity
+            android:name=".Activities.SelectAddress.SelectAddress"
+            android:exported="false" />
         <activity
             android:name=".Activities.PastOrder.PastOrderIdActivity"
             android:exported="false" />
@@ -51,6 +53,8 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:theme="@style/SplashScreen"
+
             android:name=".Activities.SplashScreen.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -99,8 +103,7 @@
         <activity
             android:name=".Activities.OngoingOrder.OngoingOrderActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

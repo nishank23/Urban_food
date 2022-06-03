@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.urban_food.Activities.Login.LoginActivity;
 import com.example.urban_food.Helper.Common;
@@ -23,6 +24,13 @@ public class CreateAccount extends AppCompatActivity implements CreateAccountVie
         phoneString=getIntent().getStringExtra("phone");
         binding.etPhoneCreateAccount.setText(phoneString);
         binding.etPhoneCreateAccount.setEnabled(false);
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
 
         clickEvent();
     }

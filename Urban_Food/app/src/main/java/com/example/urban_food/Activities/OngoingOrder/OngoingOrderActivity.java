@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.urban_food.Activities.Home.HomeNewActivity;
 import com.example.urban_food.Activities.PastOrder.OrderPresenter;
 import com.example.urban_food.Activities.PastOrder.OrderView;
+import com.example.urban_food.Activities.PastOrder.PastOrderIdActivity;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityOngoingOrderBinding;
@@ -60,6 +61,7 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
     private GoogleMap mMap;
     double lat,lon,deslat,deslong;
     MarkerOptions origin, destination;
+    int shopid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,12 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
         orderPresenter = new OrderPresenter(this);
         setContentView(binding.getRoot());
 
-
+        binding.ivBackMyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         mHandler = new Handler();
 
         runnable = new Runnable() {
@@ -112,7 +119,14 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
         dialogReasonBinding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
                 orderPresenter.deleteOrder(String.valueOf(id), dialogReasonBinding.spnreason.getSelectedItem().toString());
+
+
+
             }
         });
         dialogReasonBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +163,9 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
 
     @Override
     public void getOrderIdSuccess(Order orderList) {
+        GlobalData.orders=orderList;
+        startActivity(new Intent(this, PastOrderIdActivity.class));
+        finish();
     }
 
     @Override
@@ -167,7 +184,7 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
 
          deslat=orderList.get(0).getShop().getLatitude();
          deslong=orderList.get(0).getShop().getLongitude();
-        origin = new MarkerOptions().position(new LatLng(GlobalData.userAddressSelect.getLatitude(), GlobalData.userAddressSelect.getLongitude())).title("User").snippet("origin").icon(bitmapDescriptorFromVector(this,R.drawable.ic_map_location));
+        origin = new MarkerOptions().position(new LatLng(orderList.get(0).getAddress().getLatitude(),orderList.get(0).getAddress().getLongitude())).title("User").snippet("origin").icon(bitmapDescriptorFromVector(this,R.drawable.ic_map_location));
         destination = new MarkerOptions().position(new LatLng(deslat,  deslong)).title("Restaurant").snippet("destination").icon(bitmapDescriptorFromVector(this,R.drawable.ic_map_location));
 
         String url = getDirectionsUrl(origin.getPosition(), destination.getPosition());
@@ -216,6 +233,7 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
                     @Override
                     public void onClick(View view) {
                         setSpinnerAdapter(orderList.get(0).getId());
+                        shopid=orderList.get(0).getId();
                     }
                 });
 
@@ -238,7 +256,18 @@ public class OngoingOrderActivity extends AppCompatActivity implements OrderView
     public void deleteOrder(String msg) {
         shouldStopLoop = true;
         Toast.makeText(this, "Order Delected Succesfullty", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, HomeNewActivity.class));
+        orderPresenter.getOrderId(shopid);
+
+    }
+
+    @Override
+    public void reorder(int id) {
+
+    }
+
+    @Override
+    public void reorderSucess(String msg) {
+
     }
 
     @Override

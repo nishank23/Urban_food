@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.urban_food.Activities.AddAddress.AddAddress;
@@ -35,6 +36,12 @@ public class ManageAddress extends AppCompatActivity implements AddressInterface
             intent.putExtra("isEdit", false);
             startActivity(intent);
 
+        });
+        binding.ivBackMyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
         });
 
 

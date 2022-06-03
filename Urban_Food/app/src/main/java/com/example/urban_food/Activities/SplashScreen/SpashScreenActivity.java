@@ -15,10 +15,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.urban_food.Activities.Home.HomeNewActivity;
 import com.example.urban_food.Activities.Login.LoginActivity;
@@ -28,6 +31,7 @@ import com.example.urban_food.Activities.WelcomeScreen.WelcomeScreenActivity;
 import com.example.urban_food.Helper.Common;
 import com.example.urban_food.Helper.GlobalData;
 import com.example.urban_food.Helper.PrefUtils;
+import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivitySpashScreenBinding;
 import com.example.urban_food.model.Address;
 import com.example.urban_food.model.Cart;
@@ -69,6 +73,12 @@ public class SpashScreenActivity extends AppCompatActivity implements LoginActiv
         binding = ActivitySpashScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getDeviceIdAndToken();
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.black));
+        }
 
 
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);

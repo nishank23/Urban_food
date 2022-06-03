@@ -160,6 +160,10 @@ Call<Otp> getingOtp(@Field("phone") String phone);
     @DELETE("api/user/order/{id}")
     Call<String> cancelOngoingOrder(@Path("id") String orderid,@Query("reason") String reason);
 
+    @FormUrlEncoded
+    @POST("api/user/reorder")
+    Call<AddCart> reorder(@Field("order_id") String id);
+
 }
 
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.urban_food.Activities.Otp.OtpActivity;
 import com.example.urban_food.Helper.Common;
@@ -26,6 +27,12 @@ public class VerifyPhone extends AppCompatActivity implements VerifyPhoneView {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         checker=getIntent().getBooleanExtra("checker", false);
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         binding.btnNext.setOnClickListener(view -> {
             if (binding.etPhoneNo.getText().toString().length() == 10) {
 

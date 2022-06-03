@@ -39,6 +39,12 @@ public class SearchActivity extends AppCompatActivity implements SearchActivityV
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         searchActivityPresenter = new SearchActivityPresenter(this);
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         binding.chipDishes.setOnClickListener(new View.OnClickListener() {
             @Override

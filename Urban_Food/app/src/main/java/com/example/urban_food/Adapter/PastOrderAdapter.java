@@ -40,6 +40,16 @@ public class PastOrderAdapter extends RecyclerView.Adapter<PastOrderAdapter.MyHo
         holder.binding.tvTimes.setText(orderList.get(position).getCreatedAt());
         holder.binding.tvItemAmount.setText(orderList.get(position).getInvoice().getNet().toString());
 
+
+        holder.binding.btnReorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            orderView.reorder(orderList.get(holder.getAbsoluteAdapterPosition()).getId());
+            }
+        });
+
+
+
         PastOrderItemAdapter adapter = new PastOrderItemAdapter(context, orderList.get(position).getItems());
         holder.binding.historyItemRecyclerview.setAdapter(adapter);
         holder.binding.historyItemRecyclerview.setLayoutManager(new LinearLayoutManager(context));

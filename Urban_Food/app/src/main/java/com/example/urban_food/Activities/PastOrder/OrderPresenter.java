@@ -2,6 +2,7 @@ package com.example.urban_food.Activities.PastOrder;
 
 import com.example.urban_food.Api.ApiClient;
 import com.example.urban_food.Helper.Common;
+import com.example.urban_food.model.AddCart;
 import com.example.urban_food.model.Order;
 import com.google.android.gms.common.api.Api;
 
@@ -107,6 +108,25 @@ public class OrderPresenter {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
 
+            }
+        });
+    }
+
+
+    public void getReorder(String id){
+        view.showProgress();
+        ApiClient.getRetrofit().reorder(id).enqueue(new Callback<AddCart>() {
+            @Override
+            public void onResponse(Call<AddCart> call, Response<AddCart> response) {
+                if(response.body()!=null && response.isSuccessful()){
+                    view.reorderSucess("Please Check cart");
+                    view.dismissProgress();
+                }
+
+            }
+            @Override
+            public void onFailure(Call<AddCart> call, Throwable t) {
+                    view.dismissProgress();
             }
         });
     }

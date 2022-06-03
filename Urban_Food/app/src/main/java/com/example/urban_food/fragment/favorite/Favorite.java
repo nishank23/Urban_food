@@ -1,5 +1,6 @@
 package com.example.urban_food.fragment.favorite;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ public class Favorite extends Fragment implements FavoriteView {
     FragmentFavoriteBinding binding;
     FavoritePresenter favoritePresenter;
     FavoriteAdapter favoriteAdapter;
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,11 +61,44 @@ public class Favorite extends Fragment implements FavoriteView {
             binding.rvFavorite.setAdapter(favoriteAdapter);
             binding.rvFavorite.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        }else{
+            binding.rvFavorite.setVisibility(View.GONE);
+            binding.tvFavorite.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void deleteFavorite(String msg) {
 
+    }
+
+    @Override
+    public void onErrorShops() {
+
+    }
+
+    @Override
+    public void showProgressShops() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Loading...");
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    @Override
+    public void dismissProgressShops() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        favoritePresenter = new FavoritePresenter(this);
+
+
+        favoritePresenter.getFavorite();
     }
 }

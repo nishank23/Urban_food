@@ -3,6 +3,7 @@ package com.example.urban_food.Activities.ChangePassowrdScreen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.urban_food.databinding.ActivityChangePasswordBinding;
@@ -19,6 +20,14 @@ public class ChangePassword extends AppCompatActivity implements ChangePasswordV
         binding = ActivityChangePasswordBinding.inflate(getLayoutInflater());
         changePasswordPresenter = new ChangePasswordPresenter(this);
         setContentView(binding.getRoot());
+
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         binding.btnCngpassword.setOnClickListener(view -> {
 
             if (binding.etOldpassword.getText().toString().isEmpty() && binding.etOldpassword.getText().length() <= 6) {

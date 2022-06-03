@@ -184,6 +184,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include
+        android:id="@+id/layout_notfound"
+        layout="@layout/layout_notfound"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
         android:id="@+id/bottomsheet"
         layout="@layout/bottomsheet_ongoing_order"
         android:layout_width="match_parent"

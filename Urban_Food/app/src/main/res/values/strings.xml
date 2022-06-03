@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Urban_Food</string>
+    <string name="app_name">Urban Food</string>
     <string name="forgot_password">Forgot password</string>
     <string name="forgot_password_text">Please enter your email address. You will receive a link to create a new password via email.</string>
     <string name="your_email">Your email</string>

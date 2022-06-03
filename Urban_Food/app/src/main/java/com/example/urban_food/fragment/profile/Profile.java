@@ -1,10 +1,12 @@
 package com.example.urban_food.fragment.profile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.Settings;
 import android.util.Log;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import com.avatarfirst.avatargenlib.AvatarGenerator;
 import com.bumptech.glide.Glide;
 import com.example.urban_food.Activities.ChangePassowrdScreen.ChangePassword;
+import com.example.urban_food.Activities.Login.LoginActivity;
 import com.example.urban_food.Activities.ManageAddress.ManageAddress;
 import com.example.urban_food.Activities.MyProfile.ProfileDetailActivity;
 import com.example.urban_food.Activities.MyProfile.ProfileDetailPresenter;
@@ -22,10 +25,14 @@ import com.example.urban_food.Activities.MyProfile.ProfileDetailView;
 import com.example.urban_food.Activities.PastOrder.PastOrder;
 import com.example.urban_food.Activities.Wallet.Wallet;
 import com.example.urban_food.Helper.GlobalData;
+import com.example.urban_food.Helper.PrefUtils;
+import com.example.urban_food.R;
 import com.example.urban_food.databinding.FragmentProfileBinding;
+import com.example.urban_food.fragment.myorder.MyOrder;
 import com.example.urban_food.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 
@@ -40,7 +47,7 @@ public class Profile extends Fragment implements ProfileDetailView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding=FragmentProfileBinding.inflate(getLayoutInflater(),container,false);
+        binding = FragmentProfileBinding.inflate(getLayoutInflater(), container, false);
   /*      getDeviceIdAndToken();
         HashMap<String, String> map = new HashMap<>();
         map.put("device_type", "android");
@@ -81,7 +88,7 @@ public class Profile extends Fragment implements ProfileDetailView {
         binding.arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent  intent = new Intent(getActivity(), ProfileDetailActivity.class);
+                Intent intent = new Intent(getActivity(), ProfileDetailActivity.class);
                 startActivity(intent);
             }
         });
@@ -89,7 +96,7 @@ public class Profile extends Fragment implements ProfileDetailView {
         binding.constraintWallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent  intent = new  Intent(getActivity(), Wallet.class);
+                Intent intent = new Intent(getActivity(), Wallet.class);
                 startActivity(intent);
             }
         });
@@ -102,9 +109,33 @@ public class Profile extends Fragment implements ProfileDetailView {
             }
         });
 
+        binding.constraintLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialAlertDialogBuilder(getActivity(), R.style.AlertDialogTheme)
+                        .setTitle("Logout")
+                        .setMessage("Are you sure you want to logout?")
+                        .setPositiveButton("Yes", (dialogInterface, i) -> {
+                            dialogInterface.dismiss();
+                            PrefUtils.clearPrefs(getActivity());
+                            GlobalData.userAddressSelect = null;
+                            GlobalData.editAddress = null;
+                            startActivity(new Intent(getActivity(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            getActivity().finish();
+                        })
+                        .setNegativeButton("No", (dialogInterface, i) -> {
+                            dialogInterface.dismiss();
+                        })
+                        .show();
+
+
+            }
+        });
+
 
         return binding.getRoot();
     }
+
     private void getDeviceIdAndToken() {
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
@@ -136,19 +167,21 @@ public class Profile extends Fragment implements ProfileDetailView {
     public void onResume() {
 
         super.onResume();
-        if (GlobalData.users != null) {
-            binding.tvProfileName.setText(GlobalData.users.getName());
-            Glide.with(getContext())
-                    .load("https://brokenfortest")
-                    .placeholder(new AvatarGenerator.AvatarBuilder(getActivity())
-                            .setLabel(GlobalData.users.getName())
-                            .setAvatarSize(250)
-                            .setTextSize(63)
-                            .toCircle()
-                            .build())
-                    .into(binding.ivImage);
-        }
 
+
+            if (GlobalData.users != null) {
+                binding.tvProfileName.setText(GlobalData.users.getName());
+                Glide.with(getContext())
+                        .load("https://brokenfortest")
+                        .placeholder(new AvatarGenerator.AvatarBuilder(getActivity())
+                                .setLabel(GlobalData.users.getName())
+                                .setAvatarSize(250)
+                                .setTextSize(63)
+                                .toCircle()
+                                .build())
+                        .into(binding.ivImage);
+
+        }
     }
 
     @Override

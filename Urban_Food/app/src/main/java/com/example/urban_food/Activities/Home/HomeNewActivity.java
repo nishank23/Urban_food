@@ -37,6 +37,7 @@ import com.example.urban_food.fragment.explore.Explore;
 import com.example.urban_food.fragment.favorite.Favorite;
 import com.example.urban_food.fragment.myorder.MyOrder;
 import com.example.urban_food.fragment.profile.Profile;
+import com.example.urban_food.model.Address;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -202,6 +203,18 @@ public class HomeNewActivity extends AppCompatActivity implements LocationListen
                     }
                 }
                 break;
+        }
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (GlobalData.pastorder){
+            binding.homeViewpager.setCurrentItem(2);
+            binding.bottomBar.selectTabAt(2, false);
+            GlobalData.pastorder=false;
         }
     }
 
@@ -374,13 +387,24 @@ public class HomeNewActivity extends AppCompatActivity implements LocationListen
                                 GlobalData.addressHeader = jsonArray.optJSONObject(0).optString("formatted_address");
                                 GlobalData.address = jsonArray.optJSONObject(0).optString("formatted_address");
                                 Log.v("Formatted Address", "" + GlobalData.addressHeader);
+                                Address currAdd = new Address();
+                                currAdd.setMapAddress(jsonArray.optJSONObject(0).optString("formatted_address"));
+                                currAdd.setLatitude(latitude);
+                                currAdd.setLongitude(longitude);
+                                GlobalData.userAddressSelect = currAdd;
                             }
                         } else {
                             if (GlobalData.addressHeader.equalsIgnoreCase("")) {
                                 GlobalData.addressHeader = "" + latitude + "" + longitude;
                                 GlobalData.address = "" + latitude + "" + longitude;
+                                Address currAdd = new Address();
+                                currAdd.setMapAddress("" + latitude + "" + longitude);
+                                currAdd.setLatitude(latitude);
+                                currAdd.setLongitude(longitude);
+                                GlobalData.userAddressSelect = currAdd;
                             }
                         }
+                    setAdapter();
 
                         //open viewpager
                     } catch (IOException e) {

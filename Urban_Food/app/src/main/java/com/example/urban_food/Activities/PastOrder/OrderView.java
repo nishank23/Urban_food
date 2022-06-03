@@ -12,6 +12,8 @@ public interface OrderView {
     void getOrderIdSuccess(Order orderList);
     void getOngoingOrder(List<Order> orderList);
     void deleteOrder(String msg);
+    void reorder(int id);
+    void reorderSucess(String msg);
 
 
 /*

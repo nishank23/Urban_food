@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,10 +41,42 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityVie
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         getDeviceIdAndToken();
 
         if (Common.isConnected()) {
+
+           /* binding.etPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus)
+                        binding.etPassword.setHint("");
+                    else
+                        binding.etPassword.setHint("Pasword");
+                }
+            });
+            binding.etPhoneNo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus)
+                        binding.etPhoneNo.setHint("");
+                    else
+                        binding.etPhoneNo.setHint("Phone Number");
+                }
+            });
+*/
+
+
+
+
+
+
+
+
+
             binding.tvSignUp.setOnClickListener(view -> {
                 Intent intent = new Intent(this, VerifyPhone.class);
                 intent.putExtra("checker", true);

@@ -119,6 +119,7 @@
         <entry key="..\:/Users/sunil/AndroidStudioProjects/Urban_Food/app/src/main/res/layout/welcome_screen.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/bg_dotted_line.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/bg_dotted_line1.xml" value="0.18" />
+        <entry key="app/src/main/res/drawable/cartbadge_bg.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/ic_danger_svgrepo_com.xml" value="0.135" />
@@ -128,37 +129,55 @@
         <entry key="app/src/main/res/drawable/ic_lock_overturning.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_non-veg.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_non_veg.xml" value="0.116" />
+        <entry key="app/src/main/res/drawable/ic_profile_myorder.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_veg.xml" value="0.102" />
+        <entry key="app/src/main/res/drawable/rounded_textview.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/roundedbutton_blue.xml" value="0.135" />
         <entry key="app/src/main/res/layout/activity_add_address.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.15904232578024796" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/activity_forgetpassword.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.13333333333333333" />
-        <entry key="app/src/main/res/layout/activity_manage_address.xml" value="0.444" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_manage_address.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_manage_address2.xml" value="0.1466438648995297" />
         <entry key="app/src/main/res/layout/activity_ongoing_order.xml" value="0.23953098827470687" />
         <entry key="app/src/main/res/layout/activity_past_order.xml" value="0.15904232578024796" />
         <entry key="app/src/main/res/layout/activity_past_order_id.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_profile_view.xml" value="0.10063463281958296" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_shops_details.xml" value="0.10063463281958296" />
+        <entry key="app/src/main/res/layout/activity_select_address.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_shops_details.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_spash_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/bottomsheet_home_layout.xml" value="0.12012692656391659" />
+        <entry key="app/src/main/res/layout/bottomsheet_payment_option.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/cartbadge.xml" value="0.75" />
         <entry key="app/src/main/res/layout/discover_newplace_recyclerlayout.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.19114583333333332" />
         <entry key="app/src/main/res/layout/fragment_my_order.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="app/src/main/res/layout/layout_error.xml" value="0.22" />
         <entry key="app/src/main/res/layout/layout_loading.xml" value="0.5634517766497462" />
         <entry key="app/src/main/res/layout/layout_location_loading.xml" value="0.67" />
         <entry key="app/src/main/res/layout/layout_no_internet.xml" value="0.16" />
         <entry key="app/src/main/res/layout/layout_nodata.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/layout_notfound.xml" value="0.15904232578024796" />
         <entry key="app/src/main/res/layout/layout_orderloading.xml" value="0.15904232578024796" />
+        <entry key="app/src/main/res/layout/layout_select_address.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/location_custom_dialog.xml" value="0.15904232578024796" />
+        <entry key="app/src/main/res/layout/menu_recycler_recyclerview.xml" value="0.15904232578024796" />
+        <entry key="app/src/main/res/layout/my_selected_item.xml" value="0.15818725951261223" />
+        <entry key="app/src/main/res/layout/mydropdownlist.xml" value="0.41732283464566927" />
         <entry key="app/src/main/res/layout/popular_week_recycler_layout.xml" value="0.36835443037974686" />
         <entry key="app/src/main/res/layout/recycleer_addresslayout.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/recycler_addresslayout.xml" value="0.2" />
         <entry key="app/src/main/res/layout/recycler_itemlist_order_history.xml" value="0.15904232578024796" />
         <entry key="app/src/main/res/layout/recycler_layout_items_my_order.xml" value="0.4327485380116959" />
         <entry key="app/src/main/res/layout/recycler_order_history.xml" value="0.22" />
         <entry key="app/src/main/res/layout/search_product_recylcer_layout.xml" value="0.4121813031161473" />
         <entry key="app/src/main/res/layout/top_category_recycler_layout.xml" value="0.3648148148148148" />
+        <entry key="app/src/main/res/menu/tabs.xml" value="0.15904232578024796" />
       </map>
     </option>
   </component>

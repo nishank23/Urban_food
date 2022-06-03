@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundWhite">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/tv_cnf_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/avenir_medium"
+        android:paddingStart="10dp"
+        android:text="Confirm and pay"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_selectpay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="08dp"
+        android:fontFamily="@font/avenir_light"
+        android:padding="5dp"
+        android:text="Pay with:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tv_cnf_pay"
+        app:layout_constraintTop_toTopOf="@id/spinner"
+        app:layout_constraintBottom_toBottomOf="@id/spinner"/>
+
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25sp"
+        app:layout_constraintStart_toEndOf="@id/tv_selectpay"
+        app:layout_constraintTop_toBottomOf="@id/tv_cnf_pay" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/avenir_light"
+        android:padding="5dp"
+        android:text="Deliver To:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_selectpay" />
+
+    <TextView
+        android:id="@+id/user_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/avenir_light"
+        android:maxLines="2"
+        android:padding="10dp"
+        android:text="Vesu,Surat,Gujarat"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_address"
+        app:layout_constraintTop_toTopOf="@id/tv_address"
+        app:layout_constraintBottom_toBottomOf="@id/tv_address"
+        />
+    <TextView
+        android:id="@+id/amt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/avenir_light"
+        android:padding="5dp"
+        android:text="Total Amount:"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_address" />
+<TextView
+    android:id="@+id/tv_tl_amt"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toEndOf="@id/amt"
+    app:layout_constraintTop_toTopOf="@id/amt"
+    app:layout_constraintBottom_toBottomOf="@id/amt"
+    android:fontFamily="@font/avenir_light"
+    android:padding="5dp"
+    android:text="Vesu,Surat,Gujarat"
+    android:textColor="@color/black"
+    android:textSize="20sp"
+    />
+    <include
+        android:id="@+id/locationlay"
+        layout="@layout/layout_select_address"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_tl_amt"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

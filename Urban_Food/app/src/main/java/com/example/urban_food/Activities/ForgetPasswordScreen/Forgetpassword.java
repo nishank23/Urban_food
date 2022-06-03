@@ -24,7 +24,12 @@ public class Forgetpassword extends AppCompatActivity implements ForgetpasswordV
         super.onCreate(savedInstanceState);
         presenter = new ForgetPasswordPresenter(this);
         setContentView(binding.getRoot());
-
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         binding.btnCngpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

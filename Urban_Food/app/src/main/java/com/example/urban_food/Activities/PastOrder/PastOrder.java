@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.urban_food.Adapter.PastOrderAdapter;
@@ -19,6 +22,7 @@ import com.example.urban_food.R;
 import com.example.urban_food.databinding.ActivityPastOrderBinding;
 import com.example.urban_food.databinding.LayoutLoadingBinding;
 import com.example.urban_food.databinding.LayoutOrderloadingBinding;
+import com.example.urban_food.fragment.profile.Profile;
 import com.example.urban_food.model.Order;
 
 import java.util.List;
@@ -36,6 +40,12 @@ LayoutOrderloadingBinding layoutLoadingBinding;
         setContentView(binding.getRoot());
         orderPresenter =new OrderPresenter(this);
         orderPresenter.getOrder();
+        binding.ivBackMyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
@@ -102,5 +112,25 @@ LayoutOrderloadingBinding layoutLoadingBinding;
     @Override
     public void deleteOrder(String msg) {
 
+    }
+
+    @Override
+    public void reorder(int id) {
+        orderPresenter.getReorder(String.valueOf(id));
+
+
+    }
+
+    @Override
+    public void reorderSucess(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        onBackPressed();
+        GlobalData.pastorder=true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        GlobalData.pastorder=false;
     }
 }

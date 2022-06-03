@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +41,12 @@ public class OtpActivity extends AppCompatActivity implements OtpView {
         SmsRetrieverClient client = SmsRetriever.getClient(this);
         client.startSmsUserConsent(null);
 
-
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         otpData = getIntent().getStringExtra("otpNo");
         checker = getIntent().getBooleanExtra("checker",false);
         phoneString=getIntent().getStringExtra("phone");
