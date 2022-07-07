@@ -50,9 +50,9 @@ public interface ApiInterface {
     @POST("Common/get_cities")
   *//*  Call<CityResponse> getCity(@Field("state_id")String state_id);
 */
-@FormUrlEncoded
-@POST("api/user/otp")
-Call<Otp> getingOtp(@Field("phone") String phone);
+    @FormUrlEncoded
+    @POST("api/user/otp")
+    Call<Otp> getingOtp(@Field("phone") String phone);
 
     @FormUrlEncoded
     @POST("api/user/register")
