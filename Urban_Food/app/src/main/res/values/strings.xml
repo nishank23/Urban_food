@@ -39,7 +39,7 @@
     <string name="Favorite">Favorite</string>
     <string name="MyOrder">MyOrder</string>
     <string name="MyProfile">My Profile</string>
-    <string name="google_api_key1"><!--AIzaSyClH2UrK-86wwXvFTKLX2nHY7K9Ne9qLs0--></string>
+    <string name="google_api_key1"></string>
     <string name="title_activity_manage_address">ManageAddress</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
